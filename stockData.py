@@ -112,7 +112,7 @@ def plot_raw_data():
 
 plot_raw_data()
 
-if(p and f):
+if not (interval in interval_choices[:3]):
     # Predict forecast with Prophet.
     df_train = data[[date_index,'Close']]
     df_train = df_train.rename(columns={date_index: "ds", "Close": "y"})
