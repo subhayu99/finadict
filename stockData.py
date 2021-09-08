@@ -125,8 +125,9 @@ if not (interval in interval_choices[:3]):
     # Show and plot forecast
     st.subheader('Forecast data')
     st.write(forecast.tail())
+    st.write('No of values: ',len(forecast))
     
-    st.write(f'Forecast plot for {p} years')
+    st.write(f'Forecast plot ')
     fig1 = plot_plotly(m, forecast)
     st.plotly_chart(fig1)
     
