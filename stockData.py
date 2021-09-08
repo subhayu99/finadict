@@ -113,6 +113,7 @@ def plot_raw_data():
 plot_raw_data()
 
 if not (interval in interval_choices[:3]):
+    data_load_state = st.text('Predicting stocks\' value...')
     # Predict forecast with Prophet.
     df_train = data[[date_index,'Close']]
     df_train = df_train.rename(columns={date_index: "ds", "Close": "y"})
@@ -129,9 +130,10 @@ if not (interval in interval_choices[:3]):
     
     st.write(f'Forecast plot ')
     fig1 = plot_plotly(m, forecast)
-    st.plotly_chart(fig1)
+    st.plotly_chart(fig1, use_container_width=True)
     
     st.write("Forecast components")
     fig2 = m.plot_components(forecast)
     st.write(fig2)
+    data_load_state.text('Prediction done.')
 
