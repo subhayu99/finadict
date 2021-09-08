@@ -53,22 +53,22 @@ elif(interval=='30m'):
 elif(interval=='60m'):
     period = '730d'
     date_index = 'Datetime'
-    p = 12
+    p = 1440
     f = 'h'
 elif(interval=='1d'):
-    period = 'max'
+    period = '10y'
     date_index = 'Date'
-    p = 1
+    p = 60
     f = 'd'
 elif(interval=='1wk'):
     period = 'max'
     date_index = 'Date'
-    p = 1
+    p = 10
     f = 'W'
 elif(interval=='1mo'):
     period = 'max'
     date_index = 'Date'
-    p = 1
+    p = 2
     f = 'm'
 
 @st.cache
@@ -124,8 +124,8 @@ if not (interval in interval_choices[:3]):
     
     # Show and plot forecast
     st.subheader('Forecast data')
-    st.write(forecast.tail())
-    st.write('No of values: ',len(forecast))
+    st.write(forecast.iloc[len[data]-1:len(forecast),:])
+    st.write('No of values: ',len(forecast.iloc[len[data]-1:len(forecast),:]))
     
     st.write(f'Forecast plot ')
     fig1 = plot_plotly(m, forecast)
