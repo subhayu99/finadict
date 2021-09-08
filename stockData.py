@@ -3,8 +3,8 @@ import streamlit as st
 from datetime import date
 import yfinance as yf
 import pandas as pd
-#from fbprophet import Prophet
-#from fbprophet.plot import plot_plotly
+from fbprophet import Prophet
+from fbprophet.plot import plot_plotly
 from plotly import graph_objs as go
 
 START = "2015-01-01"
@@ -31,25 +31,25 @@ else:
 
 # n_years = st.slider('Years of prediction:', 1, 4)
 
-interval_aliases = ('5 mins', '15 mins', '30 mins', '1 hour', '1 day')
-interval_choices = ('5m', '15m', '30m', '60m', '1d')
+interval_aliases = ('5 mins', '15 mins', '30 mins', '1 hour', '1 day', '1 week', '1 month')
+interval_choices = ('5m', '15m', '30m', '60m', '1d', '1wk', '1mo')
 interval_alias = st.radio('Select interval:', interval_aliases) 
 interval = interval_choices[interval_aliases.index(interval_alias)]
 if(interval=='5m'):
     period = '60d'
     date_index = 'Datetime'
-    p = 10
-    f = '5min'
+    # p = 10
+    # f = '5min'
 elif(interval=='15m'):
     period = '60d'
     date_index = 'Datetime'
-    p = 10
-    f = '15min'
+    # p = 10
+    # f = '15min'
 elif(interval=='30m'):
     period = '60d'
     date_index = 'Datetime'
-    p = 10
-    f = '30min'
+    # p = 10
+    # f = '30min'
 elif(interval=='60m'):
     period = '730d'
     date_index = 'Datetime'
@@ -60,6 +60,16 @@ elif(interval=='1d'):
     date_index = 'Date'
     p = 1
     f = 'd'
+elif(interval=='1wk'):
+    period = 'max'
+    date_index = 'Date'
+    p = 1
+    f = 'W'
+elif(interval=='1mo'):
+    period = 'max'
+    date_index = 'Date'
+    p = 1
+    f = 'm'
 
 @st.cache
 def load_data(ticker):
@@ -102,25 +112,25 @@ def plot_raw_data():
 
 plot_raw_data()
 
-
-# Predict forecast with Prophet.
-df_train = data[[date_index,'Close']]
-df_train = df_train.rename(columns={date_index: "ds", "Close": "y"})
-
-m = Prophet()
-m.fit(df_train)
-future = m.make_future_dataframe(periods=p, freq=f)
-forecast = m.predict(future)
-
-# Show and plot forecast
-st.subheader('Forecast data')
-st.write(forecast.tail())
-
-st.write(f'Forecast plot for {n_years} years')
-fig1 = plot_plotly(m, forecast)
-st.plotly_chart(fig1)
-
-st.write("Forecast components")
-fig2 = m.plot_components(forecast)
-st.write(fig2)
+if(p and f):
+    # Predict forecast with Prophet.
+    df_train = data[[date_index,'Close']]
+    df_train = df_train.rename(columns={date_index: "ds", "Close": "y"})
+    
+    m = Prophet()
+    m.fit(df_train)
+    future = m.make_future_dataframe(periods=p, freq=f)
+    forecast = m.predict(future)
+    
+    # Show and plot forecast
+    st.subheader('Forecast data')
+    st.write(forecast.tail())
+    
+    st.write(f'Forecast plot for {n_years} years')
+    fig1 = plot_plotly(m, forecast)
+    st.plotly_chart(fig1)
+    
+    st.write("Forecast components")
+    fig2 = m.plot_components(forecast)
+    st.write(fig2)
 
