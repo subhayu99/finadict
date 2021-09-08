@@ -53,7 +53,7 @@ elif(interval=='30m'):
 elif(interval=='60m'):
     period = '730d'
     date_index = 'Datetime'
-    p = 1440
+    p = 168
     f = 'h'
 elif(interval=='1d'):
     period = '10y'
@@ -61,12 +61,12 @@ elif(interval=='1d'):
     p = 60
     f = 'd'
 elif(interval=='1wk'):
-    period = 'max'
+    period = '10y'
     date_index = 'Date'
     p = 10
     f = 'W'
 elif(interval=='1mo'):
-    period = 'max'
+    period = '10y'
     date_index = 'Date'
     p = 2
     f = 'm'
