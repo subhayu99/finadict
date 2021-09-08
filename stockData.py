@@ -51,7 +51,7 @@ elif(interval=='30m'):
     # p = 10
     # f = '30min'
 elif(interval=='60m'):
-    period = '730d'
+    period = '146d'
     date_index = 'Datetime'
     p = 168
     f = 'h'
@@ -126,7 +126,7 @@ if not (interval in interval_choices[:3]):
     # Show and plot forecast
     st.subheader('Forecast data')
     st.write(forecast[len(data)-1:len(forecast)])
-    st.write('No of values: ',len(forecast[len(data)-1:len(forecast)]))
+    st.write('No of values: ',len(forecast[len(data):len(forecast)]))
     
     st.write(f'Forecast plot ')
     fig1 = plot_plotly(m, forecast)
