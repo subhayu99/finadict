@@ -56,12 +56,12 @@ elif(interval=='60m'):
     p = 168
     f = 'h'
 elif(interval=='1d'):
-    period = '5y'
+    period = '10y'
     date_index = 'Date'
     p = 60
     f = 'd'
 elif(interval=='1wk'):
-    period = '5y'
+    period = '10y'
     date_index = 'Date'
     p = 10
     f = 'W'
