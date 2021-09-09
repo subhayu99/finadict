@@ -5,7 +5,7 @@ import yfinance as yf
 import pandas as pd
 from fbprophet import Prophet
 from fbprophet.plot import plot_plotly
-from prophet.plot import add_changepoints_to_plot
+from fbprophet.plot import add_changepoints_to_plot
 from plotly import graph_objs as go
 
 START = "2015-01-01"
@@ -47,7 +47,7 @@ elif(interval=='15m'):
     period = '60d'
     date_index = 'Datetime'
     # p = 10
-    # f = '15min'
+    # f = 'h'
 elif(interval=='30m'):
     period = '60d'
     date_index = 'Datetime'
@@ -85,6 +85,10 @@ def load_data(ticker):
     data[date_index] = data[date_index].astype(str)
     if(date_index == 'Datetime'):
         data[date_index] = data[date_index].str[:-6]
+    if(interval=='60m'):
+        df2 = df.copy()
+        df2['ds'] = pd.to_datetime(df2['ds'])
+        df2 = df2[df2['ds'].dt.hour > 9 & df2['ds'].dt.hour < 4]
     return data
 
 	
