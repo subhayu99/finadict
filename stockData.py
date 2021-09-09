@@ -91,7 +91,7 @@ def load_data(ticker):
     data[date_index] = data[date_index].astype(str)
     if(date_index == 'Datetime'):
         data[date_index] = data[date_index].str[:-6]
-    if(interval=='60m'):
+    if(interval=='1d'):
         data[date_index] = pd.to_datetime(data[date_index])
         data = data[data[date_index].dt.dayofweek < 5]
     return data
