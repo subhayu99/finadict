@@ -5,7 +5,6 @@ import yfinance as yf
 import pandas as pd
 from fbprophet import Prophet
 from fbprophet.plot import plot_plotly
-from fbprophet.plot import add_changepoints_to_plot
 from plotly import graph_objs as go
 
 START = "2015-01-01"
@@ -133,7 +132,6 @@ if not (interval in interval_choices[:4]):
     
     st.write(f'Forecast plot ')
     fig1 = plot_plotly(m, forecast)
-    a = add_changepoints_to_plot(fig1.gca(), m, forecast)
     st.plotly_chart(fig1, use_container_width=True)
     
     st.write("Forecast components")
