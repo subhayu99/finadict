@@ -99,7 +99,7 @@ data = load_data(st.session_state.selected_stock)
 # data_load_state.text('Fetching data... done!')
 
 percentage = round(len(data)/100*90)
-data_split = data.iloc[percentage:len(data),:]
+data_split = data # .iloc[percentage:len(data),:]
 st.subheader('Raw data')
 st.dataframe(data)
 
