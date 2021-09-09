@@ -22,12 +22,11 @@ st.title('Stock Price Prediction WebApp')
 # stocks = ('GOOG', 'AAPL', 'MSFT', 'GME')
 # selected_stock = st.selectbox('Select dataset for prediction', stocks)
 st.text_input("Type in a ticker symbol (For eg. 'AAPL' for Apple Inc.)", key="selected_stock", value='AAPL')
-st.write('*Forgotten the ticker symbol?* Find it [here]("https://finance.yahoo.com/lookup")')
+st.write('*Forgotten the ticker symbol?* Find it [here](https://finance.yahoo.com/lookup)')
 comp = yf.Ticker(st.session_state.selected_stock)
 comp_info = comp.info
 if(comp_info.get('shortName')!=None):
-    website = comp_info.get('website')
-    st.write('\nShowing results for**[', comp_info.get('shortName'),'](website)**\n')
+    st.write('\nShowing results for**', comp_info.get('shortName'),'**\n')
 else:
     st.write('\nNo value passed!\nShowing results for **Apple Inc.**\n')
 st.write(comp_info)
