@@ -56,17 +56,17 @@ elif(interval=='60m'):
     p = 168
     f = 'h'
 elif(interval=='1d'):
-    period = '10y'
+    period = '2y'
     date_index = 'Date'
     p = 60
     f = 'd'
 elif(interval=='1wk'):
-    period = '10y'
+    period = '3y'
     date_index = 'Date'
     p = 10
     f = 'W'
 elif(interval=='1mo'):
-    period = '10y'
+    period = '5y'
     date_index = 'Date'
     p = 2
     f = 'm'
