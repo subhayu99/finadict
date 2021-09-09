@@ -55,22 +55,22 @@ elif(interval=='30m'):
 elif(interval=='60m'):
     period = '146d'
     date_index = 'Datetime'
-    p = 168
+    p = st.slider('No. of hour\'s prediction:', 1, 1000)
     f = 'h'
 elif(interval=='1d'):
     period = '10y'
     date_index = 'Date'
-    p = 60
+    p = st.slider('No. of day\'s prediction:', 1, 1000)
     f = 'd'
 elif(interval=='1wk'):
     period = '10y'
     date_index = 'Date'
-    p = 10
+    p = st.slider('No. of week\'s prediction:', 1, 1000)
     f = 'W'
 elif(interval=='1mo'):
     period = '10y'
     date_index = 'Date'
-    p = 2
+    p = st.slider('No. of month\'s prediction:', 1, 100)
     f = 'm'
 
 @st.cache
