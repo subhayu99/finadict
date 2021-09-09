@@ -91,6 +91,9 @@ def load_data(ticker):
     data[date_index] = data[date_index].astype(str)
     if(date_index == 'Datetime'):
         data[date_index] = data[date_index].str[:-6]
+    if(interval=='60m'):
+        data[date_index] = pd.to_datetime(data[date_index])
+        data = data[data[date_index].dt.weekday < 5]
     return data
 
 	
