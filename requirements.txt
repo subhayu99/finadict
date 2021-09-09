@@ -3,3 +3,4 @@ streamlit
 fbprophet
 yfinance
 plotly
+pycountry

@@ -6,6 +6,7 @@ import pandas as pd
 from fbprophet import Prophet
 from fbprophet.plot import plot_plotly
 from plotly import graph_objs as go
+import pycountry
 
 START = "2015-01-01"
 TODAY = date.today().strftime("%Y-%m-%d")
@@ -25,6 +26,7 @@ st.text_input("Type in a ticker symbol (For eg. 'AAPL' for Apple Inc.)", key="se
 st.write('*Forgotten the ticker symbol?* Find it [here](https://finance.yahoo.com/lookup)')
 comp = yf.Ticker(st.session_state.selected_stock)
 comp_info = comp.info
+comp_country_code = pycountry.countries.search_fuzzy(comp_info.get('country')).alpha_2
 if(comp_info.get('shortName')!=None):
     st.write('\nShowing results for**', comp_info.get('shortName'),'**\n')
 else:
@@ -129,6 +131,7 @@ if not (interval in interval_choices[:4]):
     df_train = df_train.rename(columns={date_index: "ds", "Close": "y"})
     
     m = Prophet(interval_width=0.5)
+    m.add_country_holidays(country_name=comp_country_code)
     m.fit(df_train)
     future = m.make_future_dataframe(periods=p, freq=f)
     forecast = m.predict(future)
