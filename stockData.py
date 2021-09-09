@@ -26,9 +26,9 @@ st.write('*Forgotten the ticker symbol?* Find it [here](https://finance.yahoo.co
 comp = yf.Ticker(st.session_state.selected_stock)
 comp_info = comp.info
 if(comp_info.get('shortName')!=None):
-    st.write('> Showing results for**', comp_info.get('shortName'),'**')
+    st.write('\nShowing results for**', comp_info.get('shortName'),'**\n')
 else:
-    st.write('> No value passed!\nShowing results for **Apple Inc.**')
+    st.write('\nNo value passed!\nShowing results for **Apple Inc.**\n')
 
 # n_years = st.slider('Years of prediction:', 1, 4)
 
