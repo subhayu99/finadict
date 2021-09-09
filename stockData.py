@@ -115,7 +115,7 @@ def plot_raw_data():
 
 plot_raw_data()
 
-if not (interval in interval_choices[:3]):
+if not (interval in interval_choices[:4]):
     data_load_state = st.text('Predicting stocks\' value...')
     # Predict forecast with Prophet.
     df_train = data[[date_index,'Close']]
