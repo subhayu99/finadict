@@ -19,10 +19,12 @@ st.set_page_config(
 
 st.title('Stock Price Prediction WebApp')
 
+st.write('---')
+
 # stocks = ('GOOG', 'AAPL', 'MSFT', 'GME')
 # selected_stock = st.selectbox('Select dataset for prediction', stocks)
 st.text_input("Type in a ticker symbol (For eg. 'AAPL' for Apple Inc.)", key="selected_stock", value='AAPL')
-st.write('Forgotten the ticker symbol? Find it [here](https://finance.yahoo.com/lookup)')
+st.write('*Forgotten the ticker symbol?* Find it [here](https://finance.yahoo.com/lookup)')
 comp = yf.Ticker(st.session_state.selected_stock)
 comp_info = comp.info
 if(comp_info.get('shortName')!=None):
@@ -36,6 +38,9 @@ interval_aliases = ('5 mins', '15 mins', '30 mins', '1 hour', '1 day', '1 week',
 interval_choices = ('5m', '15m', '30m', '60m', '1d', '1wk', '1mo')
 interval_alias = st.radio('Select interval:', interval_aliases) 
 interval = interval_choices[interval_aliases.index(interval_alias)]
+
+st.write('---')
+
 if(interval=='5m'):
     period = '60d'
     date_index = 'Datetime'
