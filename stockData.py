@@ -26,7 +26,7 @@ st.text_input("Type in a ticker symbol (For eg. 'AAPL' for Apple Inc.)", key="se
 st.write('*Forgotten the ticker symbol?* Find it [here](https://finance.yahoo.com/lookup)')
 comp = yf.Ticker(st.session_state.selected_stock)
 comp_info = comp.info
-comp_country_code = pycountry.countries.search_fuzzy(comp_info.get('country')).alpha_2
+comp_country_code = pycountry.countries.search_fuzzy(comp_info.get('country'))[0].alpha_2
 if(comp_info.get('shortName')!=None):
     st.write('\nShowing results for**', comp_info.get('shortName'),'**\n')
 else:
