@@ -38,37 +38,44 @@ interval_alias = st.radio('Select interval:', interval_aliases)
 interval = interval_choices[interval_aliases.index(interval_alias)]
 
 if(interval=='5m'):
-    period = '60d'
+    y = st.slider('No. of days\' data to fetch:', 1, 60)
+    period = str(y)+'d'
     date_index = 'Datetime'
     # p = 10
     # f = '5min'
 elif(interval=='15m'):
-    period = '60d'
+    y = st.slider('No. of days\' data to fetch:', 1, 60)
+    period = str(y)+'d'
     date_index = 'Datetime'
     # p = 10
     # f = 'h'
 elif(interval=='30m'):
-    period = '60d'
+    y = st.slider('No. of days\' data to fetch:', 1, 60)
+    period = str(y)+'d'
     date_index = 'Datetime'
     # p = 10
     # f = '30min'
 elif(interval=='60m'):
-    period = '146d'
+    y = st.slider('No. of days\' data to fetch:', 1, 146)
+    period = str(y)+'d'
     date_index = 'Datetime'
     # p = st.slider('No. of hour\'s prediction:', 1, 60)
     # f = 'h'
 elif(interval=='1d'):
-    period = '10y'
+    y = st.slider('No. of years\' data to fetch:', 1, 10)
+    period = str(y)+'y'
     date_index = 'Date'
     p = st.slider('No. of day\'s prediction:', 1, 10)
     f = 'd'
 elif(interval=='1wk'):
-    period = '10y'
+    y = st.slider('No. of years\' data to fetch:', 1, 10)
+    period = str(y)+'y'
     date_index = 'Date'
     p = st.slider('No. of week\'s prediction:', 1, 10)
     f = 'W'
 elif(interval=='1mo'):
-    period = '10y'
+    y = st.slider('No. of years\' data to fetch:', 1, 10)
+    period = str(y)+'y'
     date_index = 'Date'
     p = st.slider('No. of month\'s prediction:', 1, 10)
     f = 'm'
