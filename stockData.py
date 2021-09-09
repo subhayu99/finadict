@@ -86,9 +86,8 @@ def load_data(ticker):
     if(date_index == 'Datetime'):
         data[date_index] = data[date_index].str[:-6]
     if(interval=='60m'):
-        df2 = df.copy()
-        df2['ds'] = pd.to_datetime(df2['ds'])
-        df2 = df2[df2['ds'].dt.hour > 9 & df2['ds'].dt.hour < 4]
+        data[date_index] = pd.to_datetime(data[date_index]) 
+        data = data[data[date_index].dt.hour > 9 & data[date_index].dt.hour < 16]
     return data
 
 	
