@@ -5,6 +5,7 @@ import yfinance as yf
 import pandas as pd
 from fbprophet import Prophet
 from fbprophet.plot import plot_plotly
+from prophet.plot import add_changepoints_to_plot
 from plotly import graph_objs as go
 
 START = "2015-01-01"
@@ -55,22 +56,22 @@ elif(interval=='30m'):
 elif(interval=='60m'):
     period = '146d'
     date_index = 'Datetime'
-    p = st.slider('No. of hour\'s prediction:', 1, 1000)
+    p = st.slider('No. of hour\'s prediction:', 1, 60)
     f = 'h'
 elif(interval=='1d'):
     period = '10y'
     date_index = 'Date'
-    p = st.slider('No. of day\'s prediction:', 1, 1000)
+    p = st.slider('No. of day\'s prediction:', 1, 10)
     f = 'd'
 elif(interval=='1wk'):
     period = '10y'
     date_index = 'Date'
-    p = st.slider('No. of week\'s prediction:', 1, 1000)
+    p = st.slider('No. of week\'s prediction:', 1, 10)
     f = 'W'
 elif(interval=='1mo'):
     period = '10y'
     date_index = 'Date'
-    p = st.slider('No. of month\'s prediction:', 1, 100)
+    p = st.slider('No. of month\'s prediction:', 1, 10)
     f = 'm'
 
 @st.cache
@@ -132,6 +133,7 @@ if not (interval in interval_choices[:3]):
     
     st.write(f'Forecast plot ')
     fig1 = plot_plotly(m, forecast)
+    a = add_changepoints_to_plot(fig1.gca(), m, forecast)
     st.plotly_chart(fig1, use_container_width=True)
     
     st.write("Forecast components")
