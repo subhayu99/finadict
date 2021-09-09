@@ -91,9 +91,6 @@ def load_data(ticker):
     data[date_index] = data[date_index].astype(str)
     if(date_index == 'Datetime'):
         data[date_index] = data[date_index].str[:-6]
-    if(interval=='1d'):
-        data[date_index] = pd.to_datetime(data[date_index])
-        data = data[data[date_index].dt.dayofweek < 5]
     return data
 
 	
@@ -130,7 +127,7 @@ if not (interval in interval_choices[:4]):
     df_train = data[[date_index,'Close']]
     df_train = df_train.rename(columns={date_index: "ds", "Close": "y"})
     
-    m = Prophet()
+    m = Prophet(interval_width=0.95)
     m.fit(df_train)
     future = m.make_future_dataframe(periods=p, freq=f)
     forecast = m.predict(future)
