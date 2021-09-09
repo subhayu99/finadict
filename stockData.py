@@ -29,6 +29,7 @@ if(comp_info.get('shortName')!=None):
     st.write('\nShowing results for**', comp_info.get('shortName'),'**\n')
 else:
     st.write('\nNo value passed!\nShowing results for **Apple Inc.**\n')
+st.write(comp_info)
 
 # n_years = st.slider('Years of prediction:', 1, 4)
 
