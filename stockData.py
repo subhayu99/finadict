@@ -127,7 +127,7 @@ if not (interval in interval_choices[:4]):
     df_train = data[[date_index,'Close']]
     df_train = df_train.rename(columns={date_index: "ds", "Close": "y"})
     
-    m = Prophet(interval_width=0.25)
+    m = Prophet(interval_width=0.5)
     m.fit(df_train)
     future = m.make_future_dataframe(periods=p, freq=f)
     forecast = m.predict(future)
