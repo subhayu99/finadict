@@ -65,8 +65,9 @@ elif(interval=='60m'):
     # p = st.slider('No. of hour\'s prediction:', 1, 60)
     # f = 'h'
 elif(interval=='1d'):
-    y = st.slider('No. of years\' data to fetch:', 1, 10)
-    period = str(y)+'y'
+    y = st.slider('No. of months\' data to fetch:', 1, 12)
+    y *= 30
+    period = str(y)+'d'
     date_index = 'Date'
     p = st.slider('No. of day\'s prediction:', 1, 10)
     f = 'd'
