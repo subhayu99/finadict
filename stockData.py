@@ -121,8 +121,7 @@ def build_model():
     # Define forecasting model.
     m = Prophet(
             interval_width=0.95, 
-            daily_seasonality=auto,
-            weekly_seasonality=auto, 
+            weekly_seasonality=True, 
             changepoint_prior_scale=2, 
             mcmc_samples = 500 
     )
