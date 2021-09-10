@@ -131,7 +131,7 @@ if not (interval in interval_choices[:4]):
     df_train = data[[date_index,'Close']]
     df_train = df_train.rename(columns={date_index: "ds", "Close": "y"})
     
-    m = Prophet(interval_width=0.95, weekly_seasonality=True, changepoint_prior_scale=4)
+    m = Prophet(interval_width=0.95, weekly_seasonality=True, changepoint_prior_scale=10)
     m.add_country_holidays(country_name=comp_country_code)
     m.fit(df_train)
     future = m.make_future_dataframe(periods=p, freq=f)
