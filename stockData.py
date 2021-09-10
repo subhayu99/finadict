@@ -122,7 +122,7 @@ def build_model():
     m = Prophet(
             interval_width=0.95, 
             weekly_seasonality=True, 
-            changepoint_prior_scale=1 
+            changepoint_prior_scale=2 
             # mcmc_samples = 500 
     )
     m.add_country_holidays(
