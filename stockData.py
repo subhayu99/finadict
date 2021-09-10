@@ -119,20 +119,14 @@ plot_raw_data()
 
 def build_model():
     # Define forecasting model.
-    m = Prophet(
-            interval_width=0.95, 
-            changepoint_prior_scale=0.5 
-            # mcmc_samples = 500 
-    )
-    m.add_country_holidays(
-            country_name=comp_country_code
-    )
+    m = Prophet(interval_width=0.95, weekly_seasonality=True, changepoint_prior_scale=2)
+    m.add_country_holidays(country_name=comp_country_code)
     return m
 
-def show_forecast():
+def show_forecast(forecast):
     # Show and plot forecast
     st.subheader('Forecast data')
-    only_forecast = forecast[len(data):len(forecast)]
+    only_forecast = forecast[len(data)-1:len(forecast)]
     st.write(only_forecast)
     st.write('No of values: ',len(only_forecast))
     
@@ -148,7 +142,8 @@ def show_forecast():
 if not (interval in interval_choices[:4]):
     data_load_state = st.text('Predicting stocks\' value...')
     m = build_model()
-    # Predict forecast with Prophet.
+    m.fit(df_train)
+    # Predict forecast.
     m.fit(df_train)
     future = m.make_future_dataframe(
             periods=p, 
@@ -156,6 +151,6 @@ if not (interval in interval_choices[:4]):
     )
     forecast = m.predict(future)
 
-    show_forecast()
+    show_forecast(forecast)
     data_load_state.text('Prediction done.')
 
