@@ -19,12 +19,13 @@ st.title('Stock Price Prediction WebApp')
 
 selected_stock = st.text_input("Type in a ticker symbol (For eg. 'AAPL' for Apple Inc.)", value='AAPL')
 st.write('*Forgotten the ticker symbol?* Find it [here](https://finance.yahoo.com/lookup)')
-if(comp_info.get('shortName')!=None):
-    st.write('\nShowing results for**', comp_info.get('shortName'),'**\n')
-else:
-    st.write('\nNo value passed!\nShowing results for **Apple Inc.**\n')
 if not selected_stock:
     selected_stock = 'AAPL'
+comp = yf.Ticker(selected_stock)
+comp_info = comp.info
+comp_country_code = pycountry.countries.search_fuzzy(comp_info.get('country'))[0].alpha_2
+
+st.write('\nShowing results for**', comp_info.get('shortName'),'**\n')
 st.write(comp_info)
 
 interval_aliases = ('5 mins', '15 mins', '30 mins', '1 hour', '1 day')
@@ -87,9 +88,6 @@ def load_data(ticker):
     return data
 
 data = load_data(selected_stock)
-comp = yf.Ticker(selected_stock)
-comp_info = comp.info
-comp_country_code = pycountry.countries.search_fuzzy(comp_info.get('country'))[0].alpha_2
 
 percentage = round(len(data)/100*90)
 data_split = data # .iloc[percentage:len(data),:]
