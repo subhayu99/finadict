@@ -144,7 +144,6 @@ if not (interval in interval_choices[:4]):
     m = build_model()
     m.fit(df_train)
     # Predict forecast.
-    m.fit(df_train)
     future = m.make_future_dataframe(
             periods=p, 
             freq=f
