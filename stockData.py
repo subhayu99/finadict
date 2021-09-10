@@ -94,6 +94,9 @@ data_split = data # .iloc[percentage:len(data),:]
 st.subheader('Raw data')
 st.dataframe(data)
 
+df_train = data[[date_index,'Close']]
+df_train = df_train.rename(columns={date_index: "ds", "Close": "y"})
+
 # Plot raw data
 def plot_raw_data():
     fig = go.Figure()
@@ -114,22 +117,18 @@ def plot_raw_data():
 
 plot_raw_data()
 
-if not (interval in interval_choices[:4]):
-    data_load_state = st.text('Predicting stocks\' value...')
-    # Predict forecast with Prophet.
-    df_train = data[[date_index,'Close']]
-    df_train = df_train.rename(columns={date_index: "ds", "Close": "y"})
-
+def build_model():
+    # Define forecasting model.
     m = Prophet(interval_width=0.95, weekly_seasonality=True, changepoint_prior_scale=2)
     m.add_country_holidays(country_name=comp_country_code)
-    m.fit(df_train)
-    future = m.make_future_dataframe(periods=p, freq=f)
-    forecast = m.predict(future)
-    
+    return m
+
+def show_forecast(forecast):
     # Show and plot forecast
     st.subheader('Forecast data')
-    st.write(forecast[len(data)-1:len(forecast)])
-    st.write('No of values: ',len(forecast[len(data):len(forecast)]))
+    only_forecast = forecast[len(data)-1:len(forecast)]
+    st.write(only_forecast)
+    st.write('No of values: ',len(only_forecast))
     
     st.subheader(f'Forecast plot ')
     fig1 = plot_plotly(m, forecast)
@@ -138,4 +137,19 @@ if not (interval in interval_choices[:4]):
     st.subheader("Forecast components")
     fig2 = m.plot_components(forecast)
     st.write(fig2)
+
+
+if not (interval in interval_choices[:4]):
+    data_load_state = st.text('Predicting stocks\' value...')
+    m = build_model()
+    m.fit(df_train)
+    # Predict forecast.
+    future = m.make_future_dataframe(
+            periods=p, 
+            freq=f
+    )
+    forecast = m.predict(future)
+
+    show_forecast(forecast)
     data_load_state.text('Prediction done.')
+
