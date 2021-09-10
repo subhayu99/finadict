@@ -122,8 +122,8 @@ def build_model():
     m = Prophet(
             interval_width=0.95, 
             weekly_seasonality=True, 
-            changepoint_prior_scale=2, 
-            mcmc_samples = 500 
+            changepoint_prior_scale=2 
+            # mcmc_samples = 500 
     )
     m.add_country_holidays(
             country_name=comp_country_code
@@ -134,14 +134,14 @@ def show_forecast():
     # Show and plot forecast
     st.subheader('Forecast data')
     only_forecast = forecast[len(data):len(forecast)]
-    st.write(forecast)
-    st.write('No of values: ',len(forecast))
+    st.write(only_forecast)
+    st.write('No of values: ',len(only_forecast))
     
-    st.write(f'Forecast plot ')
+    st.subheader(f'Forecast plot ')
     fig1 = plot_plotly(m, forecast)
     st.plotly_chart(fig1, use_container_width=True)
     
-    st.write("Forecast components")
+    st.subheader("Forecast components")
     fig2 = m.plot_components(forecast)
     st.write(fig2)
 
