@@ -8,9 +8,6 @@ from fbprophet.plot import plot_plotly
 from plotly import graph_objs as go
 import pycountry
 
-START = "2015-01-01"
-TODAY = date.today().strftime("%Y-%m-%d")
-
 st.set_page_config(
         page_title="Stock Prection", 
         page_icon="•",
@@ -20,20 +17,13 @@ st.set_page_config(
 
 st.title('Stock Price Prediction WebApp')
 
-# stocks = ('GOOG', 'AAPL', 'MSFT', 'GME')
-# selected_stock = st.selectbox('Select dataset for prediction', stocks)
 st.text_input("Type in a ticker symbol (For eg. 'AAPL' for Apple Inc.)", key="selected_stock", value='AAPL')
 st.write('*Forgotten the ticker symbol?* Find it [here](https://finance.yahoo.com/lookup)')
-comp = yf.Ticker(st.session_state.selected_stock)
-comp_info = comp.info
-comp_country_code = pycountry.countries.search_fuzzy(comp_info.get('country'))[0].alpha_2
 if(comp_info.get('shortName')!=None):
     st.write('\nShowing results for**', comp_info.get('shortName'),'**\n')
 else:
     st.write('\nNo value passed!\nShowing results for **Apple Inc.**\n')
 st.write(comp_info)
-
-# n_years = st.slider('Years of prediction:', 1, 4)
 
 interval_aliases = ('5 mins', '15 mins', '30 mins', '1 hour', '1 day')
 interval_choices = ('5m', '15m', '30m', '60m', '1d')
@@ -89,7 +79,6 @@ def load_data(ticker):
     if not ticker:
         ticker='AAPL'
     comp = yf.Ticker(ticker)
-    # data = comp.history(start=START, end=TODAY, interval=interval)
     data = comp.history(period=period, interval=interval)
     data.reset_index(inplace=True)
     data[date_index] = data[date_index].astype(str)
@@ -97,15 +86,18 @@ def load_data(ticker):
         data[date_index] = data[date_index].str[:-6]
     return data
 
-	
-# data_load_state = st.text('Fetching data...')
 data = load_data(st.session_state.selected_stock)
-# data_load_state.text('Fetching data... done!')
+comp = yf.Ticker(st.session_state.selected_stock)
+comp_info = comp.info
+comp_country_code = pycountry.countries.search_fuzzy(comp_info.get('country'))[0].alpha_2
 
 percentage = round(len(data)/100*90)
 data_split = data # .iloc[percentage:len(data),:]
 st.subheader('Raw data')
 st.dataframe(data)
+
+df_train = data[[date_index,'Close']]
+df_train = df_train.rename(columns={date_index: "ds", "Close": "y"})
 
 # Plot raw data
 def plot_raw_data():
@@ -115,32 +107,38 @@ def plot_raw_data():
     fig.layout.update(title_text='Time Series data in Line-chart', xaxis_rangeslider_visible=True)
     st.plotly_chart(fig, use_container_width=True)
 
-    csfig = go.Figure(data=[go.Candlestick(x=data_split[date_index],
+    csfig = go.Figure(data=[go.Candlestick(
+        x=data_split[date_index],
         open=data_split['Open'],
         high=data_split['High'],
         low=data_split['Low'],
-        close=data_split['Close'])])
+        close=data_split['Close'])]
+    )
     csfig.layout.update(title_text='Time Series data in Candle-chart', xaxis_rangeslider_visible=True)
     st.plotly_chart(csfig, use_container_width=True)
 
 plot_raw_data()
 
-if not (interval in interval_choices[:4]):
-    data_load_state = st.text('Predicting stocks\' value...')
-    # Predict forecast with Prophet.
-    df_train = data[[date_index,'Close']]
-    df_train = df_train.rename(columns={date_index: "ds", "Close": "y"})
-    
-    m = Prophet(interval_width=0.95, weekly_seasonality=True, changepoint_prior_scale=2)
-    m.add_country_holidays(country_name=comp_country_code)
-    m.fit(df_train)
-    future = m.make_future_dataframe(periods=p, freq=f)
-    forecast = m.predict(future)
-    
+def build_model():
+    # Define forecasting model.
+    m = Prophet(
+            interval_width=0.95, 
+            daily_seasonality=auto,
+            weekly_seasonality=auto, 
+            changepoint_prior_scale=2, 
+            mcmc_samples = 500 
+    )
+    m.add_country_holidays(
+            country_name=comp_country_code
+    )
+    return m
+
+def show_forecast():
     # Show and plot forecast
     st.subheader('Forecast data')
-    st.write(forecast[len(data)-1:len(forecast)])
-    st.write('No of values: ',len(forecast[len(data):len(forecast)]))
+    only_forecast = forecast[len(data):len(forecast)]
+    st.write(forecast)
+    st.write('No of values: ',len(forecast))
     
     st.write(f'Forecast plot ')
     fig1 = plot_plotly(m, forecast)
@@ -149,5 +147,19 @@ if not (interval in interval_choices[:4]):
     st.write("Forecast components")
     fig2 = m.plot_components(forecast)
     st.write(fig2)
+
+
+if not (interval in interval_choices[:4]):
+    data_load_state = st.text('Predicting stocks\' value...')
+    m = build_model()
+    # Predict forecast with Prophet.
+    m.fit(df_train)
+    future = m.make_future_dataframe(
+            periods=p, 
+            freq=f
+    )
+    forecast = m.predict(future)
+
+    show_forecast()
     data_load_state.text('Prediction done.')
 
