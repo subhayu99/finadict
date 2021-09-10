@@ -17,12 +17,14 @@ st.set_page_config(
 
 st.title('Stock Price Prediction WebApp')
 
-st.text_input("Type in a ticker symbol (For eg. 'AAPL' for Apple Inc.)", key="selected_stock", value='AAPL')
+selected_stock = st.text_input("Type in a ticker symbol (For eg. 'AAPL' for Apple Inc.)", value='AAPL')
 st.write('*Forgotten the ticker symbol?* Find it [here](https://finance.yahoo.com/lookup)')
 if(comp_info.get('shortName')!=None):
     st.write('\nShowing results for**', comp_info.get('shortName'),'**\n')
 else:
     st.write('\nNo value passed!\nShowing results for **Apple Inc.**\n')
+if not selected_stock:
+    selected_stock = 'AAPL'
 st.write(comp_info)
 
 interval_aliases = ('5 mins', '15 mins', '30 mins', '1 hour', '1 day')
@@ -76,8 +78,6 @@ elif(interval=='1mo'):
 
 @st.cache
 def load_data(ticker):
-    if not ticker:
-        ticker='AAPL'
     comp = yf.Ticker(ticker)
     data = comp.history(period=period, interval=interval)
     data.reset_index(inplace=True)
@@ -86,8 +86,8 @@ def load_data(ticker):
         data[date_index] = data[date_index].str[:-6]
     return data
 
-data = load_data(st.session_state.selected_stock)
-comp = yf.Ticker(st.session_state.selected_stock)
+data = load_data(selected_stock)
+comp = yf.Ticker(selected_stock)
 comp_info = comp.info
 comp_country_code = pycountry.countries.search_fuzzy(comp_info.get('country'))[0].alpha_2
 
