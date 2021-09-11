@@ -118,7 +118,7 @@ plot_raw_data()
 def build_model():
     # Define forecasting model.
     m = Prophet(
-            interval_width=0.75, 
+            interval_width=0.55, 
             daily_seasonality=True,
             weekly_seasonality=True, 
             changepoint_prior_scale=1 
