@@ -143,7 +143,7 @@ def show_forecast(forecast):
     st.write(fig2)
 
 
-if not (interval in interval_choices[:4]):
+if not (interval in interval_choices[:3]):
     data_load_state = st.text('Predicting stocks\' value...')
     m = build_model()
     m.fit(df_train)
