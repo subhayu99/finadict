@@ -119,11 +119,12 @@ def build_model():
     # Define forecasting model.
     m = Prophet(
             interval_width=0.95, 
+            daily_seasonality=True,
             weekly_seasonality=True, 
             changepoint_prior_scale=2 
             # mcmc_samples = 12
             )
-    # m.add_country_holidays(country_name=comp_country_code)
+    m.add_country_holidays(country_name=comp_country_code)
     return m
 
 def show_forecast(forecast):
