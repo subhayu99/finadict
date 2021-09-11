@@ -119,7 +119,7 @@ plot_raw_data()
 
 def build_model():
     # Define forecasting model.
-    m = Prophet(interval_width=0.95, 
+    m = Prophet(interval_width=0.05, 
             weekly_seasonality=True, 
             changepoint_prior_scale=2, 
             mcmc_samples = 500
@@ -148,7 +148,7 @@ if not (interval in interval_choices[:4]):
     m = build_model()
     m.fit(df_train)
     # Predict forecast.
-    future = m.make_future_dataframe(periods=p)
+    future = m.make_future_dataframe(periods=p, freq=f)
     forecast = m.predict(future)
 
     show_forecast(forecast)
