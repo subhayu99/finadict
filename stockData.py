@@ -121,7 +121,7 @@ def build_model():
             interval_width=0.95, 
             weekly_seasonality=True, 
             changepoint_prior_scale=2, 
-            mcmc_samples = 0
+            mcmc_samples = 50
             )
     m.add_country_holidays(country_name=comp_country_code)
     return m
