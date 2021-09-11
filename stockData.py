@@ -89,8 +89,6 @@ def load_data(ticker):
 
 data = load_data(selected_stock)
 
-percentage = round(len(data)/100*90)
-data_split = data # .iloc[percentage:len(data),:]
 st.subheader('Raw data')
 st.dataframe(data)
 
@@ -100,17 +98,17 @@ df_train = df_train.rename(columns={date_index: "ds", "Close": "y"})
 # Plot raw data
 def plot_raw_data():
     fig = go.Figure()
-    fig.add_trace(go.Scatter(x=data_split[date_index], y=data_split['Open'], name="stock_open"))
-    fig.add_trace(go.Scatter(x=data_split[date_index], y=data_split['Close'], name="stock_close"))
+    fig.add_trace(go.Scatter(x=data[date_index], y=data['Open'], name="stock_open"))
+    fig.add_trace(go.Scatter(x=data[date_index], y=data['Close'], name="stock_close"))
     fig.layout.update(title_text='Time Series data in Line-chart', xaxis_rangeslider_visible=True)
     st.plotly_chart(fig, use_container_width=True)
 
     csfig = go.Figure(data=[go.Candlestick(
-        x=data_split[date_index],
-        open=data_split['Open'],
-        high=data_split['High'],
-        low=data_split['Low'],
-        close=data_split['Close'])]
+        x=data[date_index],
+        open=data['Open'],
+        high=data['High'],
+        low=data['Low'],
+        close=data['Close'])]
     )
     csfig.layout.update(title_text='Time Series data in Candle-chart', xaxis_rangeslider_visible=True)
     st.plotly_chart(csfig, use_container_width=True)
@@ -120,6 +118,7 @@ plot_raw_data()
 def build_model():
     # Define forecasting model.
     m = Prophet(
+            interval_width=0.95, 
             weekly_seasonality=True, 
             changepoint_prior_scale=2, 
             mcmc_samples = 500
