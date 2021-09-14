@@ -18,10 +18,10 @@ st.set_page_config(
 
 st.title('Forex Price Prediction WebApp')
 
-selected_stock = st.text_input("Type in a ticker symbol (For eg. 'AAPL' for Apple Inc.)", value='AAPL')
+selected_stock = st.text_input("Type in a conversion string (For eg. 'USDINR=X' for converting US Dollar to Indian Rupee.)", value='USDINR=X')
 st.write('*Forgotten the ticker symbol?* Find it [here](https://finance.yahoo.com/lookup)')
 if not selected_stock:
-    selected_stock = 'AAPL'
+    selected_stock = 'USDINR=X'
 # comp = yf.Ticker(selected_stock)
 # comp_info = comp.info
 # comp_country_code = pycountry.countries.search_fuzzy(comp_info.get('country'))[0].alpha_2
