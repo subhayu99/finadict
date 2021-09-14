@@ -80,8 +80,9 @@ elif(interval=='1mo'):
 
 @st.cache
 def load_data(ticker):
-    # comp = yf.Ticker(ticker)
-    data = yf.download(tickers=ticker, period=period, interval=interval)
+    comp = yf.Ticker(ticker)
+    data = comp.history(period=period, interval=interval)
+    # data = yf.download(tickers=ticker, period=period, interval=interval)
     data.reset_index(inplace=True)
     data[date_index] = data[date_index].astype(str)
     if(date_index == 'Datetime'):
