@@ -155,5 +155,5 @@ if not (interval in interval_choices[:3]):
     show_forecast(forecast)
     data_load_state.text('Prediction done.')
 
-    df_cv = cross_validation(m, horizon = (str(p)+' days'))
+    df_cv = cross_validation(m, horizon = ('10 days'))
     st.write(df_cv)
