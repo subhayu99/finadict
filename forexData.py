@@ -19,7 +19,7 @@ st.set_page_config(
 st.title('Forex Price Prediction WebApp')
 
 selected_stock = st.text_input("Type in a conversion string (For eg. 'USDINR=X' for converting US Dollar to Indian Rupee.)", value='USDINR=X')
-st.write('*Forgotten the ticker symbol?* Find it [here](https://finance.yahoo.com/lookup)')
+st.write('*Forgotten the currency symbols?* Find them [here](https://finance.yahoo.com/lookup)')
 if not selected_stock:
     selected_stock = 'USDINR=X'
 # comp = yf.Ticker(selected_stock)
