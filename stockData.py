@@ -52,7 +52,7 @@ elif(interval=='30m'):
     # p = 10
     # f = '30min'
 elif(interval=='60m'):
-    y = st.slider('No. of days\' data to fetch:', 1, 146)
+    y = st.slider('No. of days\' data to fetch:', 1, 60)
     period = str(y)+'d'
     date_index = 'Datetime'
     p = st.slider('No. of hour\'s prediction:', 1, 60)
