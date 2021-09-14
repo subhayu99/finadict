@@ -5,6 +5,7 @@ import yfinance as yf
 import pandas as pd
 from fbprophet import Prophet
 from fbprophet.plot import plot_plotly
+from fbprophet.diagnostics import cross_validation
 from plotly import graph_objs as go
 import pycountry
 
@@ -154,3 +155,5 @@ if not (interval in interval_choices[:3]):
     show_forecast(forecast)
     data_load_state.text('Prediction done.')
 
+    df_cv = cross_validation(m, horizon = (p+' days'))
+    st.write(df_cv)
