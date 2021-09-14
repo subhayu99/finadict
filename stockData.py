@@ -25,7 +25,7 @@ comp = yf.Ticker(selected_stock)
 comp_info = comp.info
 comp_country_code = pycountry.countries.search_fuzzy(comp_info.get('country'))[0].alpha_2
 
-st.write('\nShowing results for**', comp_info.get('shortName'),'**\n')
+st.write('\nShowing results for**', comp_info.get('longName'),'**\n')
 st.write(comp_info)
 
 interval_aliases = ('5 mins', '15 mins', '30 mins', '1 hour', '1 day')
