@@ -19,14 +19,6 @@ def load_data(ticker):
         data[date_index] = data[date_index].str[:-6]
     return data
 
-data = load_data(selected_stock)
-
-st.subheader('Raw data')
-st.dataframe(data)
-
-df_train = data[[date_index,'Close']]
-df_train = df_train.rename(columns={date_index: "ds", "Close": "y"})
-
 # Plot raw data
 def plot_raw_data():
     fig = go.Figure()
