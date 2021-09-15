@@ -198,8 +198,6 @@ def main():
         # st.write(df_cv)
 
 if __name__ == '__main__':
-    main()
-    '''
     try:
         main()
     except AttributeError:
@@ -208,4 +206,5 @@ if __name__ == '__main__':
         st.error("Input is not valid :-!")
     except ValueError:
         st.error("Didn't get enough value :(")
-   '''
+
+
