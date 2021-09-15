@@ -194,10 +194,12 @@ def main():
         # st.write(df_cv)
 
 if __name__ == '__main__':
-    main()
-    """
     try:
         main()
-    except:
-        st.error(err)
-    """
+    except AttributeError:
+        st.error("Found nothing with the input :'(")
+    except KeyError:
+        st.error("Input is not valid :-!")
+    except ValueError:
+        st.error("Didn't get enough value :(")
+   
