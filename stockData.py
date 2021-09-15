@@ -81,10 +81,10 @@ def main():
     if(choice==menu[0]):
         st.title('Stock Prediction')
 
-        selected_stock = st.text_input("Type in a ticker symbol (For eg. 'AAPL' for Apple Inc. and '[TICKER].NS' for NSE registered stocks.)", value='AAPL')
+        selected_stock = st.text_input("Type in a ticker symbol (For eg. '[TICKER]' for Nasdaq and '[TICKER].NS' for NSE registered stocks.)", value='TCS.NS')
         st.write('*Forgotten the ticker symbol?* Find it [here](https://finance.yahoo.com/lookup)')
         if not selected_stock:
-            selected_stock = 'AAPL'
+            selected_stock = 'TCS.NS'
         comp = yf.Ticker(selected_stock)
         comp_info = comp.info
         comp_country_code = pycountry.countries.search_fuzzy(comp_info.get('country'))[0].alpha_2
