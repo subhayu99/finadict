@@ -179,7 +179,7 @@ def main():
 
     df_train = data[[date_index,'Close']]
     df_train = df_train.rename(columns={date_index: "ds", "Close": "y"})
-    # df_train['y'] = np.log(df_train['y'])
+    df_train['y'] = np.log(df_train['y'])
     st.write(df_train)
 
     if (interval in interval_choices[4:5]):
