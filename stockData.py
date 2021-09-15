@@ -50,7 +50,7 @@ def build_model(comp_country_code):
         m.add_country_holidays(country_name=comp_country_code)
     return m
 
-def show_forecast(forecast):
+def show_forecast(forecast, data):
     # Show and plot forecast
     st.subheader('Forecast data')
     only_forecast = forecast[len(data)-1:len(forecast)]
@@ -181,7 +181,7 @@ def main():
         future = m.make_future_dataframe(periods=p)
         forecast = m.predict(future)
 
-        show_forecast(forecast)
+        show_forecast(forecast, data)
         data_load_state.text('Prediction done.')
 
         # df_cv = cross_validation(m, initial='30 days', period='1 day', horizon = '10 days')
