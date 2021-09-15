@@ -53,9 +53,8 @@ def build_model(comp_country_code):
 def show_forecast(m, forecast, data):
     # Show and plot forecast
     st.subheader('Forecast data')
-    only_forecast = forecast[['y', 'yhat']]
     only_forecast = only_forecast[len(data)-1:len(forecast)]
-    st.write(only_forecast)
+    st.write(only_forecast[['y', 'yhat']])
     st.write('No of values: ',len(only_forecast))
     
     st.subheader(f'Forecast plot ')
