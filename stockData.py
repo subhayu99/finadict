@@ -37,8 +37,6 @@ def plot_raw_data():
     csfig.layout.update(title_text='Time Series data in Candle-chart', xaxis_rangeslider_visible=True)
     st.plotly_chart(csfig, use_container_width=True)
 
-plot_raw_data()
-
 def build_model(comp_country_code):
     # Define forecasting model.
     m = Prophet(
@@ -68,7 +66,6 @@ def show_forecast(forecast):
     st.write(fig2)
 
 def main():
-
     menu = ['Stocks', 'Forex', 'Crypto']
     choice = st.sidebar.selectbox('Menu', menu)
 
@@ -185,6 +182,7 @@ def main():
 
     st.subheader('Raw data')
     st.dataframe(data)
+    plot_raw_data()
 
     df_train = data[[date_index,'Close']]
     df_train = df_train.rename(columns={date_index: "ds", "Close": "y"})
@@ -202,3 +200,6 @@ def main():
 
         # df_cv = cross_validation(m, initial='30 days', period='1 day', horizon = '10 days')
         # st.write(df_cv)
+
+if __name__ == '__main__':
+    main()
