@@ -54,7 +54,7 @@ def show_forecast(m, forecast, data):
     # Show and plot forecast
     st.subheader('Forecast data')
     only_forecast = forecast[len(data)-1:len(forecast)]
-    only_forecast = only_forecast[['y', 'yhat', 'yhat_lower', 'yhat_upper']]
+    only_forecast = only_forecast['y', 'yhat', 'yhat_lower', 'yhat_upper']
     st.write(only_forecast)
     st.write('No of values: ',len(only_forecast))
     
