@@ -196,5 +196,5 @@ def main():
 if __name__ == '__main__':
     try:
         main()
-    except Exception as e:
-        st.error(e)
+    except Exception as err:
+        st.error(err)
