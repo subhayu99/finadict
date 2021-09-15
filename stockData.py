@@ -95,7 +95,6 @@ def main():
     elif(choice==menu[1]):
         st.title('Forex Prediction')
 
-        st.write('Enter currency symbols in the below fields')
         x = st.text_input("From", value='USD')
         y = st.text_input("To", value='INR')
         selected_stock = x+y+'=X'
