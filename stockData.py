@@ -8,6 +8,7 @@ from fbprophet.plot import plot_plotly
 from fbprophet.diagnostics import cross_validation
 from plotly import graph_objs as go
 import pycountry
+import re
 
 @st.cache
 def load_data(ticker, period, interval, date_index):
@@ -113,8 +114,10 @@ def main():
             selected_stock = 'BTC-INR'
         comp = yf.Ticker(selected_stock)
         comp_country_code = False
+        x = re.search("^[A-Z]*", selected_stock)
+        y = re.search("[A-Z]*$", selected_stock)
 
-        st.write('\nShowing results for**', selected_stock[:3].upper(), '**to**', selected_stock[4:7].upper(), '** coversion rate.\n')
+        st.write('\nShowing results for**', x.group().upper(), '**to**', y.group().upper(), '** coversion rate.\n')
 
 
     interval_aliases = ('5 mins', '15 mins', '30 mins', '1 hour', '1 day')
