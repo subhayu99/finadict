@@ -197,4 +197,4 @@ if __name__ == '__main__':
     try:
         main()
     except:
-        st.error('STOPPING EXECUTION!!!\nWrong parameter was passed.')
+        st.error("Something went wrong. :'(")
