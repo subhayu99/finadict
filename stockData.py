@@ -194,4 +194,8 @@ def main():
         # st.write(df_cv)
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except:
+        st.error('Wrong parameter was passed!')
+        st.warning('User has filled wrong data.')
