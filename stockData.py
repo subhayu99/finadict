@@ -95,15 +95,17 @@ def main():
     elif(choice==menu[1]):
         st.title('Forex Prediction')
 
-        selected_stock = st.text_input("Type in a conversion string (For eg. 'USDINR' for converting US Dollar to Indian Rupee.)", value='USDINR')
-        selected_stock += '=X'
+        st.write('Enter currency symbols in the below fields')
+        x = st.text_input("From", value='USD')
+        y = st.text_input("To", value='INR')
+        selected_stock = x+y+'=X'
         st.write('*Forgotten the currency symbols?* Find them [here](https://finance.yahoo.com/lookup)')
         if not selected_stock:
             selected_stock = 'USDINR=X'
         comp = yf.Ticker(selected_stock)
         comp_country_code = False
 
-        st.write('\nShowing results for**', selected_stock[:3].upper(), '**to**', selected_stock[3:6].upper(), '** coversion rate.\n')
+        st.write('\nShowing results for**', x.upper(), '**to**', y.upper(), '** coversion rate.\n')
 
     elif(choice==menu[2]):
         st.title('Crypto Prediction')
