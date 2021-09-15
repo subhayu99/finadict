@@ -180,7 +180,7 @@ def main():
     df_train = data[[date_index,'Close']]
     df_train = df_train.rename(columns={date_index: "ds", "Close": "y"})
     # df_train['y'] = np.log(df_train['y'])
-    st.write(df_train)
+    # st.write(df_train)
 
     if (interval in interval_choices[4:5]):
         data_load_state = st.text('Predicting prices...')
@@ -189,7 +189,7 @@ def main():
         # Predict forecast.
         future = m.make_future_dataframe(periods=p)
         forecast = m.predict(future)
-        forecast["Prediction"] = np.exp(forecast.yhat)
+        # forecast["Prediction"] = np.exp(forecast.yhat)
 
         show_forecast(m, forecast, data)
         data_load_state.text('Prediction done.')
