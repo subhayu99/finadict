@@ -81,7 +81,7 @@ def main():
     if(choice==menu[0]):
         st.title('Stock Prediction')
 
-        selected_stock = st.text_input("Type in a ticker symbol (For eg. '[TICKER]' for Nasdaq and '[TICKER].NS' for NSE registered stocks.)", value='TCS.NS')
+        selected_stock = st.text_input("Type in a ticker symbol (For eg. '[TICKER]' for Nasdaq and '[TICKER].NS' for NSE registered stocks)", value='TCS.NS')
         st.write('*Forgotten the ticker symbol?* Find it [here](https://finance.yahoo.com/lookup)')
         if not selected_stock:
             selected_stock = 'TCS.NS'
@@ -122,7 +122,7 @@ def main():
         st.write('\nShowing results for**', x.group().upper(), '**to**', y.group().upper(), '** coversion rate.\n')
 
 
-    interval_aliases = ('5 mins', '15 mins', '30 mins', '1 hour', '1 day', '1 week', '1 month')
+    interval_aliases = ('5 mins', '15 mins', '30 mins', '1 hour', '1 DAY (prediction supported)', '1 week', '1 month')
     interval_choices = ('5m', '15m', '30m', '60m', '1d', '1wk', '1mo')
     interval_alias = st.radio('Select interval:', interval_aliases) 
     interval = interval_choices[interval_aliases.index(interval_alias)]
