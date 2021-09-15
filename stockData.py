@@ -42,7 +42,7 @@ def build_model(comp_country_code):
     m = Prophet(
             interval_width=0.95, 
             daily_seasonality=True,
-            # weekly_seasonality=True, 
+            weekly_seasonality=True, 
             changepoint_prior_scale=1 
             # mcmc_samples = 12
             )
