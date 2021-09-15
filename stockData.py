@@ -89,6 +89,7 @@ def main():
 
         st.write('\nShowing results for**', comp_info.get('longName'),'**\n')
         st.write(comp_info)
+        st.write('\nOur Recommendation**', comp_info.get('recommendationKey'),'**\n')
         
     elif(choice==menu[1]):
         st.title('Forex Prediction')
