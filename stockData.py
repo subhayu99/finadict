@@ -114,8 +114,8 @@ def main():
             selected_stock = 'BTC-INR'
         comp = yf.Ticker(selected_stock)
         comp_country_code = False
-        x = re.search("^[A-Z]*", selected_stock)
-        y = re.search("[A-Z]*$", selected_stock)
+        x = re.search("^[a-zA-Z]*", selected_stock)
+        y = re.search("[a-zA-Z]*$", selected_stock)
 
         st.write('\nShowing results for**', x.group().upper(), '**to**', y.group().upper(), '** coversion rate.\n')
 
