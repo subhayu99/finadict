@@ -65,19 +65,20 @@ def show_forecast(m, forecast, data):
     fig2 = m.plot_components(forecast)
     st.write(fig2)
 
+
 def main():
     st.set_page_config(
-            page_title="Stock Prection",
+            page_title="FINAnce preDICT",
             page_icon="•",
             layout="centered",
-            initial_sidebar_state="collapsed",
+            initial_sidebar_state="expanded",
             )
 
     menu = ['Stocks', 'Forex', 'Crypto']
-    choice = st.sidebar.selectbox('Menu', menu)
+    choice = st.sidebar.selectbox('Select your market choice', menu)
 
     if(choice==menu[0]):
-        st.title('Stock Price Prediction')
+        st.title('Stock Prediction')
 
         selected_stock = st.text_input("Type in a ticker symbol (For eg. 'AAPL' for Apple Inc. and '[TICKER].NS' for NSE registered stocks.)", value='AAPL')
         st.write('*Forgotten the ticker symbol?* Find it [here](https://finance.yahoo.com/lookup)')
