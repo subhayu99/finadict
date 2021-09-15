@@ -2,6 +2,7 @@
 import streamlit as st
 from datetime import date
 import yfinance as yf
+import numpy as np
 import pandas as pd
 from fbprophet import Prophet
 from fbprophet.plot import plot_plotly
@@ -54,7 +55,7 @@ def show_forecast(m, forecast, data):
     # Show and plot forecast
     st.subheader('Forecast data')
     only_forecast = forecast[len(data)-1:len(forecast)]
-    st.write(only_forecast[['y', 'yhat']])
+    st.write(only_forecast)
     st.write('No of values: ',len(only_forecast))
     
     st.subheader(f'Forecast plot ')
@@ -178,6 +179,7 @@ def main():
 
     df_train = data[[date_index,'Close']]
     df_train = df_train.rename(columns={date_index: "ds", "Close": "y"})
+    df_train['y'] = np.log(df_train['y'])
 
     if not (interval in interval_choices[:3]):
         data_load_state = st.text('Predicting prices...')
