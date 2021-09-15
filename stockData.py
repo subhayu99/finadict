@@ -194,8 +194,7 @@ def main():
         # st.write(df_cv)
 
 if __name__ == '__main__':
-    main()
-    '''try:
+    try:
         main()
-    except:
-        st.error("Something went wrong. :'(")'''
+    except Exception as e:
+        st.error(e)
