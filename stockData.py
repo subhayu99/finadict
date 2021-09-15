@@ -201,7 +201,7 @@ if __name__ == '__main__':
     try:
         main()
     except AttributeError:
-        st.error("Found nothing with the input :'(")
+        st.error("Found nothing with the inputs :'(")
     except KeyError:
         st.error("Input is not valid :-!")
     except ValueError:
