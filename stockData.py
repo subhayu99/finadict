@@ -94,7 +94,8 @@ def main():
     elif(choice==menu[1]):
         st.title('Forex Prediction')
 
-        selected_stock = st.text_input("Type in a conversion string (For eg. 'USDINR=X' for converting US Dollar to Indian Rupee.)", value='USDINR=X')
+        selected_stock = st.text_input("Type in a conversion string (For eg. 'USDINR' for converting US Dollar to Indian Rupee.)", value='USDINR')
+        selected_stock += '=X'
         st.write('*Forgotten the currency symbols?* Find them [here](https://finance.yahoo.com/lookup)')
         if not selected_stock:
             selected_stock = 'USDINR=X'
