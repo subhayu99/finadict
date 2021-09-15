@@ -79,7 +79,7 @@ def main():
     if(choice==menu[0]):
         st.title('Stock Price Prediction')
 
-        selected_stock = st.text_input("Type in a ticker symbol (For eg. 'AAPL' for Apple Inc.)", value='AAPL')
+        selected_stock = st.text_input("Type in a ticker symbol (For eg. 'AAPL' for Apple Inc. and [TICKER].NS for NSE registered stocks.", value='AAPL')
         st.write('*Forgotten the ticker symbol?* Find it [here](https://finance.yahoo.com/lookup)')
         if not selected_stock:
             selected_stock = 'AAPL'
@@ -88,8 +88,8 @@ def main():
         comp_country_code = pycountry.countries.search_fuzzy(comp_info.get('country'))[0].alpha_2
 
         st.write('\nShowing results for**', comp_info.get('longName'),'**\n')
-        st.write(comp_info)
-        st.write('\nOur Recommendation**', comp_info.get('recommendationKey'),'**\n')
+        # st.write(comp_info)
+        st.write('\nOur Recommendation :**', comp_info.get('recommendationKey'),'**\n')
         
     elif(choice==menu[1]):
         st.title('Forex Prediction')
