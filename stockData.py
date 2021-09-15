@@ -188,6 +188,9 @@ def main():
         # Predict forecast.
         future = m.make_future_dataframe(periods=p)
         forecast = m.predict(future)
+        forecast["Close_hat"] = np.exp(forecast.yhat).round()
+        forecast["Close_hat_lower"] = np.exp(forecast.yhat_lower).round()
+        forecast["Close_hat_upper"] = np.exp(forecast.yhat_upper).round()
 
         show_forecast(m, forecast, data)
         data_load_state.text('Prediction done.')
