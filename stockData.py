@@ -102,7 +102,7 @@ def main():
         comp = yf.Ticker(selected_stock)
         comp_country_code = False
 
-        st.write('\nShowing results for**', selected_stock[:3], '**to**', selected_stock[3:6], '** coversion rate.\n')
+        st.write('\nShowing results for**', selected_stock[:3].upper(), '**to**', selected_stock[3:6].upper(), '** coversion rate.\n')
 
     elif(choice==menu[2]):
         st.title('Crypto Prediction')
@@ -114,7 +114,7 @@ def main():
         comp = yf.Ticker(selected_stock)
         comp_country_code = False
 
-        st.write('\nShowing results for**', selected_stock[:3], '**to**', selected_stock[4:7], '** coversion rate.\n')
+        st.write('\nShowing results for**', selected_stock[:3].upper(), '**to**', selected_stock[4:7].upper(), '** coversion rate.\n')
 
 
     interval_aliases = ('5 mins', '15 mins', '30 mins', '1 hour', '1 day')
