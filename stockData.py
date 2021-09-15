@@ -74,7 +74,6 @@ def main():
                 page_title="Stock Prection", 
                 page_icon="•",
                 layout="centered", 
-                initial_sidebar_state="auto",
                 )
 
         st.title('Stock Price Prediction')
@@ -95,7 +94,6 @@ def main():
                 page_title="Forex Prection", 
                 page_icon="•",
                 layout="centered", 
-                initial_sidebar_state="auto",
                 )
 
         st.title('Forex Prediction')
@@ -114,7 +112,6 @@ def main():
                 page_title="Crypto Prection", 
                 page_icon="•",
                 layout="centered", 
-                initial_sidebar_state="auto",
                 )
 
         st.title('Crypto Prediction')
