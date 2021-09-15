@@ -122,8 +122,8 @@ def main():
         st.write('\nShowing results for**', x.group().upper(), '**to**', y.group().upper(), '** coversion rate.\n')
 
 
-    interval_aliases = ('5 mins', '15 mins', '30 mins', '1 hour', '1 day')
-    interval_choices = ('5m', '15m', '30m', '60m', '1d')
+    interval_aliases = ('5 mins', '15 mins', '30 mins', '1 hour', '1 day', '1 week', '1 month')
+    interval_choices = ('5m', '15m', '30m', '60m', '1d', '1wk', '1mo')
     interval_alias = st.radio('Select interval:', interval_aliases) 
     interval = interval_choices[interval_aliases.index(interval_alias)]
 
@@ -182,7 +182,7 @@ def main():
     df_train['y'] = np.log(df_train['y'])
     st.write(df_train)
 
-    if not (interval in interval_choices[:3]):
+    if (interval in interval_choices[4:5]):
         data_load_state = st.text('Predicting prices...')
         m = build_model(comp_country_code)
         m.fit(df_train)
