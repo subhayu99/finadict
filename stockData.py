@@ -122,54 +122,57 @@ def main():
         st.write('\nShowing results for**', x.group().upper(), '**to**', y.group().upper(), '** coversion rate.\n')
 
 
-    interval_aliases = ('5 mins', '15 mins', '30 mins', '1 hour', '1 day (prediction supported)', '1 week', '1 month')
+    interval_aliases = ('5 mins', '15 mins', '30 mins', '1 hour', '1 day', '1 week', '1 month')
     interval_choices = ('5m', '15m', '30m', '60m', '1d', '1wk', '1mo')
     interval_alias = st.sidebar.radio('Select interval:', interval_aliases, index=4, help='Prediction only supported for interval=day.') 
     interval = interval_choices[interval_aliases.index(interval_alias)]
 
     if(interval=='5m'):
-        y = st.sidebar.slider('No. of days\' data to fetch:', 1, 60)
-        period = str(y)+'d'
+        l = 60
+        t = 'd'
         date_index = 'Datetime'
         # p = 10
         # f = '5min'
     elif(interval=='15m'):
-        y = st.sidebar.slider('No. of days\' data to fetch:', 1, 60)
-        period = str(y)+'d'
+        l = 60
+        t = 'd'
         date_index = 'Datetime'
         # p = 10
         # f = 'h'
     elif(interval=='30m'):
-        y = st.sidebar.slider('No. of days\' data to fetch:', 1, 60)
-        period = str(y)+'d'
+        l = 60 
+        t = 'd'
         date_index = 'Datetime'
         # p = 10
         # f = '30min'
     elif(interval=='60m'):
-        y = st.sidebar.slider('No. of days\' data to fetch:', 1, 60)
-        period = str(y)+'d'
+        l = 60 
+        t = 'd'
         date_index = 'Datetime'
-        p = st.sidebar.slider('No. of hour\'s prediction:', 1, 60)
+        # p = st.sidebar.slider('No. of hour\'s prediction:', 1, 60)
         # f = 'h'
     elif(interval=='1d'):
-        y = st.sidebar.slider('No. of months\' data to fetch:', 1, 12)
+        y = st.sidebar.slider('No. of days\' data to fetch:', 1, 12)
         y *= 30
-        period = str(y)+'d'
+        t = 'd'
+        period = str(y)+t
         date_index = 'Date'
         p = st.sidebar.slider('No. of day\'s prediction:', 1, 10)
         f = 'd'
     elif(interval=='1wk'):
-        y = st.sidebar.slider('No. of years\' data to fetch:', 1, 10)
-        period = str(y)+'y'
+        l = 10 
+        t = 'y'
         date_index = 'Date'
-        p = st.sidebar.slider('No. of week\'s prediction:', 1, 10)
-        f = 'W'
+        # f = 'W'
     elif(interval=='1mo'):
-        y = st.sidebar.slider('No. of years\' data to fetch:', 1, 10)
-        period = str(y)+'y'
+        l = 10 
+        t = 'y'
         date_index = 'Date'
-        p = st.sidebar.slider('No. of month\'s prediction:', 1, 10)
-        f = 'm'
+        # f = 'm'
+
+    if(interval!='1d'):
+        y = st.sidebar.slider('No. of days\' data to fetch:', 1, l)
+        period = str(y)+t
 
     data = load_data(selected_stock, period, interval, date_index)
 
