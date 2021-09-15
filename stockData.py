@@ -10,7 +10,7 @@ from plotly import graph_objs as go
 import pycountry
 
 @st.cache
-def load_data(ticker):
+def load_data(ticker, period, interval):
     comp = yf.Ticker(ticker)
     data = comp.history(period=period, interval=interval)
     data.reset_index(inplace=True)
@@ -164,7 +164,7 @@ def main():
         p = st.slider('No. of month\'s prediction:', 1, 10)
         f = 'm'
 
-    data = load_data(selected_stock)
+    data = load_data(selected_stock, period, interval)
 
     st.subheader('Raw data')
     st.dataframe(data)
