@@ -20,7 +20,7 @@ def load_data(ticker, period, interval, date_index):
     return data
 
 # Plot raw data
-def plot_raw_data():
+def plot_raw_data(data):
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=data[date_index], y=data['Open'], name="stock_open"))
     fig.add_trace(go.Scatter(x=data[date_index], y=data['Close'], name="stock_close"))
@@ -168,7 +168,7 @@ def main():
 
     st.subheader('Raw data')
     st.dataframe(data)
-    plot_raw_data()
+    plot_raw_data(data)
 
     df_train = data[[date_index,'Close']]
     df_train = df_train.rename(columns={date_index: "ds", "Close": "y"})
