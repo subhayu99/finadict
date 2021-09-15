@@ -98,7 +98,7 @@ def main():
         x = st.text_input("From", value='USD')
         y = st.text_input("To", value='INR')
         selected_stock = x+y+'=X'
-        st.write('*Forgotten the currency symbols?* Find them [here](https://finance.yahoo.com/lookup)')
+        st.write('*Forgotten the currency symbols?* Find them [here](https://finance.yahoo.com/currencies)')
         if not selected_stock:
             selected_stock = 'USDINR=X'
         comp = yf.Ticker(selected_stock)
@@ -110,7 +110,7 @@ def main():
         st.title('Crypto Prediction')
 
         selected_stock = st.text_input("Type in a conversion string (For eg. 'BTC-INR' to get Bitcoin to Indian Rupee conversion rate.)", value='BTC-INR')
-        st.write('*Forgotten the currency symbols?* Find them [here](https://finance.yahoo.com/lookup)')
+        st.write('*Forgotten the currency symbols?* Find them [here](https://finance.yahoo.com/cryptocurrencies)')
         if not selected_stock:
             selected_stock = 'BTC-INR'
         comp = yf.Ticker(selected_stock)
