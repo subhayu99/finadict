@@ -66,16 +66,17 @@ def show_forecast(forecast):
     st.write(fig2)
 
 def main():
+    st.set_page_config(
+            page_title="Stock Prection",
+            page_icon="•",
+            layout="centered",
+            initial_sidebar_state="collapsed",
+            )
+
     menu = ['Stocks', 'Forex', 'Crypto']
     choice = st.sidebar.selectbox('Menu', menu)
 
     if(choice==menu[0]):
-        st.set_page_config(
-                page_title="Stock Prection", 
-                page_icon="•",
-                layout="centered", 
-                )
-
         st.title('Stock Price Prediction')
 
         selected_stock = st.text_input("Type in a ticker symbol (For eg. 'AAPL' for Apple Inc.)", value='AAPL')
@@ -90,12 +91,6 @@ def main():
         st.write(comp_info)
         
     elif(choice==menu[1]):
-        st.set_page_config(
-                page_title="Forex Prection", 
-                page_icon="•",
-                layout="centered", 
-                )
-
         st.title('Forex Prediction')
 
         selected_stock = st.text_input("Type in a conversion string (For eg. 'USDINR=X' for converting US Dollar to Indian Rupee.)", value='USDINR=X')
@@ -108,12 +103,6 @@ def main():
         st.write('\nShowing results for**', selected_stock[:3], '**to**', selected_stock[3:6], '** coversion rate.\n')
 
     elif(choice==menu[2]):
-        st.set_page_config(
-                page_title="Crypto Prection", 
-                page_icon="•",
-                layout="centered", 
-                )
-
         st.title('Crypto Prediction')
 
         selected_stock = st.text_input("Type in a conversion string (For eg. 'BTC-INR' to get Bitcoin to Indian Rupee conversion rate.)", value='BTC-INR')
