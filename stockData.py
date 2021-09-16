@@ -64,14 +64,16 @@ def show_forecast(m, forecast, data, p, df_train):
     only_forecast = forecast # [len(data)-1:len(forecast)]
     only_forecast['Confidence (%)'] = (prediction / original) * 100
     only_forecast['Actual Price'] = df_train['y']
-
-    only_forecast.rename(columns={"ds":"Datetime","yhat":"Predicted Price","yhat_lower":"Predicted Price Lower","yhat_upper":"Predicted Price Upper"}, inplace=True) 
+    only_forecast['Datetime'] = only_forecast['ds']
+    only_forecast['Predicted Price'] = only_forecast['yhat']
+    only_forecast['Predicted Price (Lower)'] = only_forecast['yhat_lower']
+    only_forecast['Predicted Price (Upper)'] = only_forecast['yhat_upper']
 
     rmpse = np.sqrt(np.nanmean(np.square(((original - prediction) / original))))*100
 
     st.write('Mean Confidence Percentage =', round(only_forecast['Confidence (%)'].mean()-rmpse, 2), '%')
     st.write('Root Mean Percentage Squared Error =', round(rmpse, 5), '%')
-    st.write(only_forecast[["Datetime","Actual Price","Predicted Price","Confidence (%)","Predicted Price Lower","Predicted Price Upper"]].iloc[::-1])
+    st.write(only_forecast[["Datetime","Actual Price","Predicted Price","Confidence (%)","Predicted Price (Lower)","Predicted Price (Upper)"]].iloc[::-1])
 
     st.subheader(f'Forecast plot ')
     fig1 = plot_plotly(m, forecast)
