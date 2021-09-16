@@ -24,13 +24,12 @@ def load_data(ticker, period, interval, date_index):
 
 # Plot raw data
 def plot_raw_data(data, date_index):
-    cnt = st.container()
-    cnt.subheader('Raw data plots')
+    st.subheader('Raw data plots')
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=data[date_index], y=data['Open'], name="stock_open"))
     fig.add_trace(go.Scatter(x=data[date_index], y=data['Close'], name="stock_close"))
     fig.layout.update(title_text='Time Series data in Line chart', xaxis_rangeslider_visible=True)
-    cnt.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True)
 
     csfig = go.Figure(data=[go.Candlestick(
         x=data[date_index],
@@ -40,7 +39,7 @@ def plot_raw_data(data, date_index):
         close=data['Close'])]
     )
     csfig.layout.update(title_text='Time Series data in Candle-sticks chart', xaxis_rangeslider_visible=True)
-    cnt.plotly_chart(csfig, use_container_width=True)
+    st.plotly_chart(csfig, use_container_width=True)
 
 def build_model(comp_country_code):
     # Define forecasting model.
@@ -119,8 +118,8 @@ def main():
         comp_country_code = pycountry.countries.search_fuzzy(comp_info.get('country'))[0].alpha_2
         currency = comp_info.get('financialCurrency')
 
-        st.write('\n**[', comp_info.get('longName'),'](',comp_info.get('website'),')**\n')
-        st.image(comp_info.get('logo_url'))
+        st.write('Company: **[', comp_info.get('longName'),'](',comp_info.get('website'),')**\n')
+        st.image(comp_info.get('logo_url'), comp_info.get('shortName')+' logo')
         st.write('Financial Currency :**', comp_info.get('financialCurrency'),'**\n')
         # st.write('\nyFinance\'s Recommendation :**', comp_info.get('recommendationKey'),'**\n')
         with st.expander("See company info..."):
