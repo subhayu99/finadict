@@ -68,8 +68,8 @@ def show_forecast(m, forecast, data, p):
     # Show and plot forecast
     st.subheader('Forecast data')
 
-    original = normalize_data(data['Close'])
-    prediction = normalize_data(forecast['yhat'])
+    original = normalize_data(data['Close'][:-p])
+    prediction = normalize_data(forecast['yhat'][:-p])
 
     only_forecast = forecast # [len(data)-1:len(forecast)]
     only_forecast['Confidence (%)'] = (original / prediction) *100
