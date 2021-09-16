@@ -39,7 +39,7 @@ def plot_raw_data(data, date_index):
     )
     csfig.layout.update(title_text='Time Series data in Candle-sticks chart', xaxis_rangeslider_visible=True)
 
-    with st.expander("Tap to expand!"):
+    with st.expander("tap to expand/collapse"):
         st.plotly_chart(fig, use_container_width=True)
         st.plotly_chart(csfig, use_container_width=True)
 
