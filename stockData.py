@@ -167,7 +167,7 @@ def main():
         t = 'd'
         period = str(y)+t
         date_index = 'Date'
-        p = st.sidebar.slider('No. of day\'s prediction:', 1, 10)
+        p = 1  # st.sidebar.slider('No. of day\'s prediction:', 1, 10)
         f = 'd'
     elif(interval=='1wk'):
         l = 10 
