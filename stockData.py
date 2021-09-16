@@ -200,16 +200,17 @@ def main():
     # st.write(df_train)
 
     if (interval in interval_choices[4:5]):
-        data_load_state = st.text('Predicting prices...')
-        m = build_model(comp_country_code)
-        m.fit(df_train)
-        # Predict forecast.
-        future = m.make_future_dataframe(periods=p)
-        forecast = m.predict(future)
+        with st.spinner('Predicting prices...'):
+            # data_load_state = st.text('Predicting prices...')
+            m = build_model(comp_country_code)
+            m.fit(df_train)
+            # Predict forecast.
+            future = m.make_future_dataframe(periods=p)
+            forecast = m.predict(future)
 
-        show_forecast(m, forecast, data, p, df_train)
-        
-        data_load_state.text('Prediction done.')
+            show_forecast(m, forecast, data, p, df_train)
+        st.success('Done!')
+        # data_load_state.text('Prediction done.')
 
 
 if __name__ == '__main__':
