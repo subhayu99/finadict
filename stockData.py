@@ -127,7 +127,7 @@ def main():
 
         x = form.text_input("From", value='USD')
         y = form.text_input("To", value='INR')
-        form.write('*Find the currency symbols* [here](https://finance.yahoo.com/currencies)')
+        form.write('*Find the currency symbols [here](https://finance.yahoo.com/currencies)*')
         if not x:
             x = 'USD'
         if not y:
@@ -144,7 +144,7 @@ def main():
         st.title('Crypto Prediction')
 
         selected_stock = form.text_input("Type in a conversion string", value='BTC-INR', help="'[CURRENCY 1]-[CURRENCY 2]' to get [CURRENCY 1] to [CURRENCY 2] conversion rate.")
-        form.write('*Find the currency symbols* [here](https://finance.yahoo.com/cryptocurrencies)')
+        form.write('*Find the currency symbols [here](https://finance.yahoo.com/cryptocurrencies)*')
         if not selected_stock:
             selected_stock = 'BTC-INR'
         comp = yf.Ticker(selected_stock)
