@@ -124,7 +124,7 @@ def main():
         currency = comp_info.get('financialCurrency')
 
         st.image(comp_info.get('logo_url'))
-        st.write('Corp. :**[', comp_info.get('longName'),'](',comp_info.get('website'),')**')
+        st.write('Corp. : **[', comp_info.get('longName'),'](',comp_info.get('website'),')**')
         st.write('Financial Currency :**', comp_info.get('financialCurrency'),'**\n')
         # st.write('\nyFinance\'s Recommendation :**', comp_info.get('recommendationKey'),'**\n')
         with st.expander("See company info...", expanded=False):
