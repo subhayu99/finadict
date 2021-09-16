@@ -208,6 +208,8 @@ def main():
         y = form.sidebar.slider('No. of days\' data to fetch:', 1, l)
         period = str(y)+t
 
+    form.form_submit_button("Submit")
+
     data = load_data(selected_stock, period, interval, date_index)
 
     st.subheader('Raw data')
