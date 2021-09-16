@@ -24,13 +24,13 @@ def load_data(ticker, period, interval, date_index):
     return data
 
 def normalize_data(df):
-    min = df.min()
+    min = df.min()+
     max = df.max()
     x = df
 
     # time series normalization part
     # y will be a column in a dataframe
-    y = (x - min) / (max - min)
+    y = ((x - min) + min / (min + 1) ) / (max - min)
 
     return y
 
