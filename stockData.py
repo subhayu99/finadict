@@ -127,7 +127,7 @@ def main():
         st.write('**[', comp_info.get('longName'),'](',comp_info.get('website'),')**')
         st.write('Financial Currency :**', comp_info.get('financialCurrency'),'**\n')
         # st.write('\nyFinance\'s Recommendation :**', comp_info.get('recommendationKey'),'**\n')
-        with st.expander("See company info..."):
+        with st.expander("", expanded=False):
             st.json(comp_info)
         
     elif(choice==menu[1]):
