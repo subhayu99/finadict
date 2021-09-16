@@ -63,7 +63,10 @@ def show_forecast(m, forecast, data):
     only_forecast = forecast # [len(data)-1:len(forecast)]
     only_forecast['Confidence (%)'] = (prediction / original) *100
     st.write(only_forecast)
-    st.write('Mean Squared Error ',sqrt(mean_squared_error(original, prediction)/len(data)))
+
+    mse = mean_squared_error(original, prediction)/len(data)
+    st.write('Mean Squared Error ',mse)
+    st.write('Root Mean Squared Error ',sqrt(mse))
 
     st.subheader(f'Forecast plot ')
     fig1 = plot_plotly(m, forecast)
