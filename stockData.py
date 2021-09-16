@@ -109,7 +109,7 @@ def main():
     menu = ['Stocks', 'Forex', 'Crypto']
     choice = st.sidebar.selectbox('Select your market choice', menu)
 
-    form = st.sidebar.form("take parameters")
+    form = st.sidebar.form("take parameters", clear_on_submit=True)
 
     if(choice==menu[0]):
         st.title('Stock Prediction')
