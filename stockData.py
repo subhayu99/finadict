@@ -69,7 +69,7 @@ def show_forecast(m, forecast, data, p):
     st.subheader('Forecast data')
 
     original = data['Close'][:-p]
-    prediction = forecast['yhat'][:-(p+1)]
+    prediction = forecast['yhat'][:-p]
 
     st.write(original)
     st.write(prediction)
