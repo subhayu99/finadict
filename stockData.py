@@ -27,7 +27,8 @@ def plot_raw_data(data, date_index):
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=data[date_index], y=data['Open'], name="stock_open"))
     fig.add_trace(go.Scatter(x=data[date_index], y=data['Close'], name="stock_close"))
-    fig.layout.update(title_text='Time Series data in Line-chart', xaxis_rangeslider_visible=True)
+    fig.layout.update(xaxis_rangeslider_visible=True)
+    st.subheader('Time Series data in Line-chart')
     st.plotly_chart(fig, use_container_width=True)
 
     csfig = go.Figure(data=[go.Candlestick(
