@@ -4,3 +4,4 @@ fbprophet
 yfinance
 plotly
 pycountry
+sklearn

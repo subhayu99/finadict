@@ -10,6 +10,7 @@ from fbprophet.diagnostics import cross_validation
 from plotly import graph_objs as go
 import pycountry
 import re
+from sklearn.metrics import mean_squared_error
 
 @st.cache
 def load_data(ticker, period, interval, date_index):
@@ -54,10 +55,14 @@ def build_model(comp_country_code):
 def show_forecast(m, forecast, data):
     # Show and plot forecast
     st.subheader('Forecast data')
+
+    original = data['Close']
+    prediction = forecast['yhat']
+
     only_forecast = forecast # [len(data)-1:len(forecast)]
-    only_forecast['Confidence (%)'] = (forecast['yhat'] / data['Close']) *100
+    only_forecast['Confidence (%)'] = (prediction / original) *100
     st.write(only_forecast)
-    st.write('No of values: ',len(only_forecast))
+    st.write('Mean Squared Error ',mean_squared_error(original, prediction))
 
     st.subheader(f'Forecast plot ')
     fig1 = plot_plotly(m, forecast)
