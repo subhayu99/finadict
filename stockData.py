@@ -82,11 +82,11 @@ def show_forecast(m, forecast, data, p, df_train, currency):
     st.sidebar.write(' ')
     st.sidebar.metric(label=label, value=value, delta=delta)
 
-    st.subheader(f'Forecast plot ')
+    st.header(f'Forecast plot ')
     fig1 = plot_plotly(m, forecast)
     st.plotly_chart(fig1, use_container_width=True)
     
-    st.subheader("Forecast components")
+    st.header("Forecast components")
     fig2 = m.plot_components(forecast)
     st.write(fig2)
 
