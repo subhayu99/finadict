@@ -58,7 +58,7 @@ def show_forecast(m, forecast, data):
     st.subheader('Forecast data')
 
     original = data['Close']
-    prediction = forecast['yhat'][:-1]
+    prediction = forecast['yhat'][:-p]
 
     only_forecast = forecast # [len(data)-1:len(forecast)]
     only_forecast['Confidence (%)'] = (prediction / original) *100
@@ -204,7 +204,7 @@ def main():
         forecast = m.predict(future)
         # forecast["Prediction"] = np.exp(forecast.yhat)
 
-        show_forecast(m, forecast, data)
+        show_forecast(m, forecast, data, p)
         
         data_load_state.text('Prediction done.')
 
