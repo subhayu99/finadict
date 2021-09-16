@@ -104,8 +104,9 @@ def main():
         st.write('\n**[', comp_info.get('longName'),'](',comp_info.get('website'),')**\n')
         st.image(comp_info.get('logo_url'))
         st.write('Financial Currency :**', comp_info.get('financialCurrency'),'**\n')
-        st.write(comp_info)
         st.write('\nyFinance\'s Recommendation :**', comp_info.get('recommendationKey'),'**\n')
+        if(streamlit.button('Wanna see comapany information?')):
+            st.write(comp_info)
         
     elif(choice==menu[1]):
         st.title('Forex Prediction')
@@ -196,7 +197,6 @@ def main():
 
     df_train = data[[date_index,'Close']]
     df_train = df_train.rename(columns={date_index: "ds", "Close": "y"})
-    # df_train['y'] = np.log(df_train['y'])
     # st.write(df_train)
 
     if (interval in interval_choices[4:5]):
@@ -206,14 +206,11 @@ def main():
         # Predict forecast.
         future = m.make_future_dataframe(periods=p)
         forecast = m.predict(future)
-        # forecast["Prediction"] = np.exp(forecast.yhat)
 
         show_forecast(m, forecast, data, p, df_train)
         
         data_load_state.text('Prediction done.')
 
-        # df_cv = cross_validation(m, initial='30 days', period='1 day', horizon = '10 days')
-        # st.write(df_cv)
 
 if __name__ == '__main__':
     main()
