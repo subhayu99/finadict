@@ -70,10 +70,10 @@ def show_forecast(m, forecast, data, p, df_train):
     only_forecast['Predicted Price (Upper)'] = only_forecast['yhat_upper']
 
     rmpse = np.sqrt(np.nanmean(np.square(((original - prediction) / original))))*100
-
+    
+    st.write(only_forecast[["Datetime","Actual Price","Predicted Price","Confidence (%)","Predicted Price (Lower)","Predicted Price (Upper)"]].iloc[::-1])
     st.write('Mean Confidence Percentage =', round(only_forecast['Confidence (%)'].mean()-rmpse, 2), '%')
     st.write('Root Mean Percentage Squared Error =', round(rmpse, 5), '%')
-    st.write(only_forecast[["Datetime","Actual Price","Predicted Price","Confidence (%)","Predicted Price (Lower)","Predicted Price (Upper)"]].iloc[::-1])
 
     st.subheader(f'Forecast plot ')
     fig1 = plot_plotly(m, forecast)
