@@ -24,7 +24,7 @@ def load_data(ticker, period, interval, date_index):
     return data
 
 def normalize_data(df):
-    min = df.min()+
+    min = df.min()
     max = df.max()
     x = df
 
