@@ -29,7 +29,6 @@ def plot_raw_data(data, date_index):
     fig.add_trace(go.Scatter(x=data[date_index], y=data['Open'], name="stock_open"))
     fig.add_trace(go.Scatter(x=data[date_index], y=data['Close'], name="stock_close"))
     fig.layout.update(title_text='Time Series data in Line chart', xaxis_rangeslider_visible=True)
-    st.plotly_chart(fig, use_container_width=True)
 
     csfig = go.Figure(data=[go.Candlestick(
         x=data[date_index],
@@ -39,7 +38,10 @@ def plot_raw_data(data, date_index):
         close=data['Close'])]
     )
     csfig.layout.update(title_text='Time Series data in Candle-sticks chart', xaxis_rangeslider_visible=True)
-    st.plotly_chart(csfig, use_container_width=True)
+
+    with st.expander("Tap to expand!"):
+        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(csfig, use_container_width=True)
 
 def build_model(comp_country_code):
     # Define forecasting model.
@@ -216,7 +218,7 @@ def main():
     data = load_data(selected_stock, period, interval, date_index)
 
     st.subheader('Raw data')
-    with st.expander("Actual Data"):
+    with st.expander("Tap to expand!"):
         st.dataframe(data.iloc[::-1])
     plot_raw_data(data, date_index)
 
