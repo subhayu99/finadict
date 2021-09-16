@@ -68,7 +68,7 @@ def show_forecast(m, forecast, data, p):
     # Show and plot forecast
     st.subheader('Forecast data')
 
-    original = data['Close'][:-p]
+    original = df_train['y'][:-p]
     prediction = forecast['yhat'][:-(p+1)]
 
     st.write(original)
@@ -76,7 +76,7 @@ def show_forecast(m, forecast, data, p):
 
     only_forecast = forecast # [len(data)-1:len(forecast)]
     only_forecast['Confidence (%)'] = (prediction / original) *100
-    only_forecast['y'] = data['Close']
+    only_forecast['y'] = df_train['y']
     st.write(only_forecast[["ds","y","yhat","Confidence (%)","yhat_lower","yhat_upper"]].iloc[::-1])
 
     mse = mean_squared_error(original, prediction)/len(data)
