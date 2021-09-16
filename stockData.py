@@ -105,8 +105,7 @@ def main():
         st.image(comp_info.get('logo_url'))
         st.write('Financial Currency :**', comp_info.get('financialCurrency'),'**\n')
         st.write('\nyFinance\'s Recommendation :**', comp_info.get('recommendationKey'),'**\n')
-        if st.button('Click to view comapany information', help='Might take a few seconds to load.'):
-            st.write(comp_info)
+        st.button('Click to view comapany information', help='Might take a few seconds to load.', on_click=st.write(comp_info)):
         
     elif(choice==menu[1]):
         st.title('Forex Prediction')
