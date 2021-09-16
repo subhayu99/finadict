@@ -143,7 +143,7 @@ def main():
     elif(choice==menu[2]):
         st.title('Crypto Prediction')
 
-        selected_stock = form.text_input("Type in a conversion string (For eg. 'BTC-INR' to get Bitcoin to Indian Rupee conversion rate.)", value='BTC-INR')
+        selected_stock = form.text_input("Type in a conversion string", value='BTC-INR', help="'[CURRENCY 1]-[CURRENCY 2]' to get [CURRENCY 1] to [CURRENCY 2] conversion rate.")
         form.write('*Find the currency symbols* [here](https://finance.yahoo.com/cryptocurrencies)')
         if not selected_stock:
             selected_stock = 'BTC-INR'
