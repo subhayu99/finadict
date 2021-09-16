@@ -30,8 +30,7 @@ def normalize_data(df):
 
     # time series normalization part
     # y will be a column in a dataframe
-    y = ((x - min) / (max - min)) * 100
-    y['y'].replace(0,0.01)
+    y = (x - min) / (max - min)
 
     return y
 
@@ -209,7 +208,7 @@ def main():
 
     df_train = data[[date_index,'Close']]
     df_train = df_train.rename(columns={date_index: "ds", "Close": "y"})
-    df_train['y'] = normalize_data(df_train['y'])
+    # df_train['y'] = np.log(df_train['y'])
     # st.write(df_train)
 
     if (interval in interval_choices[4:5]):
