@@ -63,7 +63,7 @@ def show_forecast(m, forecast, data, p):
     only_forecast = forecast # [len(data)-1:len(forecast)]
     only_forecast['Confidence (%)'] = (prediction[:-p] / original) *100
     only_forecast['y'] = original
-    st.write(only_forecast[["ds","yhat","yhat_lower","yhat_upper","Confidence (%)"]].iloc[::-1])
+    st.write(only_forecast[["ds","y","yhat","yhat_lower","yhat_upper","Confidence (%)"]].iloc[::-1])
 
     mse = mean_squared_error(original, prediction)/len(data)
     st.write('Mean Confidence Percentage ', round(only_forecast['Confidence (%)'].mean() - mse, 2), '%')
