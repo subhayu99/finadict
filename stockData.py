@@ -108,7 +108,7 @@ def main():
         st.title('Stock Prediction')
 
         selected_stock = form.text_input("Type in a ticker symbol:", value='TCS.NS', help="'[TICKER]' for Nasdaq and '[TICKER].NS' for NSE registered stocks")
-        form.write('*Forgotten the ticker symbol?* Find it [here](https://finance.yahoo.com/lookup)')
+        form.write('*Find ticker symbol* [here](https://finance.yahoo.com/lookup)')
         if not selected_stock:
             selected_stock = 'TCS.NS'
         comp = yf.Ticker(selected_stock)
@@ -127,7 +127,7 @@ def main():
 
         x = form.text_input("From", value='USD')
         y = form.text_input("To", value='INR')
-        st.write('*Forgotten the currency symbols?* Find them [here](https://finance.yahoo.com/currencies)')
+        form.write('*Find the currency symbols* [here](https://finance.yahoo.com/currencies)')
         if not x:
             x = 'USD'
         if not y:
@@ -144,7 +144,7 @@ def main():
         st.title('Crypto Prediction')
 
         selected_stock = form.text_input("Type in a conversion string (For eg. 'BTC-INR' to get Bitcoin to Indian Rupee conversion rate.)", value='BTC-INR')
-        st.write('*Forgotten the currency symbols?* Find them [here](https://finance.yahoo.com/cryptocurrencies)')
+        form.write('*Find the currency symbols* [here](https://finance.yahoo.com/cryptocurrencies)')
         if not selected_stock:
             selected_stock = 'BTC-INR'
         comp = yf.Ticker(selected_stock)
