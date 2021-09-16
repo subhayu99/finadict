@@ -24,11 +24,11 @@ def load_data(ticker, period, interval, date_index):
 
 # Plot raw data
 def plot_raw_data(data, date_index):
+    st.subheader('Raw data plots')
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=data[date_index], y=data['Open'], name="stock_open"))
     fig.add_trace(go.Scatter(x=data[date_index], y=data['Close'], name="stock_close"))
-    fig.layout.update(xaxis_rangeslider_visible=True)
-    st.subheader('Time Series data in Line-chart')
+    fig.layout.update(title_text='Time Series data in Line chart', xaxis_rangeslider_visible=True)
     st.plotly_chart(fig, use_container_width=True)
 
     csfig = go.Figure(data=[go.Candlestick(
@@ -38,7 +38,7 @@ def plot_raw_data(data, date_index):
         low=data['Low'],
         close=data['Close'])]
     )
-    csfig.layout.update(title_text='Time Series data in Candle-chart', xaxis_rangeslider_visible=True)
+    csfig.layout.update(title_text='Time Series data in Candle-sticks chart', xaxis_rangeslider_visible=True)
     st.plotly_chart(csfig, use_container_width=True)
 
 def build_model(comp_country_code):
