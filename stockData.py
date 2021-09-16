@@ -71,6 +71,9 @@ def show_forecast(m, forecast, data, p):
     original = normalize_data(data['Close'][:-p])
     prediction = normalize_data(forecast['yhat'][:-(p+1)])
 
+    st.write(original)
+    st.write(prediction)
+
     only_forecast = forecast # [len(data)-1:len(forecast)]
     only_forecast['Confidence (%)'] = (original / prediction) *100
     only_forecast['y'] = data['Close']
