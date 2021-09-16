@@ -21,20 +21,6 @@ def load_data(ticker, period, interval, date_index):
         data[date_index] = data[date_index].str[:-6]
     return data
 
-def rmspe(y_true, y_pred):
-    return np.sqrt(np.nanmean(np.square(((y_true - y_pred) / y_true))))*100
-
-def normalize_data(df):
-    min = df.min()
-    max = df.max()
-    x = df
-
-    # time series normalization part
-    # y will be a column in a dataframe
-    y = (x - min) / (max - min)
-
-    return y
-
 # Plot raw data
 def plot_raw_data(data, date_index):
     fig = go.Figure()
@@ -77,7 +63,7 @@ def show_forecast(m, forecast, data, p, df_train):
 
     only_forecast = forecast # [len(data)-1:len(forecast)]
     only_forecast['Confidence (%)'] = (prediction / original) * 100
-    only_forecast['y'] = df_train['y']
+    only_forecast['Actual Price (y)'] = df_train['y']
     st.write(only_forecast[["ds","y","yhat","Confidence (%)","yhat_lower","yhat_upper"]].iloc[::-1])
 
     rmpse = np.sqrt(np.nanmean(np.square(((original - prediction) / original))))*100
