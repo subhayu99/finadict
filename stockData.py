@@ -125,7 +125,7 @@ def main():
 
         x = st.text_input("From", value='USD')
         y = st.text_input("To", value='INR')
-        currency = y
+        currency = y.upper()
         selected_stock = x+y+'=X'
         st.write('*Forgotten the currency symbols?* Find them [here](https://finance.yahoo.com/currencies)')
         if not selected_stock:
