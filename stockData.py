@@ -126,7 +126,7 @@ def main():
         st.write('Financial Currency :**', comp_info.get('financialCurrency'),'**\n')
         # st.write('\nyFinance\'s Recommendation :**', comp_info.get('recommendationKey'),'**\n')
         with st.expander("See company info...", expanded=False):
-            st.json(comp_info)
+            container.json(comp_info)
         
     elif(choice==menu[1]):
         st.title('Forex Prediction')
