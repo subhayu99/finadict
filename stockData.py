@@ -125,8 +125,8 @@ def main():
     elif(choice==menu[1]):
         st.title('Forex Prediction')
 
-        x = st.text_input("From", value='USD')
-        y = st.text_input("To", value='INR')
+        x = form.text_input("From", value='USD')
+        y = form.text_input("To", value='INR')
         st.write('*Forgotten the currency symbols?* Find them [here](https://finance.yahoo.com/currencies)')
         if not x:
             x = 'USD'
@@ -143,7 +143,7 @@ def main():
     elif(choice==menu[2]):
         st.title('Crypto Prediction')
 
-        selected_stock = st.text_input("Type in a conversion string (For eg. 'BTC-INR' to get Bitcoin to Indian Rupee conversion rate.)", value='BTC-INR')
+        selected_stock = form.text_input("Type in a conversion string (For eg. 'BTC-INR' to get Bitcoin to Indian Rupee conversion rate.)", value='BTC-INR')
         st.write('*Forgotten the currency symbols?* Find them [here](https://finance.yahoo.com/cryptocurrencies)')
         if not selected_stock:
             selected_stock = 'BTC-INR'
@@ -158,7 +158,7 @@ def main():
 
     interval_aliases = ('5 mins', '15 mins', '30 mins', '1 hour', '1 day', '1 week', '1 month')
     interval_choices = ('5m', '15m', '30m', '60m', '1d', '1wk', '1mo')
-    interval_alias = form.sidebar.radio('Select interval:', interval_aliases, index=4, help="Prediction only supported for '1 day' interval.") 
+    interval_alias = form.radio('Select interval:', interval_aliases, index=4, help="Prediction only supported for '1 day' interval.") 
     interval = interval_choices[interval_aliases.index(interval_alias)]
 
     if(interval=='5m'):
@@ -186,7 +186,7 @@ def main():
         # p = st.sidebar.slider('No. of hour\'s prediction:', 1, 60)
         # f = 'h'
     elif(interval=='1d'):
-        y = form.sidebar.slider('No. of months\' data to fetch:', 2, 12, value=4)
+        y = form.slider('No. of months\' data to fetch:', 2, 12, value=4)
         y *= 30
         t = 'd'
         period = str(y)+t
@@ -205,7 +205,7 @@ def main():
         # f = 'm'
 
     if(interval!='1d'):
-        y = form.sidebar.slider('No. of days\' data to fetch:', 1, l)
+        y = form.slider('No. of days\' data to fetch:', 1, l)
         period = str(y)+t
 
     form.form_submit_button("Submit")
