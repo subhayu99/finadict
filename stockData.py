@@ -10,7 +10,6 @@ from fbprophet.diagnostics import cross_validation
 from plotly import graph_objs as go
 import pycountry
 import re
-from math import sqrt
 
 @st.cache
 def load_data(ticker, period, interval, date_index):
@@ -82,7 +81,7 @@ def show_forecast(m, forecast, data, p, df_train):
     st.write(only_forecast[["ds","y","yhat","Confidence (%)","yhat_lower","yhat_upper"]].iloc[::-1])
 
     rmpse = np.sqrt(np.nanmean(np.square(((original - prediction) / original))))*100
-    st.write('Mean Confidence Percentage =', round(only_forecast['Confidence (%)'].mean()-rmpse, 5), '%')
+    st.write('Mean Confidence Percentage =', round(only_forecast['Confidence (%)'].mean()-rmpse, 2), '%')
     st.write('Root Mean Percentage Squared Error =',rmpse)
 
     st.subheader(f'Forecast plot ')
