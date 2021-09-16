@@ -125,12 +125,15 @@ def main():
 
         x = st.text_input("From", value='USD')
         y = st.text_input("To", value='INR')
-        currency = y.upper()
-        selected_stock = x+y+'=X'
         st.write('*Forgotten the currency symbols?* Find them [here](https://finance.yahoo.com/currencies)')
-        if not selected_stock:
-            selected_stock = 'USDINR=X'
+        if not x:
+            x = 'USD'
+        if not y:
+            y = 'INR'
+        
+        selected_stock = x+y+'=X'
         comp = yf.Ticker(selected_stock)
+        currency = y.upper()
         comp_country_code = False
 
         st.write('\nShowing results for**', x.upper(), '**to**', y.upper(), '** coversion rate.\n')
