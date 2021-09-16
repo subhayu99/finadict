@@ -58,8 +58,8 @@ def show_forecast(m, forecast, data, p, df_train):
     original = df_train['y']
     prediction = forecast['yhat'][:-p]
 
-    st.write(original)
-    st.write(prediction)
+    # st.write(original)
+    # st.write(prediction)
 
     only_forecast = forecast # [len(data)-1:len(forecast)]
     only_forecast['Confidence (%)'] = (prediction / original) * 100
