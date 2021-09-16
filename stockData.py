@@ -58,10 +58,11 @@ def show_forecast(m, forecast, data, p):
     st.subheader('Forecast data')
 
     original = data['Close']
-    prediction = forecast['yhat'][:-p]
+    prediction = forecast['yhat']
 
     only_forecast = forecast # [len(data)-1:len(forecast)]
-    only_forecast['Confidence (%)'] = (prediction / original) *100
+    only_forecast['Confidence (%)'] = (prediction[:-p] / original) *100
+    only_forecast['y'] = original
     st.write(only_forecast[["ds","yhat","yhat_lower","yhat_upper","Confidence (%)"]].iloc[::-1])
 
     mse = mean_squared_error(original, prediction)/len(data)
