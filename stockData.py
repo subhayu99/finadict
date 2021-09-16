@@ -19,7 +19,8 @@ def load_data(ticker, period, interval, date_index):
     data[date_index] = data[date_index].astype(str)
     if(date_index == 'Datetime'):
         data[date_index] = data[date_index].str[:-6]
-    return data
+    if(len(data)>10):
+        return data
 
 # Plot raw data
 def plot_raw_data(data, date_index):
