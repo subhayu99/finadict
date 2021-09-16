@@ -39,7 +39,7 @@ def plot_raw_data(data, date_index):
     )
     csfig.layout.update(title_text='Time Series data in Candle-sticks chart', xaxis_rangeslider_visible=True)
 
-    with st.expander("Tap to expand/collapse"):
+    with st.expander("Tap to expand/collapse", expanded=True):
         st.plotly_chart(fig, use_container_width=True)
         st.plotly_chart(csfig, use_container_width=True)
 
@@ -76,7 +76,7 @@ def show_forecast(m, forecast, data, p, df_train, currency):
     rmpse = np.sqrt(np.nanmean(np.square(((original - prediction) / original))))*100
     accuracy = round(only_forecast['Confidence (%)'].mean()-rmpse, 2)
     
-    with st.expander("Tap to expand/collapse"):
+    with st.expander("Tap to expand/collapse", expanded=True):
         st.write(only_forecast[["Datetime","Actual Price","Predicted Price","Confidence (%)","Predicted Price (Lower)","Predicted Price (Upper)"]].iloc[::-1])
         st.write('Mean Confidence Percentage =', accuracy, '%')
         st.write('Root Mean Percentage Squared Error =', round(rmpse, 5), '%')
@@ -89,12 +89,12 @@ def show_forecast(m, forecast, data, p, df_train, currency):
 
     st.subheader('Forecast plot')
     fig1 = plot_plotly(m, forecast)
-    with st.expander("Tap to expand/collapse"):
+    with st.expander("Tap to expand/collapse", expanded=True):
         st.plotly_chart(fig1, use_container_width=True)
     
     st.subheader("Forecast components")
     fig2 = m.plot_components(forecast)
-    with st.expander("Tap to expand/collapse"):
+    with st.expander("Tap to expand/collapse", expanded=False):
         st.write(fig2)
 
 
@@ -127,7 +127,7 @@ def main():
         st.write('**[', comp_info.get('longName'),'](',comp_info.get('website'),')**')
         st.write('Financial Currency :**', comp_info.get('financialCurrency'),'**\n')
         # st.write('\nyFinance\'s Recommendation :**', comp_info.get('recommendationKey'),'**\n')
-        with st.expander("", expanded=False):
+        with st.expander("See company info...", expanded=False):
             st.json(comp_info)
         
     elif(choice==menu[1]):
@@ -221,7 +221,7 @@ def main():
     data = load_data(selected_stock, period, interval, date_index)
 
     st.subheader('Raw data')
-    with st.expander("Tap to expand/collapse"):
+    with st.expander("Tap to expand/collapse", expanded=True):
         st.dataframe(data.iloc[::-1])
     plot_raw_data(data, date_index)
 
