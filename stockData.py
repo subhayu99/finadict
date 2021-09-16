@@ -85,7 +85,8 @@ def show_forecast(m, forecast, data, p, df_train, currency, container):
     value=str(round(only_forecast['Predicted Price'].iloc[-1], 4)) + ' ' + currency
     delta = str(round(((only_forecast['Predicted Price'].iloc[-1] - only_forecast['Actual Price'].iloc[-2]) / only_forecast['Actual Price'].iloc[-2]) * 100, 2))+'%'
     st.sidebar.write(' ')
-    container.metric(label=label, value=value, delta=delta)
+    with container.expander("Tap to expand/collapse", expanded=True):
+        container.metric(label=label, value=value, delta=delta)
 
     st.subheader('Forecast plot')
     fig1 = plot_plotly(m, forecast)
