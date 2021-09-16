@@ -31,6 +31,7 @@ def normalize_data(df):
     # time series normalization part
     # y will be a column in a dataframe
     y = (x - min) / (max - min)
+    y.clip(lower=0.00001)
 
     return y
 
@@ -64,19 +65,19 @@ def build_model(comp_country_code):
         m.add_country_holidays(country_name=comp_country_code)
     return m
 
-def show_forecast(m, forecast, data, p):
+def show_forecast(m, forecast, data, p, df_train):
     # Show and plot forecast
     st.subheader('Forecast data')
 
-    original = data['Close']
+    original = df_train['y']
     prediction = forecast['yhat'][:-p]
 
     st.write(original)
     st.write(prediction)
 
     only_forecast = forecast # [len(data)-1:len(forecast)]
-    only_forecast['Confidence (%)'] = (prediction / original) *100
-    only_forecast['y'] = data['Close']
+    only_forecast['Confidence (%)'] = (prediction / original) * 100
+    only_forecast['y'] = df_train['y']
     st.write(only_forecast[["ds","y","yhat","Confidence (%)","yhat_lower","yhat_upper"]].iloc[::-1])
 
     mse = mean_squared_error(original, prediction)/len(data)
@@ -178,7 +179,7 @@ def main():
         # p = st.sidebar.slider('No. of hour\'s prediction:', 1, 60)
         # f = 'h'
     elif(interval=='1d'):
-        y = st.sidebar.slider('No. of months\' data to fetch:', 1, 12, value=4)
+        y = st.sidebar.slider('No. of months\' data to fetch:', 2, 12, value=4)
         y *= 30
         t = 'd'
         period = str(y)+t
@@ -208,7 +209,7 @@ def main():
 
     df_train = data[[date_index,'Close']]
     df_train = df_train.rename(columns={date_index: "ds", "Close": "y"})
-    # df_train['y'] = np.log(df_train['y'])
+    df_train['y'] = normalize_data(df_train['y'])
     # st.write(df_train)
 
     if (interval in interval_choices[4:5]):
@@ -220,7 +221,7 @@ def main():
         forecast = m.predict(future)
         # forecast["Prediction"] = np.exp(forecast.yhat)
 
-        show_forecast(m, forecast, data, p)
+        show_forecast(m, forecast, data, p, df_train)
         
         data_load_state.text('Prediction done.')
 
