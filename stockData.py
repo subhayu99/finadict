@@ -192,7 +192,7 @@ def main():
     data = load_data(selected_stock, period, interval, date_index)
 
     st.subheader('Raw data')
-    st.dataframe(data.iloc[::-1].head())
+    st.dataframe(data.iloc[::-1])
     plot_raw_data(data, date_index)
 
     df_train = data[[date_index,'Close']]
