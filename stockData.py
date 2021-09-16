@@ -54,10 +54,11 @@ def build_model(comp_country_code):
 def show_forecast(m, forecast, data):
     # Show and plot forecast
     st.subheader('Forecast data')
-    only_forecast = forecast[len(data)-1:len(forecast)]
+    only_forecast = forecast # [len(data)-1:len(forecast)]
+    only_forecast['Confidence (%)'] = (forecast['yhat'] / data['Close']) *100
     st.write(only_forecast)
     st.write('No of values: ',len(only_forecast))
-    
+
     st.subheader(f'Forecast plot ')
     fig1 = plot_plotly(m, forecast)
     st.plotly_chart(fig1, use_container_width=True)
@@ -195,6 +196,7 @@ def main():
         # forecast["Prediction"] = np.exp(forecast.yhat)
 
         show_forecast(m, forecast, data)
+        
         data_load_state.text('Prediction done.')
 
         # df_cv = cross_validation(m, initial='30 days', period='1 day', horizon = '10 days')
