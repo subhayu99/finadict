@@ -64,11 +64,11 @@ def build_model(comp_country_code):
         m.add_country_holidays(country_name=comp_country_code)
     return m
 
-def show_forecast(m, forecast, data, df_train, p):
+def show_forecast(m, forecast, data, p):
     # Show and plot forecast
     st.subheader('Forecast data')
 
-    original = df_train['y'][:-p]
+    original = data['Close'][:-p]
     prediction = forecast['yhat'][:-(p+1)]
 
     st.write(original)
@@ -76,13 +76,13 @@ def show_forecast(m, forecast, data, df_train, p):
 
     only_forecast = forecast # [len(data)-1:len(forecast)]
     only_forecast['Confidence (%)'] = (prediction / original) *100
-    only_forecast['y'] = df_train['y']
+    only_forecast['y'] = data['Close']
     st.write(only_forecast[["ds","y","yhat","Confidence (%)","yhat_lower","yhat_upper"]].iloc[::-1])
 
     mse = mean_squared_error(original, prediction)/len(data)
     st.write('Mean Confidence Percentage ', round(only_forecast['Confidence (%)'].mean(), 2), '%')
-    st.write('Mean Squared Error ', mse)
-    st.write('Root Mean Squared Error ', sqrt(mse))
+    st.write('Mean Squared Error ',mse)
+    st.write('Root Mean Squared Error ',sqrt(mse))
 
     st.subheader(f'Forecast plot ')
     fig1 = plot_plotly(m, forecast)
@@ -208,8 +208,8 @@ def main():
 
     df_train = data[[date_index,'Close']]
     df_train = df_train.rename(columns={date_index: "ds", "Close": "y"})
-    df_train['y'] = normalize_data(df_train['y'])
-    st.write(df_train)
+    # df_train['y'] = np.log(df_train['y'])
+    # st.write(df_train)
 
     if (interval in interval_choices[4:5]):
         data_load_state = st.text('Predicting prices...')
@@ -220,7 +220,7 @@ def main():
         forecast = m.predict(future)
         # forecast["Prediction"] = np.exp(forecast.yhat)
 
-        show_forecast(m, forecast, data, df_train, p)
+        show_forecast(m, forecast, data, p)
         
         data_load_state.text('Prediction done.')
 
