@@ -61,7 +61,7 @@ def show_forecast(m, forecast, data, p):
     prediction = forecast['yhat'][:-p]
 
     only_forecast = forecast # [len(data)-1:len(forecast)]
-    only_forecast['Confidence (%)'] = (prediction / original) *100
+    only_forecast['Confidence (%)'] = (original / prediction) *100
     only_forecast['y'] = original
     st.write(only_forecast[["ds","y","yhat","yhat_lower","yhat_upper","Confidence (%)"]].iloc[::-1])
 
