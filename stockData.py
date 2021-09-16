@@ -81,7 +81,7 @@ def main():
     if(choice==menu[0]):
         st.title('Stock Prediction')
 
-        selected_stock = st.text_input("Type in a ticker symbol (For eg. '[TICKER]' for Nasdaq and '[TICKER].NS' for NSE registered stocks)", value='TCS.NS')
+        selected_stock = st.text_input("Type in a ticker symbol:", value='TCS.NS', help="'[TICKER]' for Nasdaq and '[TICKER].NS' for NSE registered stocks")
         st.write('*Forgotten the ticker symbol?* Find it [here](https://finance.yahoo.com/lookup)')
         if not selected_stock:
             selected_stock = 'TCS.NS'
