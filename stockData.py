@@ -30,7 +30,7 @@ def normalize_data(df):
 
     # time series normalization part
     # y will be a column in a dataframe
-    y = ((x - min) + x / (x + 1) ) / (max - min)
+    y = (x - min) / (max - min)
 
     return y
 
@@ -68,8 +68,8 @@ def show_forecast(m, forecast, data, p):
     # Show and plot forecast
     st.subheader('Forecast data')
 
-    original = normalize_data(data['Close'][:-p])
-    prediction = normalize_data(forecast['yhat'][:-(p+1)])
+    original = data['Close'][:-p]
+    prediction = forecast['yhat']
 
     st.write(original)
     st.write(prediction)
@@ -81,8 +81,8 @@ def show_forecast(m, forecast, data, p):
 
     mse = mean_squared_error(original, prediction)/len(data)
     st.write('Mean Confidence Percentage ', round(only_forecast['Confidence (%)'].mean(), 2), '%')
-    st.write('Mean Squared Error ',mse)
-    st.write('Root Mean Squared Error ',sqrt(mse))
+    st.write('Mean Squared Error ', mse)
+    st.write('Root Mean Squared Error ', sqrt(mse))
 
     st.subheader(f'Forecast plot ')
     fig1 = plot_plotly(m, forecast)
@@ -208,8 +208,8 @@ def main():
 
     df_train = data[[date_index,'Close']]
     df_train = df_train.rename(columns={date_index: "ds", "Close": "y"})
-    # df_train['y'] = np.log(df_train['y'])
-    # st.write(df_train)
+    df_train['y'] = normalize_data(df_train['y'])
+    st.write(df_train)
 
     if (interval in interval_choices[4:5]):
         data_load_state = st.text('Predicting prices...')
