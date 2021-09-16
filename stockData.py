@@ -74,7 +74,7 @@ def show_forecast(m, forecast, data, p, df_train):
     st.write(only_forecast[["Datetime","Actual Price","Predicted Price","Confidence (%)","Predicted Price (Lower)","Predicted Price (Upper)"]].iloc[::-1])
     st.write('Mean Confidence Percentage =', round(only_forecast['Confidence (%)'].mean()-rmpse, 2), '%')
     st.write('Root Mean Percentage Squared Error =', round(rmpse, 5), '%')
-    delta = ((only_forecast['Predicted Price'].iloc[-1] - only_forecast['Actual Price'].iloc[-2]) / only_forecast['Actual Price'].iloc[-2]) * 100
+    delta = str(round(((only_forecast['Predicted Price'].iloc[-1] - only_forecast['Actual Price'].iloc[-2]) / only_forecast['Actual Price'].iloc[-2]) * 100, 2))+'%'
     st.metric(label=" Tomorrow Stock Price", value=round(only_forecast['Predicted Price'].iloc[-1], 3), delta=delta)
 
     st.subheader(f'Forecast plot ')
