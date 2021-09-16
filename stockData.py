@@ -215,10 +215,10 @@ def main():
 
     data = load_data(selected_stock, period, interval, date_index)
 
-    with st.expander("See explanation"):
-        st.subheader('Raw data')
+    st.subheader('Raw data')
+    with st.expander("Actual Data"):
         st.dataframe(data.iloc[::-1])
-        plot_raw_data(data, date_index)
+    plot_raw_data(data, date_index)
 
     df_train = data[[date_index,'Close']]
     df_train = df_train.rename(columns={date_index: "ds", "Close": "y"})
