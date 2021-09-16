@@ -197,8 +197,8 @@ def main():
         show_forecast(m, forecast, data)
         data_load_state.text('Prediction done.')
 
-        # df_cv = cross_validation(m, initial='30 days', period='1 day', horizon = '10 days')
-        # st.write(df_cv)
+        df_cv = cross_validation(m, initial='30 days', period='1 day', horizon = '10 days')
+        st.write(df_cv)
 
 if __name__ == '__main__':
     try:
