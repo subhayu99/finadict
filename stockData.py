@@ -104,7 +104,7 @@ def main():
         st.write('\n**[', comp_info.get('longName'),'](',comp_info.get('website'),')**\n')
         st.image(comp_info.get('logo_url'))
         st.write('Financial Currency :**', comp_info.get('financialCurrency'),'**\n')
-        st.write('\nyFinance\'s Recommendation :**', comp_infWanna see comapany information?o.get('recommendationKey'),'**\n')
+        st.write('yFinance\'s Recommendation :**', comp_infWanna see comapany information?o.get('recommendationKey'),'**')
         if st.button('Wanna see comapany information?'):
             st.write(comp_info)
         
