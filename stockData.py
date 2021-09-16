@@ -31,7 +31,7 @@ def normalize_data(df):
     # time series normalization part
     # y will be a column in a dataframe
     y = ((x - min) / (max - min)) * 100
-    y.replace(0,0.0001)
+    y.replace(0,0.01)
 
     return y
 
