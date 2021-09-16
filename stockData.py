@@ -83,7 +83,7 @@ def show_forecast(m, forecast, data, p, df_train):
     st.write(only_forecast[["ds","y","yhat","Confidence (%)","yhat_lower","yhat_upper"]].iloc[::-1])
 
     mse = mean_squared_error(original, prediction)/len(data)
-    rmpse = rmpse(original, prediction)
+    rmpse = np.sqrt(np.nanmean(np.square(((original - prediction) / original))))*100
     st.write('Mean Confidence Percentage ', round(only_forecast['Confidence (%)'].mean(), 2), '%')
     st.write('Rooy Mean Percentage Squared Error ',rmpse)
     st.write('Mean Squared Error ',mse)
