@@ -77,7 +77,7 @@ def show_forecast(m, forecast, data, p, df_train, currency):
     st.write('Root Mean Percentage Squared Error =', round(rmpse, 5), '%')
 
     label = "Tomorrow\'s Price (confidence: " + str(accuracy) + '%)'
-    value=str(round(only_forecast['Predicted Price'].iloc[-1], 2)) + ' ' + currency
+    value=str(only_forecast['Predicted Price'].iloc[-1]) + ' ' + currency
     delta = str(round(((only_forecast['Predicted Price'].iloc[-1] - only_forecast['Actual Price'].iloc[-2]) / only_forecast['Actual Price'].iloc[-2]) * 100, 2))+'%'
     st.sidebar.write(' ')
     st.sidebar.metric(label=label, value=value, delta=delta)
