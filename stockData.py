@@ -65,6 +65,7 @@ def show_forecast(m, forecast, data, p):
     st.write(only_forecast)
 
     mse = mean_squared_error(original, prediction)/len(data)
+    st.write('Mean Confidence Percentage ', only_forecast['Confidence (%)'].mean(), '%')
     st.write('Mean Squared Error ',mse)
     st.write('Root Mean Squared Error ',sqrt(mse))
 
