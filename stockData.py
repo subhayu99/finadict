@@ -86,7 +86,7 @@ def show_forecast(m, forecast, data, p, df_train, currency):
     fig1 = plot_plotly(m, forecast)
     st.plotly_chart(fig1, use_container_width=True)
     
-    st.header("Forecast components")
+    st.header(f"Forecast components")
     fig2 = m.plot_components(forecast)
     st.write(fig2)
 
