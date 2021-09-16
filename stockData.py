@@ -99,7 +99,7 @@ def main():
             initial_sidebar_state="expanded",
             )
 
-    form = st.form()
+    form = st.form("my_form")
 
     menu = ['Stocks', 'Forex', 'Crypto']
     choice = form.sidebar.selectbox('Select your market choice', menu)
