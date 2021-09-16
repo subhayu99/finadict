@@ -109,13 +109,13 @@ def main():
     menu = ['Stocks', 'Forex', 'Crypto']
     choice = st.sidebar.selectbox('Select your market choice', menu)
 
-    form = st.sidebar.form("take parameters", clear_on_submit=True)
+    form = st.sidebar.form("take parameters")
 
     if(choice==menu[0]):
         st.title('Stock Prediction')
 
-        selected_stock = form.text_input("Type in a ticker symbol:", value='TCS.NS', help="'[TICKER]' for Nasdaq and '[TICKER].NS' for NSE registered stocks")
-        form.write('*Find the ticker symbol [here](https://finance.yahoo.com/lookup)*')
+        selected_stock = st.text_input("Type in a ticker symbol:", value='TCS.NS', help="'[TICKER]' for Nasdaq and '[TICKER].NS' for NSE registered stocks")
+        st.write('*Find the ticker symbol [here](https://finance.yahoo.com/lookup)*')
         if not selected_stock:
             selected_stock = 'TCS.NS'
         comp = yf.Ticker(selected_stock)
@@ -133,9 +133,9 @@ def main():
     elif(choice==menu[1]):
         st.title('Forex Prediction')
 
-        x = form.text_input("From", value='USD')
-        y = form.text_input("To", value='INR')
-        form.write('*Find the currency symbols [here](https://finance.yahoo.com/currencies)*')
+        x = st.text_input("From", value='USD')
+        y = st.text_input("To", value='INR')
+        st.write('*Find the currency symbols [here](https://finance.yahoo.com/currencies)*')
         if not x:
             x = 'USD'
         if not y:
@@ -151,8 +151,8 @@ def main():
     elif(choice==menu[2]):
         st.title('Crypto Prediction')
 
-        selected_stock = form.text_input("Type in a conversion string", value='BTC-INR', help="'[CURRENCY 1]-[CURRENCY 2]' to get [CURRENCY 1] to [CURRENCY 2] conversion rate.")
-        form.write('*Find the currency symbols [here](https://finance.yahoo.com/cryptocurrencies)*')
+        selected_stock = st.text_input("Type in a conversion string", value='BTC-INR', help="'[CURRENCY 1]-[CURRENCY 2]' to get [CURRENCY 1] to [CURRENCY 2] conversion rate.")
+        st.write('*Find the currency symbols [here](https://finance.yahoo.com/cryptocurrencies)*')
         if not selected_stock:
             selected_stock = 'BTC-INR'
         comp = yf.Ticker(selected_stock)
