@@ -109,8 +109,6 @@ def main():
     menu = ['Stocks', 'Forex', 'Crypto']
     choice = st.sidebar.selectbox('Select your market choice', menu)
 
-    form = st.sidebar.form("take parameters")
-
     if(choice==menu[0]):
         st.title('Stock Prediction')
 
@@ -163,6 +161,7 @@ def main():
 
         st.write('\nShowing results for**', x.group().upper(), '**to**', y.group().upper(), '** coversion rate.\n')
 
+    form = st.sidebar.form("take parameters")
 
     interval_aliases = ('5 mins', '15 mins', '30 mins', '1 hour', '1 day', '1 week', '1 month')
     interval_choices = ('5m', '15m', '30m', '60m', '1d', '1wk', '1mo')
