@@ -85,7 +85,7 @@ def show_forecast(m, forecast, data, p, df_train, currency):
     value=str(round(only_forecast['Predicted Price'].iloc[-1], 4)) + ' ' + currency
     delta = str(round(((only_forecast['Predicted Price'].iloc[-1] - only_forecast['Actual Price'].iloc[-2]) / only_forecast['Actual Price'].iloc[-2]) * 100, 2))+'%'
     st.sidebar.write(' ')
-    st.sidebar.metric(label=label, value=value, delta=delta)
+    container.metric(label=label, value=value, delta=delta)
 
     st.subheader('Forecast plot')
     fig1 = plot_plotly(m, forecast)
@@ -219,6 +219,8 @@ def main():
 
     data = load_data(selected_stock, period, interval, date_index)
 
+    container = st.container()
+
     st.subheader('Raw data')
     with st.expander("Tap to expand/collapse", expanded=True):
         st.dataframe(data.iloc[::-1])
@@ -236,7 +238,7 @@ def main():
             future = m.make_future_dataframe(periods=p)
             forecast = m.predict(future)
 
-            show_forecast(m, forecast, data, p, df_train, currency)
+            show_forecast(m, forecast, data, p, df_train, currency, container)
         st.success('Done!')
 
 
