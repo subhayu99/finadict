@@ -51,7 +51,7 @@ def build_model(comp_country_code):
         m.add_country_holidays(country_name=comp_country_code)
     return m
 
-def show_forecast(m, forecast, data, p, df_train):
+def show_forecast(m, forecast, data, p, df_train, ):
     # Show and plot forecast
     st.subheader('Forecast data')
 
@@ -75,9 +75,12 @@ def show_forecast(m, forecast, data, p, df_train):
     accuracy = round(only_forecast['Confidence (%)'].mean()-rmpse, 2)
     st.write('Mean Confidence Percentage =', accuracy, '%')
     st.write('Root Mean Percentage Squared Error =', round(rmpse, 5), '%')
-    label = "Tomorrow Stock Price (accuracy: " + str(accuracy) + '%)'
+
+    label = "Tomorrow\'s Price (accuracy: " + str(accuracy) + '%)'
+    value=str(round(only_forecast['Predicted Price'].iloc[-1], 3)) + ' ' + comp_info.get('financialCurrency')
     delta = str(round(((only_forecast['Predicted Price'].iloc[-1] - only_forecast['Actual Price'].iloc[-2]) / only_forecast['Actual Price'].iloc[-2]) * 100, 2))+'%'
-    st.sidebar.metric(label=label, value=round(only_forecast['Predicted Price'].iloc[-1], 3), delta=delta)
+    st.sidebar.write(' ')
+    st.sidebar.metric(label=label, value=value, delta=delta)
 
     st.subheader(f'Forecast plot ')
     fig1 = plot_plotly(m, forecast)
@@ -215,7 +218,7 @@ def main():
             future = m.make_future_dataframe(periods=p)
             forecast = m.predict(future)
 
-            show_forecast(m, forecast, data, p, df_train)
+            show_forecast(m, forecast, data, p, df_train, comp_info)
         st.success('Done!')
 
 
