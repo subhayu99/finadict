@@ -105,7 +105,7 @@ def main():
         st.image(comp_info.get('logo_url'))
         st.write('Financial Currency :**', comp_info.get('financialCurrency'),'**\n')
         st.write('\nyFinance\'s Recommendation :**', comp_info.get('recommendationKey'),'**\n')
-        if st.button('Wanna see comapany information?'):
+        if st.button('Click to view comapany information?'):
             st.write(comp_info)
         
     elif(choice==menu[1]):
@@ -201,7 +201,6 @@ def main():
 
     if (interval in interval_choices[4:5]):
         with st.spinner('Predicting prices...'):
-            # data_load_state = st.text('Predicting prices...')
             m = build_model(comp_country_code)
             m.fit(df_train)
             # Predict forecast.
@@ -210,7 +209,6 @@ def main():
 
             show_forecast(m, forecast, data, p, df_train)
         st.success('Done!')
-        # data_load_state.text('Prediction done.')
 
 
 if __name__ == '__main__':
