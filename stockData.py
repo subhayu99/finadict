@@ -102,7 +102,7 @@ def main():
         comp_country_code = pycountry.countries.search_fuzzy(comp_info.get('country'))[0].alpha_2
 
         comp_website = comp_info.get('website')
-        st.write('\n**[', comp_info.get('longName'),'](comp_website)**\n')
+        st.write('\n**[', comp_info.get('longName'),'](',comp_website,')**\n')
         st.image(comp_info.get('logo_url'))
         st.write('Financial Currency :**', comp_info.get('financialCurrency'),'**\n')
         st.write(comp_info)
