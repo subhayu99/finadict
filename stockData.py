@@ -79,7 +79,7 @@ def show_forecast(m, forecast, data, p, df_train, currency):
     st.write('Root Mean Percentage Squared Error =', round(rmpse, 5), '%')
 
     label = "Tomorrow\'s Price (confidence: " + str(accuracy) + '%)'
-    value=str(round(only_forecast['Predicted Price'].iloc[-1], 6)) + ' ' + currency
+    value=str(round(only_forecast['Predicted Price'].iloc[-1], 4)) + ' ' + currency
     delta = str(round(((only_forecast['Predicted Price'].iloc[-1] - only_forecast['Actual Price'].iloc[-2]) / only_forecast['Actual Price'].iloc[-2]) * 100, 2))+'%'
     st.sidebar.write(' ')
     st.sidebar.metric(label=label, value=value, delta=delta)
@@ -121,7 +121,7 @@ def main():
         st.write('\n**[', comp_info.get('longName'),'](',comp_info.get('website'),')**\n')
         st.image(comp_info.get('logo_url'))
         st.write('Financial Currency :**', comp_info.get('financialCurrency'),'**\n')
-        st.write('\nyFinance\'s Recommendation :**', comp_info.get('recommendationKey'),'**\n')
+        # st.write('\nyFinance\'s Recommendation :**', comp_info.get('recommendationKey'),'**\n')
         with st.expander("See company info..."):
             st.json(comp_info)
         
