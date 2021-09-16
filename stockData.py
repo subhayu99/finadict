@@ -23,6 +23,17 @@ def load_data(ticker, period, interval, date_index):
         data[date_index] = data[date_index].str[:-6]
     return data
 
+def normalize_data(df):
+    min = df.min()
+    max = df.max()
+    x = df
+
+    # time series normalization part
+    # y will be a column in a dataframe
+    y = (x - min) / (max - min)
+
+    return y
+
 # Plot raw data
 def plot_raw_data(data, date_index):
     fig = go.Figure()
@@ -57,8 +68,8 @@ def show_forecast(m, forecast, data, p):
     # Show and plot forecast
     st.subheader('Forecast data')
 
-    original = np.log(data['Close'])
-    prediction = np.log(forecast['yhat'][:-p])
+    original = normalize_data(data['Close'])
+    prediction = normalize_data(forecast['yhat'][:-p])
 
     only_forecast = forecast # [len(data)-1:len(forecast)]
     only_forecast['Confidence (%)'] = (original / prediction) *100
@@ -66,7 +77,7 @@ def show_forecast(m, forecast, data, p):
     st.write(only_forecast[["ds","y","yhat","Confidence (%)","yhat_lower","yhat_upper"]].iloc[::-1])
 
     mse = mean_squared_error(original, prediction)/len(data)
-    st.write('Mean Confidence Percentage ', round(only_forecast['Confidence (%)'].mean()-mse, 2), '%')
+    st.write('Mean Confidence Percentage ', round(only_forecast['Confidence (%)'].mean(), 2), '%')
     st.write('Mean Squared Error ',mse)
     st.write('Root Mean Squared Error ',sqrt(mse))
 
