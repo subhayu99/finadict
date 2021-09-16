@@ -124,7 +124,7 @@ def main():
 
     interval_aliases = ('5 mins', '15 mins', '30 mins', '1 hour', '1 day', '1 week', '1 month')
     interval_choices = ('5m', '15m', '30m', '60m', '1d', '1wk', '1mo')
-    interval_alias = st.sidebar.radio('Select interval:', interval_aliases, index=4, help='Prediction only supported for interval=day.') 
+    interval_alias = st.sidebar.radio('Select interval:', interval_aliases, index=4, help="Prediction only supported for '1 day' interval.") 
     interval = interval_choices[interval_aliases.index(interval_alias)]
 
     if(interval=='5m'):
