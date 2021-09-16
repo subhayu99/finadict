@@ -51,7 +51,7 @@ def build_model(comp_country_code):
         m.add_country_holidays(country_name=comp_country_code)
     return m
 
-def show_forecast(m, forecast, data, p, df_train, comp_info):
+def show_forecast(m, forecast, data, p, df_train, currency):
     # Show and plot forecast
     st.subheader('Forecast data')
 
@@ -77,7 +77,7 @@ def show_forecast(m, forecast, data, p, df_train, comp_info):
     st.write('Root Mean Percentage Squared Error =', round(rmpse, 5), '%')
 
     label = "Tomorrow\'s Price (accuracy: " + str(accuracy) + '%)'
-    value=str(round(only_forecast['Predicted Price'].iloc[-1], 2)) + ' ' + comp_info.get('financialCurrency')
+    value=str(round(only_forecast['Predicted Price'].iloc[-1], 2)) + ' ' + currency
     delta = str(round(((only_forecast['Predicted Price'].iloc[-1] - only_forecast['Actual Price'].iloc[-2]) / only_forecast['Actual Price'].iloc[-2]) * 100, 2))+'%'
     st.sidebar.write(' ')
     st.sidebar.metric(label=label, value=value, delta=delta)
@@ -112,6 +112,7 @@ def main():
         comp = yf.Ticker(selected_stock)
         comp_info = comp.info
         comp_country_code = pycountry.countries.search_fuzzy(comp_info.get('country'))[0].alpha_2
+        currency = comp_info.get('financialCurrency')
 
         st.write('\n**[', comp_info.get('longName'),'](',comp_info.get('website'),')**\n')
         st.image(comp_info.get('logo_url'))
@@ -124,6 +125,7 @@ def main():
 
         x = st.text_input("From", value='USD')
         y = st.text_input("To", value='INR')
+        currency = y
         selected_stock = x+y+'=X'
         st.write('*Forgotten the currency symbols?* Find them [here](https://finance.yahoo.com/currencies)')
         if not selected_stock:
@@ -144,6 +146,7 @@ def main():
         comp_country_code = False
         x = re.search("^[a-zA-Z]*", selected_stock)
         y = re.search("[a-zA-Z]*$", selected_stock)
+        currency = y.group().upper()
 
         st.write('\nShowing results for**', x.group().upper(), '**to**', y.group().upper(), '** coversion rate.\n')
 
@@ -218,7 +221,7 @@ def main():
             future = m.make_future_dataframe(periods=p)
             forecast = m.predict(future)
 
-            show_forecast(m, forecast, data, p, df_train, comp_info)
+            show_forecast(m, forecast, data, p, df_train, currency)
         st.success('Done!')
 
 
