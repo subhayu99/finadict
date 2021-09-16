@@ -11,6 +11,7 @@ from plotly import graph_objs as go
 import pycountry
 import re
 from sklearn.metrics import mean_squared_error
+from math import sqrt
 
 @st.cache
 def load_data(ticker, period, interval, date_index):
@@ -62,7 +63,7 @@ def show_forecast(m, forecast, data):
     only_forecast = forecast # [len(data)-1:len(forecast)]
     only_forecast['Confidence (%)'] = (prediction / original) *100
     st.write(only_forecast)
-    st.write('Mean Squared Error ',mean_squared_error(original, prediction))
+    st.write('Mean Squared Error ',sqrt(mean_squared_error(original, prediction)/len(data)))
 
     st.subheader(f'Forecast plot ')
     fig1 = plot_plotly(m, forecast)
