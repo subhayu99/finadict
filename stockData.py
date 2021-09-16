@@ -105,7 +105,7 @@ def main():
         st.image(comp_info.get('logo_url'))
         st.write('Financial Currency :**', comp_info.get('financialCurrency'),'**\n')
         st.write('\nyFinance\'s Recommendation :**', comp_info.get('recommendationKey'),'**\n')
-        if st.button('Click to view comapany information?'):
+        if st.button('Click to view comapany information'):
             st.write(comp_info)
         
     elif(choice==menu[1]):
