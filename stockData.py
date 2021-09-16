@@ -152,7 +152,7 @@ def main():
         # p = st.sidebar.slider('No. of hour\'s prediction:', 1, 60)
         # f = 'h'
     elif(interval=='1d'):
-        y = st.sidebar.slider('No. of days\' data to fetch:', 1, 12)
+        y = st.sidebar.slider('No. of months\' data to fetch:', 1, 12, value=4)
         y *= 30
         t = 'd'
         period = str(y)+t
