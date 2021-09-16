@@ -122,7 +122,8 @@ def main():
         st.image(comp_info.get('logo_url'))
         st.write('Financial Currency :**', comp_info.get('financialCurrency'),'**\n')
         st.write('\nyFinance\'s Recommendation :**', comp_info.get('recommendationKey'),'**\n')
-        # st.json(comp_info)
+        with st.expander("See company info..."):
+            st.json(comp_info)
         
     elif(choice==menu[1]):
         st.title('Forex Prediction')
