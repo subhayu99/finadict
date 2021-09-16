@@ -23,6 +23,9 @@ def load_data(ticker, period, interval, date_index):
         data[date_index] = data[date_index].str[:-6]
     return data
 
+def rmspe(y_true, y_pred):
+    return np.sqrt(np.nanmean(np.square(((y_true - y_pred) / y_true))))*100
+
 def normalize_data(df):
     min = df.min()
     max = df.max()
@@ -80,7 +83,9 @@ def show_forecast(m, forecast, data, p, df_train):
     st.write(only_forecast[["ds","y","yhat","Confidence (%)","yhat_lower","yhat_upper"]].iloc[::-1])
 
     mse = mean_squared_error(original, prediction)/len(data)
+    rmpse = rmpse(original, prediction)
     st.write('Mean Confidence Percentage ', round(only_forecast['Confidence (%)'].mean(), 2), '%')
+    st.write('Rooy Mean Percentage Squared Error ',rmpse)
     st.write('Mean Squared Error ',mse)
     st.write('Root Mean Squared Error ',sqrt(mse))
 
