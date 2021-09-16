@@ -57,13 +57,13 @@ def show_forecast(m, forecast, data, p):
     # Show and plot forecast
     st.subheader('Forecast data')
 
-    original = data['Close']
-    prediction = forecast['yhat'][:-p]
+    original = np.log(data['Close'])
+    prediction = np.log(forecast['yhat'][:-p])
 
     only_forecast = forecast # [len(data)-1:len(forecast)]
-    only_forecast['Confidence (%)'] = (np.log(original) / np.log(prediction)) *100
-    only_forecast['y'] = original
-    st.write(only_forecast[["ds","y","yhat","yhat_lower","yhat_upper","Confidence (%)"]].iloc[::-1])
+    only_forecast['Confidence (%)'] = (original / prediction) *100
+    only_forecast['y'] = data['Close']
+    st.write(only_forecast[["ds","y","yhat","Confidence (%)","yhat_lower","yhat_upper"]].iloc[::-1])
 
     mse = mean_squared_error(original, prediction)/len(data)
     st.write('Mean Confidence Percentage ', round(only_forecast['Confidence (%)'].mean(), 2), '%')
