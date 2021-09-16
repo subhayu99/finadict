@@ -64,7 +64,7 @@ def build_model(comp_country_code):
         m.add_country_holidays(country_name=comp_country_code)
     return m
 
-def show_forecast(m, forecast, data, p):
+def show_forecast(m, forecast, data, df_train, p):
     # Show and plot forecast
     st.subheader('Forecast data')
 
@@ -220,7 +220,7 @@ def main():
         forecast = m.predict(future)
         # forecast["Prediction"] = np.exp(forecast.yhat)
 
-        show_forecast(m, forecast, data, p)
+        show_forecast(m, forecast, data, df_train, p)
         
         data_load_state.text('Prediction done.')
 
