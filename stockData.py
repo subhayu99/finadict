@@ -64,7 +64,7 @@ def show_forecast(m, forecast, data, p, df_train):
     only_forecast = forecast # [len(data)-1:len(forecast)]
     only_forecast['Confidence (%)'] = (prediction / original) * 100
     only_forecast['Actual Price (y)'] = df_train['y']
-    st.write(only_forecast[["ds","y","yhat","Confidence (%)","yhat_lower","yhat_upper"]].iloc[::-1])
+    st.write(only_forecast[["ds","Actual Price (y)","yhat","Confidence (%)","yhat_lower","yhat_upper"]].iloc[::-1])
 
     rmpse = np.sqrt(np.nanmean(np.square(((original - prediction) / original))))*100
     st.write('Mean Confidence Percentage =', round(only_forecast['Confidence (%)'].mean()-rmpse, 2), '%')
