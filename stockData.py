@@ -79,7 +79,7 @@ def show_forecast(m, forecast, data, p, df_train, currency):
     with st.expander("Tap to expand/collapse", expanded=True):
         st.write(only_forecast[["Datetime","Actual Price","Predicted Price","Confidence (%)","Predicted Price (Lower)","Predicted Price (Upper)"]].iloc[::-1])
         st.write('Mean Confidence Percentage =', accuracy, '%')
-        st.write('Root Mean Percentage Squared Error =', round(rmpse, 3), '%')
+        st.write('Root Mean Percentage Squared Error =', round(rmpse, 2), '%')
 
     label = "Tomorrow\'s Price (confidence: " + str(accuracy) + '%)'
     value=str(round(only_forecast['Predicted Price'].iloc[-1], 4)) + ' ' + currency
