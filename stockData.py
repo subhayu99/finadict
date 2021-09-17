@@ -111,7 +111,7 @@ def main():
             initial_sidebar_state="expanded",
             )
 
-    st.sidebar.image('FINADICT.png', width=2)
+    # st.sidebar.image('FINADICT.png', width=2)
 
     menu = ['Stocks', 'Forex', 'Crypto']
     choice = st.sidebar.selectbox('Select your market choice', menu)
