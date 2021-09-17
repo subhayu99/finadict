@@ -221,8 +221,11 @@ def main():
         date_index = 'Date'
         # f = 'm'
 
-    if(interval!='1d'):
+    if(interval in interval_choices[:4]):
         y = form.slider('No. of days\' data to fetch:', 2, l, value=15)
+        period = str(y)+t
+    elif(interval in interval_choices[5:]):
+        y = form.slider('No. of years\' data to fetch:', 2, l, value=15)
         period = str(y)+t
 
     form.form_submit_button("Submit")
