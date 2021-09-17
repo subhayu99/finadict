@@ -127,7 +127,7 @@ def main():
         currency = comp_info.get('financialCurrency')
 
         st.write('Showing results for **[', comp_info.get('longName'),'](',comp_info.get('website'),')**')
-        with st.expander("Company logo", expanded=False):
+        with st.expander("Company logo", expanded=True):
             if(len(comp_info.get('logo_url'))>1):
                 st.image(comp_info.get('logo_url'))
         # st.write('Financial Currency :**', comp_info.get('financialCurrency'),'**\n')
