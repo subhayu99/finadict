@@ -82,7 +82,7 @@ def show_forecast(m, forecast, data, p, df_train, currency, c2):
         st.write('Root Mean Percentage Squared Error =', round(rmpse, 4), '%')
 
     # Tomorrow's Price metric
-    label = "Tomorrow\'s Closing Price (confidence: " + str(accuracy) + '%)'
+    label = "Tomorrow\'s Closing Price (co)nfidence: " + str(accuracy) + '%)'
     prd_price = round(only_forecast['Predicted Price'].iloc[-1], 4)
     if(prd_price > 999):
         prd_price = round(prd_price, 2)
@@ -231,8 +231,10 @@ def main():
     # Today's Price metric
     label = "Todays\'s Closing Price"
     today_price = round(data['Close'].iloc[-1], 4)
+    c1.write(today_price)
     if(today_price > 999):
         today_price = round(today_price, 2)
+        c1.write(today_price)
     yest_price = data['Close'].iloc[-2]
     value = str(round(today_price)) + ' ' + currency
     delta = str(round(((today_price - yest_price) / yest_price) * 100, 2))+'%'
