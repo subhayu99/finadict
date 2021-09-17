@@ -88,7 +88,7 @@ def show_forecast(m, forecast, data, p, df_train, currency, c2):
         prd_price = round(prd_price, 2)
     act_price = only_forecast['Actual Price'].iloc[-2]
     value=str(prd_price) + ' ' + currency
-    delta = str(round(((prd_price - act_price) / act_price) * 100, 2))+'%'
+    delta = str(round(((prd_price - act_price) / act_price) * 100, 2))+'% since today'
     c2.metric(label=label, value=value, delta=delta)
 
     st.subheader('Forecast plot')
@@ -235,7 +235,7 @@ def main():
         today_price = round(today_price, 2)
     yest_price = data['Close'].iloc[-2]
     value = str(today_price) + ' ' + currency
-    delta = str(round(((today_price - yest_price) / yest_price) * 100, 2))+'%'
+    delta = str(round(((today_price - yest_price) / yest_price) * 100, 2))+'% since yesterday'
     c1.metric(label=label, value=value, delta=delta)
 
     st.subheader('Raw data')
