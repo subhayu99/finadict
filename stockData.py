@@ -155,7 +155,7 @@ def main():
         currency = y.upper()
         comp_country_code = False
 
-        st.write('\nShowing results for**', x.upper(), '**to**', y.upper(), '** coversion rate.\n')
+        st.write(f"<p style='text-decoration:none; font-size:20px'>Showing results for <strong>{x.group().upper()}</strong> to <strong>{y.group().upper()}</strong> conversion rate.</p>", unsafe_allow_html=True)
 
     elif(choice==menu[2]):
         st.title('Crypto Prediction')
@@ -170,7 +170,6 @@ def main():
         y = re.search("[a-zA-Z]*$", selected_stock)
         currency = y.group().upper()
 
-        st.write('\nShowing results for**', x.group().upper(), '**to**', y.group().upper(), '** coversion rate.\n')
         st.write(f"<p style='text-decoration:none; font-size:20px'>Showing results for <strong>{x.group().upper()}</strong> to <strong>{y.group().upper()}</strong> conversion rate.</p>", unsafe_allow_html=True)
 
     form = st.sidebar.form("take parameters")
