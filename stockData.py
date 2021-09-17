@@ -68,7 +68,7 @@ def show_forecast(m, forecast, data, p, df_train, currency, container):
     only_forecast = forecast # [len(data)-1:len(forecast)]
     only_forecast['Confidence (%)'] = (prediction / original) * 100
     only_forecast['Actual Price'] = df_train['y']
-    only_forecast['Datetime'] = only_forecast['ds'].astype(str)
+    only_forecast['Date'] = only_forecast['ds'].astype(str)
     only_forecast['Predicted Price'] = only_forecast['yhat']
     only_forecast['Predicted Price (Lower)'] = only_forecast['yhat_lower']
     only_forecast['Predicted Price (Upper)'] = only_forecast['yhat_upper']
