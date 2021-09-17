@@ -127,16 +127,16 @@ def main():
         currency = comp_info.get('financialCurrency')
 
         # st.write('Showing results for **[', comp_info.get('longName'),'](',comp_info.get('website'),')**')
-        st.write("Showing results for **<a href=\"", comp_info.get('website'), "\" style=\"text-decoration:none; color:#ff2b2a\">", comp_info.get('longName'), "</a>**", unsafe_allow_html=True)
-        comp_col1, comp_col2 = st.columns([1, 2])
-        with comp_col1.expander("Company logo", expanded=False):
-            if(len(comp_info.get('logo_url'))>1):
-                st.image(comp_info.get('logo_url'))
+        st.write("Showing results for <a href=\"", comp_info.get('website'), "\" style=\"text-decoration:none; color:#ff2b2a\">", comp_info.get('longName'), "</a>", unsafe_allow_html=True)
+        # comp_col1, comp_col2 = st.columns([1, 2])
+        # with comp_col1.expander("Company logo", expanded=False):
+            # if(len(comp_info.get('logo_url'))>1):
+                # st.image(comp_info.get('logo_url'))
         # st.write('Financial Currency :**', comp_info.get('financialCurrency'),'**\n')
         # st.write('\nyFinance\'s Recommendation :**', comp_info.get('recommendationKey'),'**\n')
-        with comp_col2.expander("Company information in JSON format", expanded=False):
-            comp_info.pop("longBusinessSummary")
-            st.json(comp_info)
+        # with comp_col2.expander("Company information in JSON format", expanded=False):
+            # comp_info.pop("longBusinessSummary")
+            # st.json(comp_info)
         
     elif(choice==menu[1]):
         st.title('Forex Prediction')
