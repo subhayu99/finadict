@@ -232,23 +232,14 @@ def main():
     c1, c2 = st.columns(2)
 
     # Latest actual Price metric
-    try:
-        if (interval in interval_choices[4:5]):
-            label = "Todays\'s Closing Price"
-            today_price = round(data['Close'].iloc[-1], 4)
-            if(today_price > 99):
-                today_price = round(today_price, 2)
-            yest_price = data['Close'].iloc[-2]
-            value = str(today_price) + ' ' + currency
-            delta = str(round(((today_price - yest_price) / yest_price) * 100, 2))+'% since yesterday'
-        else:
-            label = "Latest Closing Price"
-            today_price = round(data['Close'].iloc[-1], 4)
-            if(today_price > 99):
-                today_price = round(today_price, 2)
-            yest_price = data['Close'].iloc[-2]
-            value = str(today_price) + ' ' + currency
-            delta = str(round(((today_price - yest_price) / yest_price) * 100, 2))+'% since last time'
+    if (interval in interval_choices[4:5]):
+        label = "Todays\'s Closing Price"
+        today_price = round(data['Close'].iloc[-1], 4)
+        if(today_price > 99):
+            today_price = round(today_price, 2)
+        yest_price = data['Close'].iloc[-2]
+        value = str(today_price) + ' ' + currency
+        delta = str(round(((today_price - yest_price) / yest_price) * 100, 2))+'% since yesterday'
         c1.metric(label=label, value=value, delta=delta)
 
     st.subheader('Raw data')
