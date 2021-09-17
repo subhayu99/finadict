@@ -20,7 +20,7 @@ def load_data(ticker, period, interval, date_index):
     if(date_index == 'Datetime'):
         data[date_index] = data[date_index].str[:-6]
     if(len(data)>10):
-        return data
+        return data.bfill().ffill()
 
 # Plot raw data
 def plot_raw_data(data, date_index):
