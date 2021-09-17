@@ -222,7 +222,7 @@ def main():
         # f = 'm'
 
     if(interval!='1d'):
-        y = form.slider('No. of days\' data to fetch:', 1, l)
+        y = form.slider('No. of days\' data to fetch:', 2, l)
         period = str(y)+t
 
     form.form_submit_button("Submit")
