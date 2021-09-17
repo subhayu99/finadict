@@ -232,30 +232,26 @@ def main():
     c1, c2 = st.columns(2)
 
     # Latest actual Price metric
-    if (interval in interval_choices[4:5]):
-        label = "Todays\'s Closing Price"
-        today_price = round(data['Close'].iloc[-1], 4)
-        if(today_price > 99):
-            today_price = round(today_price, 2)
-        yest_price = data['Close'].iloc[-2]
-        value = str(today_price) + ' ' + currency
-        delta = str(round(((today_price - yest_price) / yest_price) * 100, 2))+'% since yesterday'
-    else:
-        label = "Latest Closing Price"
-        try:
+    try:
+        if (interval in interval_choices[4:5]):
+            label = "Todays\'s Closing Price"
             today_price = round(data['Close'].iloc[-1], 4)
-        except:
-            today_price = round(data['Close'].iloc[-2], 4)
-        if(today_price > 99):
-            today_price = round(today_price, 2)
-        try:
+            if(today_price > 99):
+                today_price = round(today_price, 2)
             yest_price = data['Close'].iloc[-2]
-        except:
-            yest_price = data['Close'].iloc[-3]
-
-        value = str(today_price) + ' ' + currency
-        delta = str(round(((today_price - yest_price) / yest_price) * 100, 2))+'% since last time'
-    c1.metric(label=label, value=value, delta=delta)
+            value = str(today_price) + ' ' + currency
+            delta = str(round(((today_price - yest_price) / yest_price) * 100, 2))+'% since yesterday'
+        else:
+            label = "Latest Closing Price"
+            today_price = round(data['Close'].iloc[-1], 4)
+            if(today_price > 99):
+                today_price = round(today_price, 2)
+            yest_price = data['Close'].iloc[-2]
+            value = str(today_price) + ' ' + currency
+            delta = str(round(((today_price - yest_price) / yest_price) * 100, 2))+'% since last time'
+        c1.metric(label=label, value=value, delta=delta)
+    except:
+        st.error("Something went wrong! :(")
 
     st.subheader('Raw data')
     with st.expander("Tap to expand/collapse", expanded=True):
