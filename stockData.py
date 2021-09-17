@@ -113,7 +113,7 @@ def main():
             )
 
     image = Image.open('FINADICT.png')
-    st.sidebar.image(image)
+    st.sidebar.image('FINADICT.png')
 
     menu = ['Stocks', 'Forex', 'Crypto']
     choice = st.sidebar.selectbox('Select your market choice', menu)
