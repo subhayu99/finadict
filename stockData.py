@@ -117,7 +117,7 @@ def main():
     if(choice==menu[0]):
         st.title('Stock Prediction')
 
-        selected_stock = st.text_input("Type in a ticker symbol:", value='TCS.NS', help="'[TICKER]' for Nasdaq and '[TICKER].NS' for NSE registered stocks")
+        selected_stock = st.text_input("Type in a ticker symbol", value='TCS.NS', help="'[TICKER]' for Nasdaq and '[TICKER].NS' for NSE registered stocks")
         st.write('*Find the ticker symbol [here](https://finance.yahoo.com/lookup)*')
         if not selected_stock:
             selected_stock = 'TCS.NS'
@@ -175,7 +175,7 @@ def main():
 
     interval_aliases = ('5 mins', '15 mins', '30 mins', '1 hour', '1 day', '1 week', '1 month')
     interval_choices = ('5m', '15m', '30m', '60m', '1d', '1wk', '1mo')
-    interval_alias = form.radio('Select interval:', interval_aliases, index=4, help="Prediction only supported for '1 day' interval.") 
+    interval_alias = form.radio('Select interval', interval_aliases, index=4, help="Prediction only supported for '1 day' interval.") 
     interval = interval_choices[interval_aliases.index(interval_alias)]
 
     if(interval=='5m'):
