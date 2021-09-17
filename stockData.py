@@ -118,7 +118,7 @@ def main():
         st.title('Stock Prediction')
 
         selected_stock = st.text_input("Type in a ticker symbol", value='TCS.NS', help="'[TICKER]' for Nasdaq and '[TICKER].NS' for NSE registered stocks")
-        st.write("*<p style='text-decoration:none; font-size:13px'>Find the ticker symbol [here](https://finance.yahoo.com/lookup)</p>*", unsafe_allow_html=True)
+        st.write("<p style='text-decoration:none; font-size:13px'>Find the ticker symbol [here](https://finance.yahoo.com/lookup)</p>", unsafe_allow_html=True)
         if not selected_stock:
             selected_stock = 'TCS.NS'
         comp = yf.Ticker(selected_stock)
@@ -144,7 +144,7 @@ def main():
         col1, col2 = st.columns(2)
         x = col1.text_input("From", value='USD')
         y = col2.text_input("To", value='INR')
-        st.write('*Find the currency symbols [here](https://finance.yahoo.com/currencies)*')
+        st.write("<p style='text-decoration:none; font-size:13px'>Find the currency symbol [here](https://finance.yahoo.com/currencies)</p>", unsafe_allow_html=True)
         if not x:
             x = 'USD'
         if not y:
