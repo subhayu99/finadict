@@ -127,13 +127,14 @@ def main():
         currency = comp_info.get('financialCurrency')
 
         st.write('Showing results for **[', comp_info.get('longName'),'](',comp_info.get('website'),')**')
-        with st.expander("Company logo", expanded=True):
+        comp_col1, comp_col2 = st.columns(2)
+        with comp_col1.expander("Company logo", expanded=True):
             if(len(comp_info.get('logo_url'))>1):
-                st.image(comp_info.get('logo_url'))
+                comp_col1.image(comp_info.get('logo_url'))
         # st.write('Financial Currency :**', comp_info.get('financialCurrency'),'**\n')
         # st.write('\nyFinance\'s Recommendation :**', comp_info.get('recommendationKey'),'**\n')
-        with st.expander("Company info.", expanded=False):
-            st.json(comp_info)
+        with comp_col2.expander("Company info.", expanded=False):
+            comp_col1.json(comp_info)
         
     elif(choice==menu[1]):
         st.title('Forex Prediction')
