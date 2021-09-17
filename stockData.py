@@ -242,12 +242,19 @@ def main():
         delta = str(round(((today_price - yest_price) / yest_price) * 100, 2))+'% since yesterday'
     else:
         label = "Latest Closing Price"
-        today_price = round(data['Close'].iloc[-1], 4)
+        try:
+            today_price = round(data['Close'].iloc[-1], 4)
+        except:
+            today_price = round(data['Close'].iloc[-2], 4)
         if(today_price > 99):
             today_price = round(today_price, 2)
-        yest_price = data['Close'].iloc[-2]
+        try:
+            yest_price = data['Close'].iloc[-2]
+        except:
+            yest_price = data['Close'].iloc[-3]
+
         value = str(today_price) + ' ' + currency
-        delta = str(round(((today_price - yest_price) / yest_price) * 100, 2))+'%'
+        delta = str(round(((today_price - yest_price) / yest_price) * 100, 2))+'% since last time'
     c1.metric(label=label, value=value, delta=delta)
 
     st.subheader('Raw data')
