@@ -115,7 +115,7 @@ def main():
     choice = st.sidebar.selectbox('Select your market choice', menu)
 
     if(choice==menu[0]):
-        st.header('Stock Prediction')
+        st.title('Stock Prediction')
 
         selected_stock = st.text_input("Type in a ticker symbol", value='TCS.NS', help="'[TICKER]' for Nasdaq and '[TICKER].NS' for NSE registered stocks")
         st.write('*Find the ticker symbol [here](https://finance.yahoo.com/lookup)*')
