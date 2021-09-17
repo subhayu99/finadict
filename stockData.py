@@ -84,7 +84,7 @@ def show_forecast(m, forecast, data, p, df_train, currency, c2):
     # Tomorrow's Price metric
     label = "Tomorrow\'s Closing Price (confidence: " + str(accuracy) + '%)'
     prd_price = round(only_forecast['Predicted Price'].iloc[-1], 4)
-    if(prd_price > 999):
+    if(prd_price > 99):
         prd_price = round(prd_price, 2)
     act_price = only_forecast['Actual Price'].iloc[-2]
     value=str(prd_price) + ' ' + currency
@@ -231,7 +231,7 @@ def main():
     # Today's Price metric
     label = "Todays\'s Closing Price"
     today_price = round(data['Close'].iloc[-1], 4)
-    if(today_price > 999):
+    if(today_price > 99):
         today_price = round(today_price, 2)
     yest_price = data['Close'].iloc[-2]
     value = str(today_price) + ' ' + currency
