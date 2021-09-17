@@ -211,18 +211,18 @@ def main():
         p = 1  # st.sidebar.slider('No. of day\'s prediction:', 1, 10)
         f = 'd'
     elif(interval=='1wk'):
-        l = 10 
+        l = 20 
         t = 'y'
         date_index = 'Date'
         # f = 'W'
     elif(interval=='1mo'):
-        l = 10 
+        l = 20
         t = 'y'
         date_index = 'Date'
         # f = 'm'
 
     if(interval!='1d'):
-        y = form.slider('No. of days\' data to fetch:', 2, l, value=10)
+        y = form.slider('No. of days\' data to fetch:', 2, l, value=15)
         period = str(y)+t
 
     form.form_submit_button("Submit")
