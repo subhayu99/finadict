@@ -132,8 +132,8 @@ def main():
         st.title('Forex Prediction')
 
         col1, col2 = st.columns(2)
-        x = col1.sidebar.text_input("From", value='USD')
-        y = col2.sidebar.text_input("To", value='INR')
+        x = col1.text_input("From", value='USD')
+        y = col2.text_input("To", value='INR')
         st.sidebar.write('*Find the currency symbols [here](https://finance.yahoo.com/currencies)*')
         if not x:
             x = 'USD'
