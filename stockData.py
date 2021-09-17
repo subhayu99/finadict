@@ -43,7 +43,6 @@ def plot_raw_data(data, date_index):
         st.plotly_chart(fig, use_container_width=True)
         st.plotly_chart(csfig, use_container_width=True)
 
-@st.cache
 def build_model(comp_country_code):
     # Define forecasting model.
     m = Prophet(
