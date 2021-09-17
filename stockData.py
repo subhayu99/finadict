@@ -10,6 +10,7 @@ from fbprophet.diagnostics import cross_validation
 from plotly import graph_objs as go
 import pycountry
 import re
+from PIL import Image
 
 @st.cache
 def load_data(ticker, period, interval, date_index):
@@ -111,7 +112,8 @@ def main():
             initial_sidebar_state="expanded",
             )
 
-    st.sidebar.image('FINADICT.png')
+    image = Image.open('FINADICT.png')
+    st.sidebar.image(image)
 
     menu = ['Stocks', 'Forex', 'Crypto']
     choice = st.sidebar.selectbox('Select your market choice', menu)
