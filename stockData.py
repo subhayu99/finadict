@@ -256,7 +256,7 @@ def main():
             forecast = m.predict(future)
 
             show_forecast(m, forecast, data, p, df_train, currency, c2)
-        st.success('Done!')
+        # st.success('Done!')
 
 
 if __name__ == '__main__':
