@@ -130,7 +130,7 @@ def main():
         comp_col1, comp_col2 = st.columns(2)
         with comp_col1.expander("Company logo", expanded=True):
             if(len(comp_info.get('logo_url'))>1):
-                comp_col1.image(comp_info.get('logo_url'))
+                st.image(comp_info.get('logo_url'))
         # st.write('Financial Currency :**', comp_info.get('financialCurrency'),'**\n')
         # st.write('\nyFinance\'s Recommendation :**', comp_info.get('recommendationKey'),'**\n')
         with comp_col2.expander("Company info.", expanded=False):
