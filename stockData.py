@@ -281,7 +281,7 @@ if __name__ == '__main__':
         st.error("Found nothing with the inputs :'(")
     except KeyError:
         st.error("Input is not valid :-!")
-    except ValueError:
+    except ValueError and TypeError:
         st.error("Didn't get enough value :(")
     """except:
         st.error("Oops! Something went wrong :(")"""
