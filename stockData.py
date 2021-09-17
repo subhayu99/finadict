@@ -119,7 +119,7 @@ def main():
 
         selected_stock = st.text_input("Type in a ticker symbol", value='TCS.NS', help="'[TICKER]' for Nasdaq and '[TICKER].NS' for NSE registered stocks")
         # st.write('*Find the ticker symbol [here](https://finance.yahoo.com/lookup)*')
-        st.write("<p style='text-decoration:none; font-size:12px'>Forgot the ticker symbol? Find it <a href='https://finance.yahoo.com/lookup' style='text-decoration:none;'>here</a></p>", unsafe_allow_html=True)
+        st.write("<p style='text-decoration:none; font-size:12px'>Forgot the ticker symbol? Find it <strong><a href='https://finance.yahoo.com/lookup' style='text-decoration:none;'>here</a></strong></p>", unsafe_allow_html=True)
         if not selected_stock:
             selected_stock = 'TCS.NS'
         comp = yf.Ticker(selected_stock)
