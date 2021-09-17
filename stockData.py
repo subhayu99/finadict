@@ -122,7 +122,7 @@ def main():
         currency = comp_info.get('financialCurrency')
 
         if(len(comp_info.get('logo_url'))>1):
-            st.image(comp_info.get('logo_url'))
+            st.image(comp_info.get('logo_url'), use_column_width=True)
         st.write('Corp. : **[', comp_info.get('longName'),'](',comp_info.get('website'),')**')
         # st.write('Financial Currency :**', comp_info.get('financialCurrency'),'**\n')
         # st.write('\nyFinance\'s Recommendation :**', comp_info.get('recommendationKey'),'**\n')
