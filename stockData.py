@@ -134,6 +134,7 @@ def main():
         # st.write('Financial Currency :**', comp_info.get('financialCurrency'),'**\n')
         # st.write('\nyFinance\'s Recommendation :**', comp_info.get('recommendationKey'),'**\n')
         with comp_col2.expander("Company info.", expanded=False):
+            comp_info.pop("longBusinessSummary")
             st.json(comp_info)
         
     elif(choice==menu[1]):
