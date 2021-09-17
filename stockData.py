@@ -89,7 +89,8 @@ def show_forecast(m, forecast, data, p, df_train, currency, c2):
     act_price = only_forecast['Actual Price'].iloc[-2]
     value=str(prd_price) + ' ' + currency
     delta = str(round(((prd_price - act_price) / act_price) * 100, 2))+'% since today'
-    c2.metric(label=label, value=value, delta=delta)
+    with c2.spinner('Predicting price...'):
+        c2.metric(label=label, value=value, delta=delta)
 
     st.subheader('Forecast plot')
     fig1 = plot_plotly(m, forecast)
@@ -256,7 +257,6 @@ def main():
             forecast = m.predict(future)
 
             show_forecast(m, forecast, data, p, df_train, currency, c2)
-        # st.success('Done!')
 
 
 if __name__ == '__main__':
