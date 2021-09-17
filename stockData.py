@@ -229,8 +229,12 @@ def main():
     c1, c2 = st.columns(2)
     # Today's Price metric
     label = "Todays\'s Closing Price"
-    value=str(round(data['Close'].iloc[-1], 4)) + ' ' + currency
-    delta = str(round(((data['Close'].iloc[-1] - data['Close'].iloc[-2]) / data['Close'].iloc[-2]) * 100, 2))+'%'
+    today_price = round(data['Close'].iloc[-1], 4) 
+    if(prd_price > 999):
+        today_price = round(prd_price, 2)
+    yest_price = data['Close'].iloc[-2]
+    value=str(round(today_price) + ' ' + currency
+    delta = str(round(((today_price - yest_price) / yest_price) * 100, 2))+'%'
     c1.metric(label=label, value=value, delta=delta)
 
     st.subheader('Raw data')
