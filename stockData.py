@@ -161,7 +161,7 @@ def main():
         st.title('Crypto Prediction')
 
         selected_stock = st.text_input("Type in a conversion string", value='BTC-INR', help="'[CURRENCY 1]-[CURRENCY 2]' to get [CURRENCY 1] to [CURRENCY 2] conversion rate.")
-        st.write("*<p style='text-decoration:none; font-size:13px'>Find the currency symbol [here](https://finance.yahoo.com/cryptocurrencies).</p>*", unsafe_allow_html=True) 
+        st.write("*<p style='text-decoration:none; font-size:13px'>Find the currency symbol <strong>[here](https://finance.yahoo.com/cryptocurrencies)</strong>.</p>*", unsafe_allow_html=True) 
         if not selected_stock:
             selected_stock = 'BTC-INR'
         comp = yf.Ticker(selected_stock)
