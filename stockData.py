@@ -77,7 +77,7 @@ def show_forecast(m, forecast, data, p, df_train, currency, container):
     accuracy = round(only_forecast['Confidence (%)'].mean()-rmpse, 2)
     
     with st.expander("Tap to expand/collapse", expanded=True):
-        st.write(only_forecast[["Datetime","Actual Price","Predicted Price","Confidence (%)","Predicted Price (Lower)","Predicted Price (Upper)"]].iloc[::-1])
+        st.write(only_forecast[["Date","Actual Price","Predicted Price","Confidence (%)","Predicted Price (Lower)","Predicted Price (Upper)"]].iloc[::-1])
         st.write('Mean Confidence Percentage =', accuracy, '%')
         st.write('Root Mean Percentage Squared Error =', round(rmpse, 4), '%')
 
