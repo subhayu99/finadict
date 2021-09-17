@@ -112,8 +112,8 @@ def main():
     if(choice==menu[0]):
         st.title('Stock Prediction')
 
-        selected_stock = st.sidebar.text_input("Type in a ticker symbol:", value='TCS.NS', help="'[TICKER]' for Nasdaq and '[TICKER].NS' for NSE registered stocks")
-        st.sidebar.write('*Find the ticker symbol [here](https://finance.yahoo.com/lookup)*')
+        selected_stock = st.text_input("Type in a ticker symbol:", value='TCS.NS', help="'[TICKER]' for Nasdaq and '[TICKER].NS' for NSE registered stocks")
+        st.write('*Find the ticker symbol [here](https://finance.yahoo.com/lookup)*')
         if not selected_stock:
             selected_stock = 'TCS.NS'
         comp = yf.Ticker(selected_stock)
@@ -134,7 +134,7 @@ def main():
         col1, col2 = st.columns(2)
         x = col1.text_input("From", value='USD')
         y = col2.text_input("To", value='INR')
-        st.sidebar.write('*Find the currency symbols [here](https://finance.yahoo.com/currencies)*')
+        st.write('*Find the currency symbols [here](https://finance.yahoo.com/currencies)*')
         if not x:
             x = 'USD'
         if not y:
@@ -150,8 +150,8 @@ def main():
     elif(choice==menu[2]):
         st.title('Crypto Prediction')
 
-        selected_stock = st.sidebar.text_input("Type in a conversion string", value='BTC-INR', help="'[CURRENCY 1]-[CURRENCY 2]' to get [CURRENCY 1] to [CURRENCY 2] conversion rate.")
-        st.sidebar.write('*Find the currency symbols [here](https://finance.yahoo.com/cryptocurrencies)*')
+        selected_stock = st.text_input("Type in a conversion string", value='BTC-INR', help="'[CURRENCY 1]-[CURRENCY 2]' to get [CURRENCY 1] to [CURRENCY 2] conversion rate.")
+        st.write('*Find the currency symbols [here](https://finance.yahoo.com/cryptocurrencies)*')
         if not selected_stock:
             selected_stock = 'BTC-INR'
         comp = yf.Ticker(selected_stock)
