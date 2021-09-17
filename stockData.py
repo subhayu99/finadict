@@ -84,7 +84,7 @@ def show_forecast(m, forecast, data, p, df_train, currency, container, c1):
     label = "Tomorrow\'s Price (confidence: " + str(accuracy) + '%)'
     value=str(round(only_forecast['Predicted Price'].iloc[-1], 4)) + ' ' + currency
     delta = str(round(((only_forecast['Predicted Price'].iloc[-1] - only_forecast['Actual Price'].iloc[-2]) / only_forecast['Actual Price'].iloc[-2]) * 100, 2))+'%'
-    c1.container.metric(label=label, value=value, delta=delta)
+    c1.metric(label=label, value=value, delta=delta)
 
     st.subheader('Forecast plot')
     fig1 = plot_plotly(m, forecast)
