@@ -231,10 +231,8 @@ def main():
     # Today's Price metric
     label = "Todays\'s Closing Price"
     today_price = round(data['Close'].iloc[-1], 4)
-    c1.write(today_price)
     if(today_price > 999):
         today_price = round(today_price, 2)
-        c1.write(today_price)
     yest_price = data['Close'].iloc[-2]
     value = str(today_price) + ' ' + currency
     delta = str(round(((today_price - yest_price) / yest_price) * 100, 2))+'%'
