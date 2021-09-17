@@ -99,7 +99,7 @@ def show_forecast(m, forecast, data, p, df_train, currency, c2):
     
     st.subheader("Forecast components")
     fig2 = m.plot_components(forecast)
-    with st.expander("Tap to expand/collapse", expanded=False):
+    with st.expander("Tap to expand/collapse", expanded=True):
         st.write(fig2)
 
 
@@ -128,12 +128,12 @@ def main():
 
         st.write('Showing results for **[', comp_info.get('longName'),'](',comp_info.get('website'),')**')
         comp_col1, comp_col2 = st.columns([1, 2])
-        with comp_col1.expander("Company logo", expanded=True):
+        with comp_col1.expander("Company logo", expanded=False):
             if(len(comp_info.get('logo_url'))>1):
                 st.image(comp_info.get('logo_url'))
         # st.write('Financial Currency :**', comp_info.get('financialCurrency'),'**\n')
         # st.write('\nyFinance\'s Recommendation :**', comp_info.get('recommendationKey'),'**\n')
-        with comp_col2.expander("Company info.", expanded=False):
+        with comp_col2.expander("Company info. in JSON format", expanded=False):
             comp_info.pop("longBusinessSummary")
             st.json(comp_info)
         
