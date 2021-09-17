@@ -55,7 +55,7 @@ def build_model(comp_country_code):
         m.add_country_holidays(country_name=comp_country_code)
     return m
 
-def show_forecast(m, forecast, data, p, df_train, currency, container, c1):
+def show_forecast(m, forecast, data, p, df_train, currency, container, c2):
     # Show and plot forecast
     st.subheader('Forecast data')
 
@@ -81,10 +81,11 @@ def show_forecast(m, forecast, data, p, df_train, currency, container, c1):
         st.write('Mean Confidence Percentage =', accuracy, '%')
         st.write('Root Mean Percentage Squared Error =', round(rmpse, 4), '%')
 
-    label = "Tomorrow\'s predicted price (confidence: " + str(accuracy) + '%)'
+    # Tomorrow's Price metric
+    label = "Tomorrow\'s Closing Price (confidence: " + str(accuracy) + '%)'
     value=str(round(only_forecast['Predicted Price'].iloc[-1], 4)) + ' ' + currency
     delta = str(round(((only_forecast['Predicted Price'].iloc[-1] - only_forecast['Actual Price'].iloc[-2]) / only_forecast['Actual Price'].iloc[-2]) * 100, 2))+'%'
-    c1.metric(label=label, value=value, delta=delta)
+    c2.metric(label=label, value=value, delta=delta)
 
     st.subheader('Forecast plot')
     fig1 = plot_plotly(m, forecast)
@@ -222,11 +223,11 @@ def main():
     data = load_data(selected_stock, period, interval, date_index)
 
     c1, c2 = st.columns(2)
-    container = st.container()
-    label = "Todays\'s Price"
+    # Today's Price metric
+    label = "Todays\'s Closing Price"
     value=str(round(data['Close'].iloc[-1], 4)) + ' ' + currency
     delta = str(round(((data['Close'].iloc[-1] - data['Close'].iloc[-2]) / data['Close'].iloc[-2]) * 100, 2))+'%'
-    c2.metric(label=label, value=value, delta=delta)
+    c1.metric(label=label, value=value, delta=delta)
 
     st.subheader('Raw data')
     with st.expander("Tap to expand/collapse", expanded=True):
@@ -245,7 +246,7 @@ def main():
             future = m.make_future_dataframe(periods=p)
             forecast = m.predict(future)
 
-            show_forecast(m, forecast, data, p, df_train, currency, container, c1)
+            show_forecast(m, forecast, data, p, df_train, currency, c2)
         st.success('Done!')
 
 
