@@ -81,7 +81,7 @@ def show_forecast(m, forecast, data, p, df_train, currency, container, c1):
         st.write('Mean Confidence Percentage =', accuracy, '%')
         st.write('Root Mean Percentage Squared Error =', round(rmpse, 4), '%')
 
-    label = "Tomorrow\'s Price (confidence: " + str(accuracy) + '%)'
+    label = "Tomorrow\'s predicted price (confidence: " + str(accuracy) + '%)'
     value=str(round(only_forecast['Predicted Price'].iloc[-1], 4)) + ' ' + currency
     delta = str(round(((only_forecast['Predicted Price'].iloc[-1] - only_forecast['Actual Price'].iloc[-2]) / only_forecast['Actual Price'].iloc[-2]) * 100, 2))+'%'
     c1.metric(label=label, value=value, delta=delta)
