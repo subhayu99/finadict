@@ -250,9 +250,6 @@ def main():
             value = str(today_price) + ' ' + currency
             delta = str(round(((today_price - yest_price) / yest_price) * 100, 2))+'% since last time'
         c1.metric(label=label, value=value, delta=delta)
-    except:
-        continue
-        # st.error("Something went wrong! :(")
 
     st.subheader('Raw data')
     with st.expander("Tap to expand/collapse", expanded=True):
