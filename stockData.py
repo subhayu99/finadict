@@ -119,7 +119,7 @@ def main():
 
         selected_stock = st.text_input("Type in a ticker symbol", value='TCS.NS', help="'[TICKER]' for Nasdaq and '[TICKER].NS' for NSE registered stocks")
         # st.write('*Find the ticker symbol [here](https://finance.yahoo.com/lookup)*')
-        st.write("*<p style='text-decoration:none; font-size:40px'>Forgot the ticker symbol? Find it <a href='https://finance.yahoo.com/lookup' style='text-decoration:none;'>here</a></p>*", unsafe_allow_html=True)
+        st.write("*<p style='text-decoration:none; font-size:15px'>Forgot the ticker symbol? Find it <a href='https://finance.yahoo.com/lookup' style='text-decoration:none;'>here</a></p>*", unsafe_allow_html=True)
         if not selected_stock:
             selected_stock = 'TCS.NS'
         comp = yf.Ticker(selected_stock)
@@ -128,7 +128,7 @@ def main():
         currency = comp_info.get('financialCurrency')
 
         # st.write('Showing results for **[', comp_info.get('longName'),'](',comp_info.get('website'),')**')
-        st.write("Showing results for **<a href='", comp_info.get('website'), "'style='text-decoration:none;'>", comp_info.get('longName'), "</a>**", unsafe_allow_html=True)
+        st.write("Showing results for **<a href='", comp_info.get('website'), "style='text-decoration:none;'>", comp_info.get('longName'), "</a>**", unsafe_allow_html=True)
         # comp_col1, comp_col2 = st.columns([1, 2])
         # with comp_col1.expander("Company logo", expanded=False):
             # if(len(comp_info.get('logo_url'))>1):
