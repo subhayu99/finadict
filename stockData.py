@@ -83,8 +83,12 @@ def show_forecast(m, forecast, data, p, df_train, currency, c2):
 
     # Tomorrow's Price metric
     label = "Tomorrow\'s Closing Price (confidence: " + str(accuracy) + '%)'
-    value=str(round(only_forecast['Predicted Price'].iloc[-1], 4)) + ' ' + currency
-    delta = str(round(((only_forecast['Predicted Price'].iloc[-1] - only_forecast['Actual Price'].iloc[-2]) / only_forecast['Actual Price'].iloc[-2]) * 100, 2))+'%'
+    prd_price = round(only_forecast['Predicted Price'].iloc[-1], 4)
+    if(prd_price > 999):
+        prd_price = round(prd_price, 2)
+    act_price = only_forecast['Actual Price'].iloc[-2]
+    value=str(prd_price) + ' ' + currency
+    delta = str(round(((prd_price - act_price) / act_price) * 100, 2))+'%'
     c2.metric(label=label, value=value, delta=delta)
 
     st.subheader('Forecast plot')
