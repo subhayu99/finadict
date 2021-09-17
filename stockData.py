@@ -289,6 +289,6 @@ if __name__ == '__main__':
         st.error("Input is not valid :-!")
     except ValueError and TypeError:
         st.error("Didn't get enough value :(")
-    except:
-        st.error("Oops! Something went wrong :(")
+    """except:
+        st.error("Oops! Something went wrong :(")"""
 
