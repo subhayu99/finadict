@@ -73,8 +73,8 @@ def show_forecast(m, forecast, data, p, df_train, currency, container):
     only_forecast['Predicted Price (Lower)'] = only_forecast['yhat_lower']
     only_forecast['Predicted Price (Upper)'] = only_forecast['yhat_upper']
 
-    rmpse = np.sqrt(np.nanmean(np.square(((original - prediction) / original))))*100
-    accuracy = round(only_forecast['Confidence (%)'].mean()-(rmpse**2), 2)
+    rmpse = (np.sqrt(np.nanmean(np.square(((original - prediction) / original))))*100)**2
+    accuracy = round(only_forecast['Confidence (%)'].mean()-rmpse, 2)
    
     with st.expander("Tap to expand/collapse", expanded=True):
         st.write(only_forecast[["Date","Actual Price","Predicted Price","Confidence (%)","Predicted Price (Lower)","Predicted Price (Upper)"]].iloc[::-1])
