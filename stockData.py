@@ -251,7 +251,8 @@ def main():
             delta = str(round(((today_price - yest_price) / yest_price) * 100, 2))+'% since last time'
         c1.metric(label=label, value=value, delta=delta)
     except:
-        st.error("Something went wrong! :(")
+        continue
+        # st.error("Something went wrong! :(")
 
     st.subheader('Raw data')
     with st.expander("Tap to expand/collapse", expanded=True):
