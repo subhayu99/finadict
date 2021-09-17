@@ -121,9 +121,10 @@ def main():
         comp_country_code = pycountry.countries.search_fuzzy(comp_info.get('country'))[0].alpha_2
         currency = comp_info.get('financialCurrency')
 
-        if(len(comp_info.get('logo_url'))>1):
-            st.image(comp_info.get('logo_url'), use_column_width=True)
         st.write('Corp. : **[', comp_info.get('longName'),'](',comp_info.get('website'),')**')
+        with st.expander("Company logo", expanded=False):
+            if(len(comp_info.get('logo_url'))>1):
+                st.image(comp_info.get('logo_url'))
         # st.write('Financial Currency :**', comp_info.get('financialCurrency'),'**\n')
         # st.write('\nyFinance\'s Recommendation :**', comp_info.get('recommendationKey'),'**\n')
         with st.expander("See company info...", expanded=False):
