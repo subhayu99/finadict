@@ -55,7 +55,7 @@ def build_model(comp_country_code):
         m.add_country_holidays(country_name=comp_country_code)
     return m
 
-def show_forecast(m, forecast, data, p, df_train, currency, container):
+def show_forecast(m, forecast, data, p, df_train, currency, container, c1):
     # Show and plot forecast
     st.subheader('Forecast data')
 
@@ -84,8 +84,7 @@ def show_forecast(m, forecast, data, p, df_train, currency, container):
     label = "Tomorrow\'s Price (confidence: " + str(accuracy) + '%)'
     value=str(round(only_forecast['Predicted Price'].iloc[-1], 4)) + ' ' + currency
     delta = str(round(((only_forecast['Predicted Price'].iloc[-1] - only_forecast['Actual Price'].iloc[-2]) / only_forecast['Actual Price'].iloc[-2]) * 100, 2))+'%'
-    st.sidebar.write(' ')
-    container.metric(label=label, value=value, delta=delta)
+    c1.container.metric(label=label, value=value, delta=delta)
 
     st.subheader('Forecast plot')
     fig1 = plot_plotly(m, forecast)
@@ -222,7 +221,12 @@ def main():
 
     data = load_data(selected_stock, period, interval, date_index)
 
+    c1, c2 = st.columns(2)
     container = st.container()
+    label = "Todays\'s Price"
+    value=str(round(data['Close'].iloc[-1], 4)) + ' ' + currency
+    delta = str(round(((data['Close'].iloc[-1] - data['Close'].iloc[-2]) / data['Close'].iloc[-2]) * 100, 2))+'%'
+    c2.metric(label=label, value=value, delta=delta)
 
     st.subheader('Raw data')
     with st.expander("Tap to expand/collapse", expanded=True):
@@ -241,7 +245,7 @@ def main():
             future = m.make_future_dataframe(periods=p)
             forecast = m.predict(future)
 
-            show_forecast(m, forecast, data, p, df_train, currency, container)
+            show_forecast(m, forecast, data, p, df_train, currency, container, c1)
         st.success('Done!')
 
 
