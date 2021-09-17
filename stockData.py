@@ -127,7 +127,7 @@ def main():
         currency = comp_info.get('financialCurrency')
 
         st.write('Showing results for **[', comp_info.get('longName'),'](',comp_info.get('website'),')**')
-        st.write("<a href=\"", comp_info.get('website'), "\" style=\"text-decoration:none\">", comp_info.get('website'), "</a>")
+        st.write("<a href=\"", comp_info.get('website'), "\" style=\"text-decoration:none\">", comp_info.get('longName'), "</a>", unsafe_allow_html=True)
         comp_col1, comp_col2 = st.columns([1, 2])
         with comp_col1.expander("Company logo", expanded=False):
             if(len(comp_info.get('logo_url'))>1):
