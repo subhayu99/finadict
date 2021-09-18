@@ -39,7 +39,7 @@ def plot_raw_data(data, date_index):
     )
     csfig.layout.update(title_text='Time Series data in Candle-sticks chart', xaxis_rangeslider_visible=True)
 
-    with st.expander("Tap to expand/collapse", expanded=True):
+    with st.expander("Tap to expand/collapse", expanded=False):
         st.plotly_chart(fig, use_container_width=True)
         st.plotly_chart(csfig, use_container_width=True)
 
@@ -76,7 +76,7 @@ def show_forecast(m, forecast, data, p, df_train, currency, c2):
     rmpse = (np.sqrt(np.nanmean(np.square(((original - prediction) / original))))*100)**2
     accuracy = round(only_forecast['Confidence (%)'].mean()-rmpse, 2)
    
-    with st.expander("Tap to expand/collapse", expanded=True):
+    with st.expander("Tap to expand/collapse", expanded=False):
         st.write(only_forecast[["Date","Actual Price","Predicted Price","Confidence (%)","Predicted Price (Lower)","Predicted Price (Upper)"]].iloc[::-1])
         st.write('Mean Confidence Percentage =', accuracy, '%')
         st.write('Root Mean Percentage Squared Error =', round(rmpse, 4), '%')
@@ -94,12 +94,12 @@ def show_forecast(m, forecast, data, p, df_train, currency, c2):
 
     st.subheader('Forecast plot')
     fig1 = plot_plotly(m, forecast)
-    with st.expander("Tap to expand/collapse", expanded=True):
+    with st.expander("Tap to expand/collapse", expanded=False):
         st.plotly_chart(fig1, use_container_width=True)
     
     st.subheader("Forecast components")
     fig2 = m.plot_components(forecast)
-    with st.expander("Tap to expand/collapse", expanded=True):
+    with st.expander("Tap to expand/collapse", expanded=False):
         st.write(fig2)
 
 
@@ -259,7 +259,7 @@ def main():
     c1.metric(label=label, value=value, delta=delta)
 
     st.subheader('Raw data')
-    with st.expander("Tap to expand/collapse", expanded=True):
+    with st.expander("Tap to expand/collapse", expanded=False):
         st.dataframe(data.iloc[::-1])
     plot_raw_data(data, date_index)
 
