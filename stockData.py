@@ -1,6 +1,6 @@
 # pip install streamlit fbprophet yfinance plotly
 import streamlit as st
-from datetime import date
+from datetime import date, datetime
 import yfinance as yf
 import numpy as np
 import pandas as pd
@@ -23,12 +23,12 @@ def load_data(ticker, period, interval, date_index):
         return data.bfill().ffill()
 
 def download_csv(df, selected_stock, filename):
-    today = date.today().strftime("%b-%d-%Y")
+    now = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     csv = df.to_csv(index=False).encode('utf-8')
     st.download_button(
         label="Press to Download",
         data=csv,
-        file_name=f'{selected_stock} {filename} {today}.csv',
+        file_name=f'{selected_stock} {filename} {now}.csv',
         mime='text/csv',
     )
 
