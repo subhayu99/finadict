@@ -50,6 +50,8 @@ def plot_raw_data(data, date_index):
         close=data['Close'])]
     )
     csfig.layout.update(title_text='Time Series data in Candle-sticks chart', xaxis_rangeslider_visible=True)
+    csfig.update_yaxes(title_text = 'Price Range')
+    csfig.update_xaxes(title_text = 'Date')
 
     with st.expander("Tap to expand/collapse", expanded=False):
         st.plotly_chart(fig, use_container_width=True)
