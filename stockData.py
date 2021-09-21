@@ -109,6 +109,8 @@ def show_forecast(m, forecast, data, p, df_train, currency, c2, selected_stock):
 
     st.subheader('Forecast plot')
     fig1 = plot_plotly(m, forecast)
+    fig1.update_yaxes(title_text = 'Price Range')
+    fig1.update_xaxes(title_text = 'Date')
     with st.expander("Tap to expand/collapse", expanded=False):
         st.plotly_chart(fig1, use_container_width=True)
     
