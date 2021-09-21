@@ -23,7 +23,7 @@ def load_data(ticker, period, interval, date_index):
         return data.bfill().ffill()
 
 def download_csv(df, filename):
-    csv = df.to_csv().encode('utf-8')
+    csv = df.to_csv(index=False).encode('utf-8')
     st.download_button(
         label="Press to Download",
         data=csv,
