@@ -22,12 +22,13 @@ def load_data(ticker, period, interval, date_index):
     if(len(data)>10):
         return data.bfill().ffill()
 
-def download_csv(df, filename):
+def download_csv(df, selected_stock, filename):
+    today = date.today().strftime("%b-%d-%Y")
     csv = df.to_csv(index=False).encode('utf-8')
     st.download_button(
         label="Press to Download",
         data=csv,
-        file_name=f'{filename}.csv',
+        file_name=f'{selected_stock} {filename} {today}.csv',
         mime='text/csv',
     )
 
@@ -271,7 +272,7 @@ def main():
     st.subheader('Raw data')
     with st.expander("Tap to expand/collapse", expanded=False):
         st.dataframe(data.iloc[::-1])
-        download_csv(data, "raw_data")
+        download_csv(data, selected_stock, "raw_data")
     plot_raw_data(data, date_index)
 
     df_train = data[[date_index,'Close']]
