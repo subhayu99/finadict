@@ -292,13 +292,12 @@ def main():
 if __name__ == '__main__':
     try:
         main()
-    """except AttributeError:
+    except AttributeError:
         st.error("Found nothing with the inputs :'(")
     except KeyError:
         st.error("Input is not valid :-!")
     except ValueError and TypeError:
         st.error("Didn't get enough value :(")
-    except:
-        st.error("Oops! Something went wrong :(")
-    """
+    #except:
+    #    st.error("Oops! Something went wrong :(")
 
