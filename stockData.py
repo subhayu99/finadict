@@ -23,7 +23,7 @@ def load_data(ticker, period, interval, date_index):
         return data.bfill().ffill()
 
 def download_csv(df, selected_stock, filename):
-    now = datetime.now().strftime("%d-%m-%Y %H\:%M\:%S")
+    now = datetime.now().strftime("%d/%m/%Y-%H:%M:%S")
     csv = df.to_csv(index=False).encode('utf-8')
     st.download_button(
         label="Press to Download",
