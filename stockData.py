@@ -36,9 +36,11 @@ def download_csv(df, selected_stock, filename):
 def plot_raw_data(data, date_index):
     st.subheader('Raw data plots')
     fig = go.Figure()
-    fig.add_trace(go.Scatter(x=data[date_index], y=data['Open'], name="stock_open"))
-    fig.add_trace(go.Scatter(x=data[date_index], y=data['Close'], name="stock_close"))
+    fig.add_trace(go.Scatter(x=data[date_index], y=data['Open'], name="opening_price"))
+    fig.add_trace(go.Scatter(x=data[date_index], y=data['Close'], name="closing_price"))
     fig.layout.update(title_text='Time Series data in Line chart', xaxis_rangeslider_visible=True)
+    fig.update_yaxes(title_text = 'Price Range')
+    fig.update_xaxes(title_text = 'Date')
 
     csfig = go.Figure(data=[go.Candlestick(
         x=data[date_index],
