@@ -38,7 +38,7 @@ def plot_raw_data(data, date_index):
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=data[date_index], y=data['Open'], name="opening_price"))
     fig.add_trace(go.Scatter(x=data[date_index], y=data['Close'], name="closing_price"))
-    fig.layout.update(title_text='Time Series data in Line chart', xaxis_rangeslider_visible=True)
+    fig.layout.update(title_text='Time Series data in Line chart', xaxis_rangeslider_visible=True, hovermode='x')
     fig.update_yaxes(title_text = 'Price Range')
     fig.update_xaxes(title_text = 'Date')
 
@@ -49,7 +49,7 @@ def plot_raw_data(data, date_index):
         low=data['Low'],
         close=data['Close'])]
     )
-    csfig.layout.update(title_text='Time Series data in Candle-sticks chart', xaxis_rangeslider_visible=True)
+    csfig.layout.update(title_text='Time Series data in Candle-sticks chart', xaxis_rangeslider_visible=True, hovermode='x')
     csfig.update_yaxes(title_text = 'Price Range')
     csfig.update_xaxes(title_text = 'Date')
 
@@ -109,6 +109,7 @@ def show_forecast(m, forecast, data, p, df_train, currency, c2, selected_stock):
 
     st.subheader('Forecast plot')
     fig1 = plot_plotly(m, forecast)
+    fig1.layout.update(title_text='Forecasted data chart', xaxis_rangeslider_visible=True, hovermode='x')
     fig1.update_yaxes(title_text = 'Price Range')
     fig1.update_xaxes(title_text = 'Date')
     with st.expander("Tap to expand/collapse", expanded=False):
