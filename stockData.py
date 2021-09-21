@@ -22,6 +22,15 @@ def load_data(ticker, period, interval, date_index):
     if(len(data)>10):
         return data.bfill().ffill()
 
+def download_csv(df, filename):
+    csv = df.to_csv().encode('utf-8')
+    st.download_button(
+        label="Press to Download",
+        data=csv,
+        file_name=f'{filename}.csv',
+        mime='text/csv',
+    )
+
 # Plot raw data
 def plot_raw_data(data, date_index):
     st.subheader('Raw data plots')
@@ -78,6 +87,7 @@ def show_forecast(m, forecast, data, p, df_train, currency, c2):
    
     with st.expander("Tap to expand/collapse", expanded=False):
         st.write(only_forecast[["Date","Actual Price","Predicted Price","Confidence (%)","Predicted Price (Lower)","Predicted Price (Upper)"]].iloc[::-1])
+        download_csv(only_forecast[["Date","Actual Price","Predicted Price","Confidence (%)","Predicted Price (Lower)","Predicted Price (Upper)"]], prediction)
         st.write('Mean Confidence Percentage =', accuracy, '%')
         st.write('Root Mean Percentage Squared Error =', round(rmpse, 4), '%')
 
@@ -261,6 +271,7 @@ def main():
     st.subheader('Raw data')
     with st.expander("Tap to expand/collapse", expanded=False):
         st.dataframe(data.iloc[::-1])
+        download_csv(data, raw_data)
     plot_raw_data(data, date_index)
 
     df_train = data[[date_index,'Close']]
