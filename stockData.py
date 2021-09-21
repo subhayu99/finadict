@@ -65,7 +65,7 @@ def build_model(comp_country_code):
         m.add_country_holidays(country_name=comp_country_code)
     return m
 
-def show_forecast(m, forecast, data, p, df_train, currency, c2):
+def show_forecast(m, forecast, data, p, df_train, currency, c2, selected_stock):
     # Show and plot forecast
     st.subheader('Forecast data')
 
@@ -88,7 +88,7 @@ def show_forecast(m, forecast, data, p, df_train, currency, c2):
    
     with st.expander("Tap to expand/collapse", expanded=False):
         st.write(only_forecast[["Date","Actual Price","Predicted Price","Confidence (%)","Predicted Price (Lower)","Predicted Price (Upper)"]].iloc[::-1])
-        download_csv(only_forecast[["Date","Actual Price","Predicted Price","Confidence (%)","Predicted Price (Lower)","Predicted Price (Upper)"]], "prediction_data")
+        download_csv(only_forecast[["Date","Actual Price","Predicted Price","Confidence (%)","Predicted Price (Lower)","Predicted Price (Upper)"]], selected_stock.upper, "prediction_data")
         st.write('Mean Confidence Percentage =', accuracy, '%')
         st.write('Root Mean Percentage Squared Error =', round(rmpse, 4), '%')
 
@@ -272,7 +272,7 @@ def main():
     st.subheader('Raw data')
     with st.expander("Tap to expand/collapse", expanded=False):
         st.dataframe(data.iloc[::-1])
-        download_csv(data, selected_stock, "raw_data")
+        download_csv(data, selected_stock.upper, "raw_data")
     plot_raw_data(data, date_index)
 
     df_train = data[[date_index,'Close']]
@@ -287,7 +287,7 @@ def main():
             future = m.make_future_dataframe(periods=p)
             forecast = m.predict(future)
 
-            show_forecast(m, forecast, data, p, df_train, currency, c2)
+            show_forecast(m, forecast, data, p, df_train, currency, c2, selected_stock)
 
 
 if __name__ == '__main__':
