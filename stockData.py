@@ -53,7 +53,7 @@ def plot_raw_data(data, date_index):
     csfig.update_yaxes(title_text = 'Price Range')
     csfig.update_xaxes(title_text = 'Date')
 
-    with st.expander("Tap to expand/collapse", expanded=False):
+    with st.expander("Tap to expand/collapse", expanded=True):
         st.plotly_chart(fig, use_container_width=True)
         st.plotly_chart(csfig, use_container_width=True)
 
@@ -90,7 +90,7 @@ def show_forecast(m, forecast, data, p, df_train, currency, c2, selected_stock):
     rmpse = (np.sqrt(np.nanmean(np.square(((original - prediction) / original))))*100)**2
     accuracy = round(only_forecast['Confidence (%)'].mean()-rmpse, 2)
    
-    with st.expander("Tap to expand/collapse", expanded=False):
+    with st.expander("Tap to expand/collapse", expanded=True):
         st.write(only_forecast[["Date","Actual Price","Predicted Price","Confidence (%)","Predicted Price (Lower)","Predicted Price (Upper)"]].iloc[::-1])
         download_csv(only_forecast[["Date","Actual Price","Predicted Price","Confidence (%)","Predicted Price (Lower)","Predicted Price (Upper)"]], selected_stock.upper(), "prediction_data")
         st.write('Mean Confidence Percentage =', accuracy, '%')
@@ -112,7 +112,7 @@ def show_forecast(m, forecast, data, p, df_train, currency, c2, selected_stock):
     fig1.layout.update(xaxis_rangeslider_visible=True, hovermode='x')
     fig1.update_yaxes(title_text = 'Price Range')
     fig1.update_xaxes(title_text = 'Date')
-    with st.expander("Tap to expand/collapse", expanded=False):
+    with st.expander("Tap to expand/collapse", expanded=True):
         st.plotly_chart(fig1, use_container_width=True)
     
     st.subheader("Forecast components")
