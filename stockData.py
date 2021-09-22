@@ -80,8 +80,8 @@ def show_forecast(m, forecast, data, p, df_train, currency, c2, selected_stock):
     # st.write(prediction)
 
     only_forecast = forecast # [len(data)-1:len(forecast)]
-    only_forecast['Confidence (%)'] = (prediction / original) * 100
-    only_forecast['Confidence (%)'].where(only_forecast['Confidence (%)'] < 100, 200-only_forecast['Confidence (%)'], inplace=True)
+    only_forecast['Accuracy (%)'] = (prediction / original) * 100
+    only_forecast['Accuracy (%)'].where(only_forecast['Accuracy (%)'] < 100, 200-only_forecast['Accuracy (%)'], inplace=True)
     only_forecast['Actual Price'] = df_train['y']
     only_forecast['Date'] = only_forecast['ds'].astype(str)
     only_forecast['Predicted Price'] = only_forecast['yhat']
@@ -89,7 +89,7 @@ def show_forecast(m, forecast, data, p, df_train, currency, c2, selected_stock):
     only_forecast['Predicted Price (Upper)'] = only_forecast['yhat_upper']
 
     rmpse = (np.sqrt(np.nanmean(np.square(((original - prediction) / original))))*100)**2
-    accuracy = round(only_forecast['Confidence (%)'].mean()-rmpse, 2)
+    accuracy = round(only_forecast['Accuracy (%)'].mean()-rmpse, 2)
    
     with st.expander("Tap to expand/collapse", expanded=True):
         st.write(only_forecast[["Date","Actual Price","Predicted Price","Confidence (%)","Predicted Price (Lower)","Predicted Price (Upper)"]].iloc[::-1])
