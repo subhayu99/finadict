@@ -89,14 +89,14 @@ def show_forecast(m, forecast, data, p, df_train, currency, c2, selected_stock):
     only_forecast['Predicted Price (Upper)'] = only_forecast['yhat_upper']
 
     rmpse = (np.sqrt(np.nanmean(np.square(((original - prediction) / original))))*100)**2
-    mean_acc = round(only_forecast['Accuracy (%)'].mean(), 2)
+    mean_acc = round(only_forecast['Accuracy (%)'].mean(), 3)
     accuracy = round(mean_acc-rmpse, 2)
    
     with st.expander("Tap to expand/collapse", expanded=True):
         st.write(only_forecast[["Date","Actual Price","Predicted Price","Accuracy (%)","Predicted Price (Lower)","Predicted Price (Upper)"]].iloc[::-1])
         download_csv(only_forecast[["Date","Actual Price","Predicted Price","Accuracy (%)","Predicted Price (Lower)","Predicted Price (Upper)"]], selected_stock.upper(), "prediction_data")
         st.write('Mean Accuracy =', str(mean_acc), '%')
-        st.write('RMSPE =', str(round(rmpse, 2)), '%')
+        st.write('RMSPE =', str(round(rmpse, 3)), '%')
         st.write('Accuracy =', accuracy, '%')
 
     # Tomorrow's Price metric
