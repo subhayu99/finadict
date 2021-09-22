@@ -11,7 +11,7 @@ from plotly import graph_objs as go
 import pycountry
 import re
 
-# @st.cache
+@st.cache
 def load_data(ticker, period, interval, date_index):
     comp = yf.Ticker(ticker)
     data = comp.history(period=period, interval=interval)
@@ -120,7 +120,7 @@ def show_forecast(m, forecast, data, p, df_train, currency, c2, selected_stock):
     with st.expander("Tap to expand/collapse", expanded=False):
         st.write(fig2)
 
-@st.cache
+
 def main():
     st.set_page_config(
             page_title="FINAnce preDICT",
