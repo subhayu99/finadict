@@ -94,8 +94,8 @@ def show_forecast(m, forecast, data, p, df_train, currency, c2, selected_stock):
     with st.expander("Tap to expand/collapse", expanded=True):
         st.write(only_forecast[["Date","Actual Price","Predicted Price","Accuracy (%)","Predicted Price (Lower)","Predicted Price (Upper)"]].iloc[::-1])
         download_csv(only_forecast[["Date","Actual Price","Predicted Price","Accuracy (%)","Predicted Price (Lower)","Predicted Price (Upper)"]], selected_stock.upper(), "prediction_data")
-        st.write('Mean Accuracy =', round(only_forecast['Accuracy (%)'].mean(), 2), '%')
-        st.write('Root Mean Percentage Squared Error =', round(rmpse, 4), '%')
+        st.write('Mean Accuracy = {round(only_forecast['Accuracy (%)'].mean(), 2)}%')
+        st.write('RMSPE = {round(rmpse, 4)}%')
         st.write('Accuracy =', accuracy, '%')
 
     # Tomorrow's Price metric
