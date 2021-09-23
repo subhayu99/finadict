@@ -225,7 +225,7 @@ def main():
         l = 60 
         t = 'd'
         date_index = 'Datetime'
-        p = 1 # st.sidebar.slider('No. of hour\'s prediction:', 1, 60)
+        p = st.sidebar.slider('No. of hour\'s prediction:', 1, 32)
         f = 'h'
     elif(interval=='1d'):
         y = form.slider('No. of months\' data to fetch:', 2, 12, value=4, help="Default value is '4' because it gives best results in most cases.")
