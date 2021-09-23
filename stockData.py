@@ -322,8 +322,6 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
-    '''
     try:
         main()
     except AttributeError:
@@ -334,5 +332,4 @@ if __name__ == '__main__':
         st.error("Didn't get enough value :(")
     except:
         st.error("Oops! Something went wrong :(")
-    '''
 
