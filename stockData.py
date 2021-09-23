@@ -250,7 +250,10 @@ def main():
         date_index = 'Date'
         # f = 'm'
 
-    if(interval in interval_choices[:4]):
+    if(interval in interval_choices[3:4] and choice==menu[2]):
+        y = form.slider('No. of days\' data to fetch:', 2, l, value=15)
+        period = str(y)+t
+    elif(interval in interval_choices[:4]):
         y = form.slider('No. of days\' data to fetch:', 2, l, value=15)
         period = str(y)+t
     elif(interval in interval_choices[5:]):
