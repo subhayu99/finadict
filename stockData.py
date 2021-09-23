@@ -200,7 +200,7 @@ def main():
 
     interval_aliases = ('5 mins', '15 mins', '30 mins', '1 hour', '1 day', '1 week', '1 month')
     interval_choices = ('5m', '15m', '30m', '60m', '1d', '1wk', '1mo')
-    if(choice==menu[2]):
+    if(choice!=menu[2]):
         hlp="Prediction only supported for '1 day' interval."
     else:
         hlp="Prediction only supported for '1 hour' & '1 day' interval."
