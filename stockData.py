@@ -226,7 +226,7 @@ def main():
         t = 'd'
         date_index = 'Datetime'
         p = 1 # st.sidebar.slider('No. of hour\'s prediction:', 1, 60)
-        # f = 'h'
+        f = 'h'
     elif(interval=='1d'):
         y = form.slider('No. of months\' data to fetch:', 2, 12, value=4, help="Default value is '4' because it gives best results in most cases.")
         y *= 30
@@ -303,7 +303,7 @@ def main():
             m = build_model(comp_country_code)
             m.fit(df_train)
             # Predict forecast.
-            future = m.make_future_dataframe(periods=p)
+            future = m.make_future_dataframe(periods=p, freq=f)
             forecast = m.predict(future)
 
             show_forecast(m, forecast, data, p, df_train, currency, c2, selected_stock)
