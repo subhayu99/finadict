@@ -225,7 +225,7 @@ def main():
         l = 60 
         t = 'd'
         date_index = 'Datetime'
-        p = form.slider('No. of hour\'s prediction:', 1, 12, value=2, help="Try tweaking the sliders to increase accuracy.")
+        p = form.slider('No. of hour\'s prediction:', 1, 12, value=2, help="Higher no. of hours means lesser accuracy.")
         f = 'h'
     elif(interval=='1d'):
         y = form.slider('No. of months\' data to fetch:', 2, 12, value=4, help="Default value is '4' because it gives best results in most cases.")
