@@ -1,12 +1,10 @@
 # pip install streamlit fbprophet yfinance plotly
 import streamlit as st
-from datetime import date, datetime
+from datetime import datetime
 import yfinance as yf
 import numpy as np
-import pandas as pd
 from fbprophet import Prophet
 from fbprophet.plot import plot_plotly
-from fbprophet.diagnostics import cross_validation
 from plotly import graph_objs as go
 import pycountry
 import re
@@ -60,10 +58,10 @@ def plot_raw_data(data, date_index):
 def build_model(comp_country_code):
     # Define forecasting model.
     m = Prophet(
-            interval_width=0.95, 
+            interval_width=0.95,
             daily_seasonality=True,
-            # weekly_seasonality=True, 
-            changepoint_prior_scale=1 
+            # weekly_seasonality=True,
+            changepoint_prior_scale=1
             )
     if(comp_country_code):
         m.add_country_holidays(country_name=comp_country_code)
@@ -91,7 +89,7 @@ def show_forecast(m, forecast, data, p, df_train, currency, c2, selected_stock):
     rmpse = (np.sqrt(np.nanmean(np.square(((original - prediction) / original))))*100)**2
     mean_acc = round(only_forecast['Accuracy (%)'].mean(), 3)
     accuracy = round(mean_acc-rmpse, 2)
-   
+
     with st.expander("Tap to expand/collapse", expanded=True):
         st.write(only_forecast[["Date","Actual Price","Predicted Price","Accuracy (%)","Predicted Price (Lower)","Predicted Price (Upper)"]].iloc[::-1])
         download_csv(only_forecast[["Date","Actual Price","Predicted Price","Accuracy (%)","Predicted Price (Lower)","Predicted Price (Upper)"]], selected_stock.upper(), "prediction_data")
@@ -189,7 +187,7 @@ def main():
         st.title('Crypto Prediction')
 
         selected_stock = st.text_input("Type in a conversion string", value='BTC-INR', help="'[CURRENCY 1]-[CURRENCY 2]' to get [CURRENCY 1] to [CURRENCY 2] conversion rate.")
-        st.write("*<p style='text-decoration:none; font-size:13px'>Find the currency symbol <strong>[here](https://finance.yahoo.com/cryptocurrencies)</strong>.</p>*", unsafe_allow_html=True) 
+        st.write("*<p style='text-decoration:none; font-size:13px'>Find the currency symbol <strong>[here](https://finance.yahoo.com/cryptocurrencies)</strong>.</p>*", unsafe_allow_html=True)
         if not selected_stock:
             selected_stock = 'BTC-INR'
         comp = yf.Ticker(selected_stock)
@@ -208,7 +206,7 @@ def main():
         hlp="Prediction only supported for '1 day' interval."
     else:
         hlp="Prediction only supported for '1 hour' & '1 day' interval."
-    interval_alias = form.radio('Select interval', interval_aliases, index=4, help=hlp) 
+    interval_alias = form.radio('Select interval', interval_aliases, index=4, help=hlp)
     interval = interval_choices[interval_aliases.index(interval_alias)]
 
     if(interval=='5m'):
@@ -224,7 +222,7 @@ def main():
         # p = 10
         # f = 'h'
     elif(interval=='30m'):
-        l = 60 
+        l = 60
         t = 'd'
         date_index = 'Datetime'
         # p = 10
@@ -244,7 +242,7 @@ def main():
         p = 1  # st.sidebar.slider('No. of day\'s prediction:', 1, 10)
         f = 'd'
     elif(interval=='1wk'):
-        l = 20 
+        l = 20
         t = 'y'
         date_index = 'Date'
         # f = 'W'
@@ -328,8 +326,8 @@ if __name__ == '__main__':
         st.error("Found nothing with the inputs :'(")
     except KeyError:
         st.error("Input is not valid :-!")
-    except ValueError and TypeError:
+    except ValueError or TypeError:
         st.error("Didn't get enough value :(")
-    except:
-        st.error("Oops! Something went wrong :(")
+    # except:
+    #     st.error("Oops! Something went wrong :(")
 
