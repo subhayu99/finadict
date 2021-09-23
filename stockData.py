@@ -298,6 +298,16 @@ def main():
             forecast = m.predict(future)
 
             show_forecast(m, forecast, data, p, df_train, currency, c2, selected_stock)
+    if (interval in interval_choices[3:4] and choice==menu[2]):
+        with st.spinner('Predicting prices...'):
+            m = build_model(comp_country_code)
+            m.fit(df_train)
+            # Predict forecast.
+            future = m.make_future_dataframe(periods=p)
+            forecast = m.predict(future)
+
+            show_forecast(m, forecast, data, p, df_train, currency, c2, selected_stock)
+
 
 
 if __name__ == '__main__':
