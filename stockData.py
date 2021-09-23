@@ -106,7 +106,11 @@ def show_forecast(m, forecast, data, p, df_train, currency, c2, selected_stock):
         prd_price = round(prd_price, 2)
     act_price = only_forecast['Actual Price'].iloc[-(p+1)]
     value=str(prd_price) + ' ' + currency
-    delta = str(round(((prd_price - act_price) / act_price) * 100, 2))+'% since today'
+    if(p>1):
+        tm = 'last hour'
+    else:
+        tm = 'today'
+    delta = str(round(((prd_price - act_price) / act_price) * 100, 2))+f'% since {tm}'
     with st.spinner('Predicting price...'):
         c2.metric(label=label, value=value, delta=delta)
 
