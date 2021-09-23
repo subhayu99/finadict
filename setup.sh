@@ -1,7 +1,7 @@
 #!/bin/bash
 
 mkdir -p ~/.streamlit/
-echo "\
+printf "\
 [server]\n\
 headless = true\n\
 port = $PORT\n\
