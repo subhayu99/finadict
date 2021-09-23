@@ -74,7 +74,7 @@ def show_forecast(m, forecast, data, p, df_train, currency, c2, selected_stock):
     st.subheader('Forecast data')
 
     original = df_train['y']
-    prediction = forecast['yhat'][:-p]
+    prediction = forecast['yhat'][:-1]
 
     # st.write(original)
     # st.write(prediction)
