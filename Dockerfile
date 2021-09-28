@@ -17,4 +17,4 @@ STOPSIGNAL SIGTERM
 
 ENTRYPOINT ["streamlit", "run"]
 
-CMD ["stockData.py"]
+CMD ["app.py"]
