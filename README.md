@@ -6,7 +6,7 @@ A simple and easy to use Stocks / Cryptocurreny / Foreign Exchange prices predic
 
 ## Installion
 
-#### On Linux 
+### On Linux 
 
 > **Ubuntu / Debian**
 
@@ -19,7 +19,7 @@ sudo pip3 install -r requirements.txt
 streamlit run app.py
 ```
 
-#### On a docker container
+### On a docker container
 
 > **Using docker image**
 
