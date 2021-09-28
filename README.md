@@ -2,7 +2,7 @@
 
 A simple and easy to use Stocks / Cryptocurreny / Foreign Exchange prices predictor.
 
-## Available on [finadict.tech](finadict.tech)
+## Available on [finadict.tech](https://finadict.tech/)
 
 ## Installion
 
