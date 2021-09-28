@@ -1,8 +1,8 @@
 FROM subhayu99/fbprophet
 
-MAINTAINER Subhayu Kumar Bala balasubhayu99@gmail.com
+LABEL maintainer="Subhayu Kumar Bala ( balasubhayu99@gmail.com )"
 
-RUN apt-get update && apt-get upgrade
+RUN apt-get update
 RUN git clone https://github.com/subhayu99/finadict.git
 
 WORKDIR /root/notebooks/finadict
