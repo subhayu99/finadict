@@ -6,7 +6,9 @@ A simple and easy to use Stocks / Cryptocurreny / Foreign Exchange prices predic
 
 ## Installion
 
-#### On Linux ( Ubuntu / Debian )
+#### On Linux 
+
+> **Ubuntu / Debian**
 
 ```bash
 sudo apt-get update && apt-get upgrade
@@ -19,14 +21,14 @@ streamlit run app.py
 
 #### On a docker container
 
-> Using docker image
+> **Using docker image**
 
 ```bash
 sudo docker pull subhayu99/finadict:latest .
 sudo docker run -d -i --name finadict -h finadict -p 80:80 -e STREAMLIT_SERVER_PORT=80 subhayu99/finadict:latest
 ```
 
-> Using Dockerfile
+> **Using Dockerfile**
 
 ```bash
 git clone https://github.com/subhayu99/finadict.git
@@ -35,7 +37,7 @@ sudo docker build -t subhayu99/finadict:latest .
 sudo docker run -d -i --name finadict -h finadict -p 80:80 -e STREAMLIT_SERVER_PORT=80 subhayu99/finadict:latest
 ```
 
-> Using docker-compose
+> **Using docker-compose**
 
 ```bash
 git clone https://github.com/subhayu99/finadict.git
