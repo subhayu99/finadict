@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  finadict:
+    build: .
+    container_name: 'finadict-docker'
+    hostname: 'finadict'
+    ports:
+      - '80:80'
