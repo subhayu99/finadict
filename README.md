@@ -9,25 +9,36 @@ A simple and easy to use Stocks / Cryptocurreny / Foreign Exchange prices predic
 ### On Linux ( Ubuntu )
 
 ```bash
-apt-get update && apt-get upgrade
-apt-get install python3-pip
+sudo apt-get update && apt-get upgrade
+sudo apt-get install python3-pip
 git clone https://github.com/subhayu99/finadict.git
 cd finadict
-pip3 install -r requirements.txt
+sudo pip3 install -r requirements.txt
 streamlit run app.py
 ```
-### Using Docker
+### On a docker container
+
+#### Using docker image
+
+```bash
+sudo docker pull subhayu99/finadict:latest .
+sudo docker run -d -i --name finadict -h finadict -p 80:80 -e STREAMLIT_SERVER_PORT=80 subhayu99/finadict:latest
+```
 
 #### Using Dockerfile
 
 ```bash
-docker build -t subhayu99/finadict:latest .
-docker run -d -i --name finadict -h finadict -p 80:80 -e STREAMLIT_SERVER_PORT=80 subhayu99/finadict:latest
+git clone https://github.com/subhayu99/finadict.git
+cd finadict
+sudo docker build -t subhayu99/finadict:latest .
+sudo docker run -d -i --name finadict -h finadict -p 80:80 -e STREAMLIT_SERVER_PORT=80 subhayu99/finadict:latest
 ```
 
 #### Using docker-compose
 
 ```bash
-docker-compose up -d
+git clone https://github.com/subhayu99/finadict.git
+cd finadict
+sudo docker-compose up -d
 ```
 
