@@ -2,8 +2,12 @@ version: '3'
 
 services:
   finadict:
-    build: .
-    container_name: 'finadict'
-    hostname: 'finadict'
+    image: subhayu99/finadict:latest
+    container_name: finadict
+    hostname: finadict
     ports:
       - '80:80'
+
+networks: 
+  default: 
+    name: finadict
