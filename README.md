@@ -17,9 +17,9 @@ sudo pip3 install -r requirements.txt
 streamlit run app.py
 ```
 
-** On a docker container **
+**On a docker container**
 
-> Using docker image
+Using docker image
 
 ```bash
 sudo docker pull subhayu99/finadict:latest .
