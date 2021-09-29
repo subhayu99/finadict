@@ -25,7 +25,6 @@ streamlit run app.py
 > **Using docker image**
 
 ```shell
-sudo docker pull subhayu99/finadict:latest .
 sudo docker run -d -i --name finadict -h finadict -p 80:80 -e STREAMLIT_SERVER_PORT=80 subhayu99/finadict:latest
 ```
 
