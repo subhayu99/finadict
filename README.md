@@ -5,7 +5,7 @@ A simple and easy to use Stocks / Cryptocurreny / Foreign Exchange prices predic
 ## Live website : [finadict.tech](https://finadict.tech/)
 
 
-## Installion
+## Install locally
 
 ### On Linux 
 
