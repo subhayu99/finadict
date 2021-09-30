@@ -45,3 +45,29 @@ wget https://raw.githubusercontent.com/subhayu99/finadict/main/compose.yaml
 sudo docker-compose up -d
 ```
 
+---
+
+# Program Screenshot
+
+### Stock's Raw Data
+<br>
+<p align="center"><img src="Screenshot/1.png" align="center" alt="screenshot"></p>
+<br>
+
+### Raw Data Graph
+<br>
+<p align="center"><img src="Screenshot/2.png" align="center" alt="screenshot"></p>
+<br>
+
+### Stock's Predicted Data
+<br>
+<p align="center"><img src="Screenshot/3.png" align="center" alt="screenshot"></p>
+<br>
+
+### Predicted Data Graph
+<br>
+<p align="center"><img src="Screenshot/4.png" align="center" alt="screenshot"></p>
+<br>
+
+---
+
