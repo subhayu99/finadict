@@ -71,3 +71,30 @@ sudo docker-compose up -d
 
 ---
 
+# Contributors Wall:
+
+All Contributions of the Contributors can be found in the [__Contributions__](https://github.com/DeepNinja07x/To-Do-App/graphs/contributors) section and info of Contributors at [__Contributors.md__](https://github.com/DeepNinja07x/To-Do-App/blob/master/Contributors.md) file.
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/subhayu99">
+              <img src="https://avatars3.githubusercontent.com/u/38143013?s=400&u=28405ea45018cee30268bd61408515033741e87e&v=4" width="100px;" alt="subhayu99"/><br />
+              <sub>
+                  <b>
+                      <strong>Subhayu Kumar Bala</strong>
+                  </b>
+              </sub>
+          </a>
+      </td>
+    <td align="center">
+      <a href="https://github.com/DeepNinja07x">
+              <img src="https://avatars0.githubusercontent.com/u/52314477?s=400&u=1887ecc3afa1e867af50336a3af7ed56b21dc604&v=4" width="100px;" alt="DeepNinja07x"/><br />
+              <sub>
+                  <b>
+                      <strong>Deepraj Rakshit</strong>
+                  </b>
+              </sub>
+          </a>
+      </td>
+  </tr>
+  </table>
