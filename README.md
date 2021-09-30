@@ -73,7 +73,7 @@ sudo docker-compose up -d
 
 # Contributors Wall:
 
-All Contributions of the Contributors can be found in the [__Contributions__](https://github.com/DeepNinja07x/To-Do-App/graphs/contributors) section and info of Contributors at [__Contributors.md__](https://github.com/DeepNinja07x/To-Do-App/blob/master/Contributors.md) file.
+All Contributions of the Contributors can be found in the [__Contributions__](https://github.com/subhayu99/finadict/graphs/contributors) section and info of Contributors at [__Contributors.md__](https://github.com/subhayu99/finadict/blob/master/Contributors.md) file.
 <table>
   <tr>
     <td align="center">
