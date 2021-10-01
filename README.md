@@ -1,6 +1,6 @@
 # FINAnce preDICT
 
-A simple and easy to use Stocks / Cryptocurreny / Foreign Exchange prices predictor.
+A simple and easy to use WebApp for Stocks / Cryptocurreny / Foreign Exchange prices prediction.
 
 ## Live website : [finadict.tech](https://finadict.tech/)
 
