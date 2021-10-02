@@ -4,6 +4,7 @@ A simple and easy to use WebApp for Stocks / Cryptocurreny / Foreign Exchange pr
 
 ## Live website : [finadict.tech](https://finadict.tech/)
 
+## File structure map can be found [here](https://app.codesee.io/maps/public/1bcdc620-23a1-11ec-a096-cfd59e99ca24).
 
 ## Install locally
 
