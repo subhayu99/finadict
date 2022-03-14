@@ -42,7 +42,7 @@ sudo docker run -d -i --name finadict -h finadict -p 80:80 -e STREAMLIT_SERVER_P
 
 ```shell
 mkdir finadict && cd finadict
-wget https://raw.githubusercontent.com/subhayu99/finadict/main/compose.yaml
+wget https://raw.githubusercontent.com/subhayu99/finadict/main/docker-compose.yaml
 sudo docker-compose up -d
 ```
 
