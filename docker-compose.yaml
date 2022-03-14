@@ -7,7 +7,3 @@ services:
     hostname: finadict
     ports:
       - '80:80'
-
-networks: 
-  default: 
-    name: finadict
