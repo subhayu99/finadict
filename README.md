@@ -11,7 +11,7 @@
 
 ## 🚧 Note from the Author
 
-This project was originally built as a **learning experience** to explore time-series forecasting, financial APIs, and full-stack deployment.
+This project was originally built as a **learning experience** to explore time-series forecasting, financial APIs, and full-stack containerized deployments.
 
 🧠 I ran it live on `finadict.tech` for a year to gain hands-on experience with hosting and maintaining a web app.
 
