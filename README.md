@@ -1,12 +1,11 @@
 # 📈 FINAnce preDICT
 
-**FINAnce preDICT** is an intuitive and lightweight Streamlit web app that allows users to **analyze, visualize, and predict** price trends for:
+**FINADICT** is an interactive **Streamlit** web app that leverages **yFinance**, **FB Prophet**, **Plotly** and **Streamlit** to fetch, visualize, and forecast market data for **stocks**, **forex**, and **cryptocurrencies**; all packaged in a single **Docker** image. Users can select financial instruments, time intervals, and historical ranges to generate:
 
-- 📊 **Stocks**
-- 💱 **Forex**
-- 🪙 **Cryptocurrencies**
-
-> Built with 🔥 `yFinance`, 📅 `Facebook Prophet`, and 📈 `Plotly` to deliver clean UI, fast forecasting, and actionable insights.
+* 📈 **Live and historical visualizations** (line and candlestick charts)
+* 🔮 **Next-day/hour price predictions** with confidence intervals using Facebook Prophet
+* 📥 **Downloadable CSV reports** for raw and predicted data
+* 📉 **Forecast accuracy metrics** like Mean Accuracy and RMSPE
 
 ---
 
@@ -87,23 +86,6 @@ sudo docker-compose up -d
 ## 👨‍💻 Contributors
 
 Thanks to all the contributors who made this project possible!
-
-<table>
-  <tr>
-    <td align="center">
-      <a href="https://github.com/subhayu99">
-        <img src="https://avatars.githubusercontent.com/u/38143013?v=4" width="100px;" alt="Subhayu"/><br />
-        <sub><b>Subhayu Kumar Bala</b></sub>
-      </a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/DeepNinja07x">
-        <img src="https://avatars.githubusercontent.com/u/52314477?v=4" width="100px;" alt="Deepraj"/><br />
-        <sub><b>Deepraj Rakshit</b></sub>
-      </a>
-    </td>
-  </tr>
-</table>
 
 🔗 See [Contributors.md](https://github.com/subhayu99/finadict/blob/master/Contributors.md) for more info.
 📊 GitHub Contributions: [Graph](https://github.com/subhayu99/finadict/graphs/contributors)
