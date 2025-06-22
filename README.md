@@ -1,46 +1,62 @@
-# FINAnce preDICT
+# 📈 FINAnce preDICT
 
-A simple and easy to use WebApp for Stocks / Cryptocurreny / Foreign Exchange prices prediction.
+**FINAnce preDICT** is an intuitive and lightweight Streamlit web app that allows users to **analyze, visualize, and predict** price trends for:
 
-## Live website : [finadict.tech](https://finadict.tech/)
+- 📊 **Stocks**
+- 💱 **Forex**
+- 🪙 **Cryptocurrencies**
 
-### File structure map can be found [here](https://app.codesee.io/maps/98139390-2284-11ec-9a58-dd146936e2c1).
+> Built with 🔥 `yFinance`, 📅 `Facebook Prophet`, and 📈 `Plotly` to deliver clean UI, fast forecasting, and actionable insights.
 
-## Install locally
+---
 
-### On Linux 
+## 🚧 Note from the Author
 
-> **Ubuntu / Debian**
+This project was originally built as a **learning experience** to explore time-series forecasting, financial APIs, and full-stack deployment.
 
-```shell
-sudo apt-get update && apt-get upgrade
+🧠 I ran it live on `finadict.tech` for a year to gain hands-on experience with hosting and maintaining a web app.
+
+💸 However, due to the recurring **domain and hosting costs**, it's **no longer actively hosted** or maintained on any live server.
+
+You're welcome to run it locally or self-host it using the instructions below!
+
+---
+
+## 🛠 Installation
+
+### 🐧 On Linux (Debian/Ubuntu)
+
+```bash
+sudo apt-get update && sudo apt-get upgrade
 sudo apt-get install python3-pip
 git clone https://github.com/subhayu99/finadict.git
 cd finadict
-sudo pip3 install -r requirements.txt
+pip3 install -r requirements.txt
 streamlit run app.py
-```
+````
 
-### On a docker container
+---
 
-> **Using docker image**
+### 🐳 Run in Docker
 
-```shell
+#### ▶ Using Prebuilt Docker Image
+
+```bash
 sudo docker run -d -i --name finadict -h finadict -p 80:80 -e STREAMLIT_SERVER_PORT=80 subhayu99/finadict:latest
 ```
 
-> **Using Dockerfile**
+#### ▶ Build from Dockerfile
 
-```shell
+```bash
 mkdir finadict && cd finadict
 wget https://raw.githubusercontent.com/subhayu99/finadict/main/Dockerfile
 sudo docker build -t subhayu99/finadict:latest .
 sudo docker run -d -i --name finadict -h finadict -p 80:80 -e STREAMLIT_SERVER_PORT=80 subhayu99/finadict:latest
 ```
 
-> **Using docker-compose**
+#### ▶ Using docker-compose
 
-```shell
+```bash
 mkdir finadict && cd finadict
 wget https://raw.githubusercontent.com/subhayu99/finadict/main/docker-compose.yaml
 sudo docker-compose up -d
@@ -48,54 +64,50 @@ sudo docker-compose up -d
 
 ---
 
-# Program Screenshot
+## 📸 Screenshots
 
-### Stock's Raw Data
-<br>
-<p align="center"><img src="Screenshot/1.png" align="center" alt="screenshot"></p>
-<br>
+### 1. Stock’s Raw Data Table
 
-### Raw Data Graph
-<br>
-<p align="center"><img src="Screenshot/2.png" align="center" alt="screenshot"></p>
-<br>
+<p align="center"><img src="Screenshot/1.png" alt="Raw Data Table" width="70%"/></p>
 
-### Stock's Predicted Data
-<br>
-<p align="center"><img src="Screenshot/3.png" align="center" alt="screenshot"></p>
-<br>
+### 2. Historical Price Graph
 
-### Predicted Data Graph
-<br>
-<p align="center"><img src="Screenshot/4.png" align="center" alt="screenshot"></p>
-<br>
+<p align="center"><img src="Screenshot/2.png" alt="Raw Data Graph" width="70%"/></p>
+
+### 3. Forecasted Prices
+
+<p align="center"><img src="Screenshot/3.png" alt="Forecast Table" width="70%"/></p>
+
+### 4. Forecast Plot
+
+<p align="center"><img src="Screenshot/4.png" alt="Forecast Plot" width="70%"/></p>
 
 ---
 
-# Contributors Wall:
+## 👨‍💻 Contributors
 
-All Contributions of the Contributors can be found in the [__Contributions__](https://github.com/subhayu99/finadict/graphs/contributors) section and info of Contributors at [__Contributors.md__](https://github.com/subhayu99/finadict/blob/master/Contributors.md) file.
+Thanks to all the contributors who made this project possible!
+
 <table>
   <tr>
     <td align="center">
       <a href="https://github.com/subhayu99">
-              <img src="https://avatars3.githubusercontent.com/u/38143013?s=400&u=28405ea45018cee30268bd61408515033741e87e&v=4" width="100px;" alt="subhayu99"/><br />
-              <sub>
-                  <b>
-                      <strong>Subhayu Kumar Bala</strong>
-                  </b>
-              </sub>
-          </a>
-      </td>
+        <img src="https://avatars.githubusercontent.com/u/38143013?v=4" width="100px;" alt="Subhayu"/><br />
+        <sub><b>Subhayu Kumar Bala</b></sub>
+      </a>
+    </td>
     <td align="center">
       <a href="https://github.com/DeepNinja07x">
-              <img src="https://avatars0.githubusercontent.com/u/52314477?s=400&u=1887ecc3afa1e867af50336a3af7ed56b21dc604&v=4" width="100px;" alt="DeepNinja07x"/><br />
-              <sub>
-                  <b>
-                      <strong>Deepraj Rakshit</strong>
-                  </b>
-              </sub>
-          </a>
-      </td>
+        <img src="https://avatars.githubusercontent.com/u/52314477?v=4" width="100px;" alt="Deepraj"/><br />
+        <sub><b>Deepraj Rakshit</b></sub>
+      </a>
+    </td>
   </tr>
-  </table>
+</table>
+
+🔗 See [Contributors.md](https://github.com/subhayu99/finadict/blob/master/Contributors.md) for more info.
+📊 GitHub Contributions: [Graph](https://github.com/subhayu99/finadict/graphs/contributors)
+
+---
+
+> 💡 Built with ❤️ out of curiosity, to learn and experiment with real-world finance data.
